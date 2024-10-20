@@ -1,11 +1,21 @@
 const Products = require("../../models/product.model");
 module.exports.index = async (req, res) => {
-    const products = await Products.find({
-        deleted: false
-    })
-    console.log(products)
-    res.render("admin/pages/products/index.pug",{
+    const find = {
+        deleted: false,
+    };
+
+    // lọc theo trạng thái
+    if (req.query.status) {
+        find.status = req.query.status;
+    }
+    // hết lọc theo trạng thái
+
+    const products = await Products.find(find)
+
+    const toLocaleString = (price) => price.toLocaleString('vi-VN');
+    res.render("admin/pages/products/index.pug", {
         title: "Trang danh sách sản phẩm",
-        products: products
+        products: products,
+        toLocaleString: toLocaleString // Truyền hàm vào template
     });
 }

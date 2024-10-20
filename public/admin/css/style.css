@@ -23,8 +23,8 @@
 
 .wrapper {
     position: relative;
-    /* width: 1600px; */
-    width: 100%;
+    width: 1700px;
+    /* width: 100%; */
     background: #fff;
     min-height: 1000px;
     margin: 0 auto;
@@ -33,8 +33,8 @@
 
 .navigation {
     position: fixed;
-    /* width: 300px; */
-    width: 18%;
+    width: 300px;
+    /* width: 18%; */
     height: 100%;
     background: var(--blue);
     border-left: 10px solid var(--blue);
@@ -43,8 +43,8 @@
 }
 
 .navigation.active {
-    /* width: 80px; */
-    width: 4%;
+    width: 80px;
+    /* width: 4%; */
 }
 
 .navigation ul {
@@ -142,8 +142,8 @@
 }
 
 .header {
-    /* width: 1250px; */
-    width: 82%;
+    width: 1350px;
+    /* width: 82%; */
     height: 60px;
     position: absolute;
     top: 0;
@@ -151,7 +151,7 @@
     background-color: var(--body-color);
     box-shadow: 0 2px 24px var(--shadow-color);
     border-radius: 20px;
-    /* margin: 0 25px; */
+    margin: 0 25px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -179,23 +179,22 @@
 }
 
 .header.active {
-    /* width: 1470px; */
-    width: 96%;
+    width: 1570px;
+    /* width: 96%; */
 }
 
 .main {
-    /* width: 1250px; */
-    width: 82%;
+    width: 1350px;
+    /* width: 82%; */
     min-height: 500px;
-    /* margin: 0 25px; */
+    margin: 0 25px;
     position: absolute;
     top: 100px;
     right: 0px;
     transition: width 0.5s;
-    padding: 0 15px;
 }
 
 .main.active {
-    /* width: 1470px; */
-    width: 96%;
+    width: 1570px;
+    /* width: 96%; */
 }
