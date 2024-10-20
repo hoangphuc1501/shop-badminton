@@ -1,1 +1,30 @@
-h1 Trang danh sách sản phẩm
+extends ../../layouts/default.pug
+block main 
+    .main
+        table.table.table-hover.table-sm
+            thead
+                tr
+                    th STT
+                    th Hình ảnh
+                    th Tiêu đề
+                    th Giá
+                    th Trạng thái
+                    th Hành động
+            tbody
+                each item, index in products
+                    tr 
+                        td #{index+1}
+                        td
+                            img(
+                                src=item.thumbnail
+                                alt=item.title
+                                width="100px"
+                                height="auto"
+                            )
+                        td #{item.title}
+                        td #{item.price}
+                        td
+                            a(href="#" class="badge badge-success") Hoạt động 
+                        td
+                            button(class="btn btn-warning btn-sm") Sửa
+                            button(class="btn btn-danger btn-sm ml-1") Xóa  
