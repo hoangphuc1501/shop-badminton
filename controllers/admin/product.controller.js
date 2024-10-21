@@ -1,7 +1,7 @@
 const Products = require("../../models/product.model");
 module.exports.index = async (req, res) => {
     const find = {
-        deleted: false,
+        deleted: false
     };
 
     // lọc theo trạng thái
@@ -10,7 +10,14 @@ module.exports.index = async (req, res) => {
     }
     // hết lọc theo trạng thái
 
-    const products = await Products.find(find)
+    // tìm kiếm
+    if(req.query.keyword){
+        const regex = new RegExp(req.query.keyword, "i");
+        find.title = regex;
+    }
+    // hết tìm kiếm
+
+    const products = await Products.find(find);
 
     const toLocaleString = (price) => price.toLocaleString('vi-VN');
     res.render("admin/pages/products/index.pug", {
