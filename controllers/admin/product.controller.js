@@ -17,12 +17,30 @@ module.exports.index = async (req, res) => {
     }
     // hết tìm kiếm
 
-    const products = await Products.find(find);
+    // Phân trang
+    let limitItem = 4;
+    let page = 1;
+
+    if(req.query.page){
+        page = parseInt(req.query.page);
+    }
+    if(req.query.limit){
+        limitItem = parseInt(req.query.limit);
+    }
+
+    const skip = (page - 1) * limitItem;
+    const totalProduct = await Products.countDocuments(find);
+    const totalPage = Math.ceil(totalProduct/limitItem);
+    // Hết phân trang
+
+    const products = await Products.find(find).limit(limitItem).skip(skip);
 
     const toLocaleString = (price) => price.toLocaleString('vi-VN');
     res.render("admin/pages/products/index.pug", {
         title: "Trang danh sách sản phẩm",
         products: products,
+        totalPage: totalPage,
+        currentPage: page,
         toLocaleString: toLocaleString // Truyền hàm vào template
     });
 }
