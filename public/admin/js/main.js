@@ -1,3 +1,5 @@
+// const { patch } = require("../../../routes/admin/product.route");
+
 // thêm class sidebar
 let list = document.querySelectorAll(".navigation li");
 function activeLink() {
@@ -131,3 +133,71 @@ toggle.addEventListener("click", () => {
         })
     }
 // hết đổi trạng thái
+
+// Đổi trạng thái nhiều bản ghi
+    const formChangeMulti = document.querySelector("[form-change-multi]");
+    if(formChangeMulti){
+        formChangeMulti.addEventListener("submit", (event) =>{
+            event.preventDefault();
+            const path = formChangeMulti.getAttribute("data-path");
+            const status = formChangeMulti.status.value
+            const ids = [];
+
+            const listInputChangeChecked = document.querySelectorAll("[input-change]:checked");
+            listInputChangeChecked.forEach((input) => {
+                const id = input.getAttribute("input-change");
+                ids.push(id);
+            })
+            
+            const data = {
+                ids: ids,
+                status: status
+            }
+            fetch(path, {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                method: "PATCH",
+                body: JSON.stringify(data)
+            })
+            .then(res => res.json())
+            .then(data =>{
+                if(data.code == "success"){
+                    location.reload();
+                }
+            })
+        })
+    }
+// hết đổi trạng thái nhiều bãn ghi
+
+// xóa sản phẩm mềm
+    const ListButtonDelete = document.querySelectorAll("[button-delete]");
+    if(ListButtonDelete.length > 0){
+        ListButtonDelete.forEach((button) =>{
+            button.addEventListener("click", () =>{
+                const isConform = confirm("bạn có chắc chắn muốn xóa sản phẩm này!");
+                if(isConform){
+                    const path = button.getAttribute("data-path");
+                    const id = button.getAttribute("item-id");
+
+                fetch(path, {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    method: "PATCH",
+                    body:JSON.stringify({
+                        id:id
+                    })
+                })
+                .then(res => res.json())
+                .then(data =>{
+                    if(data.code == "success"){
+                        location.reload();
+                    }
+                })
+                }
+                
+            })
+        })
+    }
+// hết xóa sản phẩm
