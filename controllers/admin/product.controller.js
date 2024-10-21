@@ -44,3 +44,17 @@ module.exports.index = async (req, res) => {
         toLocaleString: toLocaleString // Truyền hàm vào template
     });
 }
+
+module.exports.changeStatus = async (req, res) =>{
+
+    await Products.updateOne({
+        _id: req.body.id
+    },{
+        status: req.body.status
+    })
+
+    res.json({
+        code: "success",
+        message: "đổi trạng thái thành công"
+    })
+}

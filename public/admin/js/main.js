@@ -99,3 +99,35 @@ toggle.addEventListener("click", () => {
     }
     
 // hết phân trang
+
+// đổi trạng thái
+    const listButtonChangeStatus = document.querySelectorAll("[button-change-status]");
+    if(listButtonChangeStatus.length > 0){
+        listButtonChangeStatus.forEach((button) => {
+            button.addEventListener("click", () => {
+                const path = button.getAttribute("data-path");
+                const itemId = button.getAttribute("item-id");
+                const statusChange = button.getAttribute("button-change-status");
+                
+                data = {
+                    id: itemId,
+                    status: statusChange
+                }
+                
+                fetch(path,{
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    method: "PATCH",
+                    body: JSON.stringify(data)
+                })
+                .then(res => res.json())
+                .then(data =>{
+                    if(data.code == "success"){
+                        location.reload();
+                    }
+                })
+            })
+        })
+    }
+// hết đổi trạng thái

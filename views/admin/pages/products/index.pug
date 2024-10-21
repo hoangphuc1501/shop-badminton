@@ -51,10 +51,16 @@ block main
                         td
                             if (item.status == "active")
                                 button(
+                                    item-id=item.id
+                                    button-change-status="inactive"
+                                    data-path=`/${prefixAdmin}/products/change-status`
                                     class="badge bg-success"
                                 ) Hoạt động
                             else if (item.status == "inactive")
                                 button(
+                                    item-id=item.id
+                                    button-change-status="active"
+                                    data-path=`/${prefixAdmin}/products/change-status`
                                     class="badge bg-danger"
                                 ) Dừng hoạt động 
                         td

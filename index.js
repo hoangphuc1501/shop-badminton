@@ -1,4 +1,5 @@
 const express = require("express");
+var bodyParser = require('body-parser')
 require('dotenv').config();
 const systemConfig = require("./config/system");
 const app = express();
@@ -16,6 +17,9 @@ app.set('view engine', 'pug')// template engine sử dụng là pug
 app.use(express.static('public'))// thiết lập thư mục chứa file tĩnh
 
 app.locals.prefixAdmin = systemConfig.prefixAdmin
+
+// parse application/json
+app.use(bodyParser.json())
 
 // khai báo route
 routeAdmin(app);
