@@ -18,6 +18,11 @@ html(lang="en")
                 class="alert alert-success alert-message"
                 alert-message
             ) #{messages.success}
+        - if (messages.error)
+            div(
+                class="alert alert-danger alert-message"
+                alert-message
+            ) #{messages.error}
 
         .wrapper
             include ../partials/header.pug
