@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const flash = require('express-flash');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
+const methodOverride = require('method-override');
 require('dotenv').config();
 const systemConfig = require("./config/system");
 const app = express();
@@ -18,9 +19,10 @@ const routeClient = require("./routes/client/index.route");
 app.set('views', './views'); //Tìm đến thư mục tên là view
 app.set('view engine', 'pug')// template engine sử dụng là pug
 app.use(express.static('public'))// thiết lập thư mục chứa file tĩnh
-
+// khai báo biến toàn cục cho pug
 app.locals.prefixAdmin = systemConfig.prefixAdmin
-
+// override with POST having ?_method=DELETE
+app.use(methodOverride('_method'))
 // flash
 app.use(cookieParser('keyboard cat'));
 app.use(session({ cookie: { maxAge: 60000 }}));
