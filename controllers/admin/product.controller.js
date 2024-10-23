@@ -50,24 +50,21 @@ module.exports.index = async (req, res) => {
         toLocaleString: toLocaleString // Truyền hàm vào template
     });
 }
-
+// Foi963 trạng thái
 module.exports.changeStatus = async (req, res) => {
     await Products.updateOne({
         _id: req.body.id
     }, {
         status: req.body.status
     })
-
+    req.flash('success', 'Thay đổi trạng thái thành công!');
     res.json({
-        code: "success",
-        message: "đổi trạng thái thành công"
+        code: "success"
     })
 }
-
+// hết đổi trạng thái
 // Đổi trạng thái nhiều bản ghi
 module.exports.changeMulti = async (req, res) => {
-    // console.log(req.body)
-
     switch (req.body.status) {
         case "active":
         case "inactive":
@@ -76,9 +73,9 @@ module.exports.changeMulti = async (req, res) => {
             }, {
                 status: req.body.status
             })
+            req.flash('success', 'Thay đổi trạng thái thành công!');
             res.json({
-                code: "success",
-                message: "đổi trạng thái thành công"
+                code: "success"
             })
             break;
         case "delete":
@@ -87,9 +84,9 @@ module.exports.changeMulti = async (req, res) => {
             },{
                 deleted:true
             })
+            req.flash('success', 'Xóa sản phẩm thành công!');
             res.json({
-                code: "success",
-                message: "Xóa thành công"
+                code: "success"
             })
             break;
         default:
@@ -108,9 +105,9 @@ module.exports.delete = async (req, res) => {
     }, {
         deleted: true
     })
+    req.flash('success', 'Xóa sản phẩm thành công!');
     res.json({
-        code: "success",
-        message: "Xóa sản phẩm thành công"
+        code: "success"
     })
 }
 
@@ -121,11 +118,9 @@ module.exports.changePosition = async (req, res) => {
     },{
         position: req.body.position
     })
-
-
+    req.flash('success', 'Đổi vị trí thành công!');
     res.json({
-        code: "success",
-        message: "Đổi vị trí thành công!"
+        code: "success"
     })
 }
 // hết đổi vị tri

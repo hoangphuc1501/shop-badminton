@@ -1,5 +1,8 @@
 const express = require("express");
-var bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+const flash = require('express-flash');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
 require('dotenv').config();
 const systemConfig = require("./config/system");
 const app = express();
@@ -18,6 +21,9 @@ app.use(express.static('public'))// thiết lập thư mục chứa file tĩnh
 
 app.locals.prefixAdmin = systemConfig.prefixAdmin
 
+app.use(cookieParser('keyboard cat'));
+app.use(session({ cookie: { maxAge: 60000 }}));
+app.use(flash());
 // parse application/json
 app.use(bodyParser.json())
 

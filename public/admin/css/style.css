@@ -235,3 +235,9 @@
     transform: rotate(180deg);
     /* Thêm dấu chấm cho class */
 }
+.alert-message {
+    position: fixed;
+    top: 60px;
+    right: 20px;
+    z-index: 9999;
+}
