@@ -11,7 +11,7 @@ module.exports.index = async (req, res) => {
     // hết lọc theo trạng thái
 
     // tìm kiếm
-    if(req.query.keyword){
+    if (req.query.keyword) {
         const regex = new RegExp(req.query.keyword, "i");
         find.title = regex;
     }
@@ -21,23 +21,29 @@ module.exports.index = async (req, res) => {
     let limitItem = 4;
     let page = 1;
 
-    if(req.query.page){
+    if (req.query.page) {
         page = parseInt(req.query.page);
     }
-    if(req.query.limit){
+    if (req.query.limit) {
         limitItem = parseInt(req.query.limit);
     }
 
     const skip = (page - 1) * limitItem;
     const totalProduct = await Products.countDocuments(find);
-    const totalPage = Math.ceil(totalProduct/limitItem);
+    const totalPage = Math.ceil(totalProduct / limitItem);
     // Hết phân trang
 
-    const products = await Products.find(find).limit(limitItem).skip(skip);
+    const products = await Products.
+    find(find)
+    .limit(limitItem)
+    .skip(skip)
+    .sort({
+        position: "desc"
+    });
 
     const toLocaleString = (price) => price.toLocaleString('vi-VN');
     res.render("admin/pages/products/index.pug", {
-        title: "Trang danh sách sản phẩm",
+        pageTitle: "Trang danh sách sản phẩm",
         products: products,
         totalPage: totalPage,
         currentPage: page,
@@ -45,10 +51,10 @@ module.exports.index = async (req, res) => {
     });
 }
 
-module.exports.changeStatus = async (req, res) =>{
+module.exports.changeStatus = async (req, res) => {
     await Products.updateOne({
         _id: req.body.id
-    },{
+    }, {
         status: req.body.status
     })
 
@@ -58,23 +64,48 @@ module.exports.changeStatus = async (req, res) =>{
     })
 }
 
-module.exports.changeMulti = async (req, res) =>{
-    await Products.updateMany({
-        _id: req.body.ids
-    },{
-        status: req.body.status
-    })
+// Đổi trạng thái nhiều bản ghi
+module.exports.changeMulti = async (req, res) => {
+    // console.log(req.body)
 
-    res.json({
-        code: "success",
-        message: "đổi trạng thái thành công"
-    })
+    switch (req.body.status) {
+        case "active":
+        case "inactive":
+            await Products.updateMany({
+                _id: req.body.ids
+            }, {
+                status: req.body.status
+            })
+            res.json({
+                code: "success",
+                message: "đổi trạng thái thành công"
+            })
+            break;
+        case "delete":
+            await Products.updateMany({
+                _id: req.body.ids
+            },{
+                deleted:true
+            })
+            res.json({
+                code: "success",
+                message: "Xóa thành công"
+            })
+            break;
+        default:
+            res.json({
+                code: "error",
+                message: "Trạng thái không hợp lệ"
+            })
+            break;
+    }
 }
-module.exports.delete = async (req, res) =>{
 
+// xóa sản phẩm
+module.exports.delete = async (req, res) => {
     await Products.updateOne({
         _id: req.body.id
-    },{
+    }, {
         deleted: true
     })
     res.json({
@@ -82,3 +113,19 @@ module.exports.delete = async (req, res) =>{
         message: "Xóa sản phẩm thành công"
     })
 }
+
+// đổi vị trí
+module.exports.changePosition = async (req, res) => {
+    await Products.updateOne({
+        _id: req.body.id
+    },{
+        position: req.body.position
+    })
+
+
+    res.json({
+        code: "success",
+        message: "Đổi vị trí thành công!"
+    })
+}
+// hết đổi vị tri

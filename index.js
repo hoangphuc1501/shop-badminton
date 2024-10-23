@@ -25,8 +25,6 @@ app.use(bodyParser.json())
 routeAdmin(app);
 routeClient(app);
 
-
-
 app.listen(port, ()=>{
     console.log(`App listening on port ${port}`);
 });

@@ -1,0 +1,85 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    /* Sửa dấu ngoặc kép */
+}
+
+body {
+    min-height: 100vh;
+    background: white;
+    color: black;
+    /* Đổi lại màu chữ để có thể nhìn thấy */
+    background-size: cover;
+    background-position: center;
+}
+
+.side-bar {
+    background: #1b1a1b;
+    width: 16%;
+    height: 100vh;
+    transition: 0.6s ease;
+}
+
+.side-bar .menu {
+    width: 100%;
+}
+
+.side-bar .menu .item {
+    position: relative;
+    cursor: pointer;
+}
+
+.side-bar .menu .item a {
+    color: #fff;
+    font-size: 16px;
+    text-decoration: none;
+    display: block;
+    padding: 5px 30px;
+    line-height: 60px;
+}
+
+.side-bar .menu .item a:hover {
+    background: #33363a;
+    transition: 0.3s ease;
+}
+
+.side-bar .menu .item i {
+    margin-right: 15px;
+}
+
+.side-bar .menu .item a .dropdown {
+    position: absolute;
+    right: 0;
+    margin: 20px;
+    transition: 0.3s ease;
+}
+
+.side-bar .menu .item .sub-menu {
+    background: #262627;
+    display: none;
+}
+
+.side-bar .menu .item .sub-menu a {
+    padding-left: 80px;
+}
+
+.rotate {
+    transform: rotate(90deg);
+    /* Thêm dấu chấm cho class */
+}
+
+.header{
+    width: 100%;
+    height: 70px;
+    background-color: red;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px;
+}
+.logo img{
+    width: 150px;
+    height: 60px;
+}

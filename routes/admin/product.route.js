@@ -6,5 +6,6 @@ route.get("/", controller.index);
 
 route.patch("/change-status", controller.changeStatus);
 route.patch("/change-multi", controller.changeMulti);
-route.patch("/delete", controller.delete)
+route.patch("/delete", controller.delete);
+route.patch("/change-position", controller.changePosition);
 module.exports = route;
