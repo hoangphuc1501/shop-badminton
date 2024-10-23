@@ -1,4 +1,5 @@
 const Products = require("../../models/product.model");
+const systemConfig = require("../../config/system");
 module.exports.index = async (req, res) => {
     const find = {
         deleted: false
@@ -124,3 +125,28 @@ module.exports.changePosition = async (req, res) => {
     })
 }
 // hết đổi vị tri
+
+// Trang thêm mới
+module.exports.create = (req, res) => {
+
+    res.render("admin/pages/products/create", {
+        pageTitle: "Thêm mới sản phẩm"
+    });
+}
+
+module.exports.createPost = async (req, res) => {
+    req.body.price = parseInt(req.body.price);
+    req.body.discountPercentage = parseInt(req.body.discountPercentage);
+    req.body.stock = parseInt(req.body.stock);
+    if(req.body.position) {
+        req.body.position = parseInt(req.body.position);
+    }else{
+        const countRecord = await Products.countDocuments();
+        req.body.position = countRecord + 1
+    }
+    
+    const record = new Products(req.body);
+    await record.save();
+    res.redirect(`/${systemConfig.prefixAdmin}/products`);
+}
+// hết trang thêm mới

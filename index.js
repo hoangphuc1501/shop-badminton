@@ -21,9 +21,12 @@ app.use(express.static('public'))// thiết lập thư mục chứa file tĩnh
 
 app.locals.prefixAdmin = systemConfig.prefixAdmin
 
+// flash
 app.use(cookieParser('keyboard cat'));
 app.use(session({ cookie: { maxAge: 60000 }}));
 app.use(flash());
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 

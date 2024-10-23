@@ -8,4 +8,6 @@ route.patch("/change-status", controller.changeStatus);
 route.patch("/change-multi", controller.changeMulti);
 route.patch("/delete", controller.delete);
 route.patch("/change-position", controller.changePosition);
+route.get("/create", controller.create);
+route.post("/create", controller.createPost);
 module.exports = route;
