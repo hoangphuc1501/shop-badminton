@@ -223,7 +223,7 @@ if (ListButtonDelete.length > 0) {
                 if (result.isConfirmed) {
                     const path = button.getAttribute("data-path");
                     const id = button.getAttribute("item-id");
-                    
+
                     // Send a PATCH request to the server
                     fetch(path, {
                         headers: {
@@ -269,42 +269,59 @@ if (ListButtonDelete.length > 0) {
 // hết xóa sản phẩm
 
 // thay đổi vị trí
-    const ListInputPosition = document.querySelectorAll("[input-position]");
-    if(ListInputPosition){
-        ListInputPosition.forEach((input) =>{
-            input.addEventListener("change", () =>{
-                const path = input.getAttribute("data-path");
-                const id = input.getAttribute("item-id");
-                const position = parseInt(input.value);
-    
-                const data = {
-                    id: id,
-                    position: position
-                };
-    
-                fetch(path, {
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    method: "PATCH",
-                    body: JSON.stringify(data)
-                })
+const ListInputPosition = document.querySelectorAll("[input-position]");
+if (ListInputPosition) {
+    ListInputPosition.forEach((input) => {
+        input.addEventListener("change", () => {
+            const path = input.getAttribute("data-path");
+            const id = input.getAttribute("item-id");
+            const position = parseInt(input.value);
+
+            const data = {
+                id: id,
+                position: position
+            };
+
+            fetch(path, {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                method: "PATCH",
+                body: JSON.stringify(data)
+            })
                 .then(res => res.json())
-                .then(data =>{
-                    if(data.code == "success"){
+                .then(data => {
+                    if (data.code == "success") {
                         location.reload();
                     }
                 })
-            })
         })
-    }
+    })
+}
 // hết thay đổi vị trí
 
 // thông báo
 const alertMessage = document.querySelector("[alert-message]");
-if(alertMessage) {
+if (alertMessage) {
     setTimeout(() => {
         alertMessage.style.display = "none";
-}, 3000);
+    }, 3000);
 }
 // hết thông báo 
+
+// preview ảnh
+const uploadImage = document.querySelector("[upload-image]");
+console.log(uploadImage)
+if (uploadImage) {
+    const uploadImageInput = uploadImage.querySelector("[upload-image-input]");
+    const uploadImagePreview = uploadImage.querySelector("[upload-image-preview]");
+    console.log(uploadImageInput)
+    console.log(uploadImagePreview)
+    uploadImageInput.addEventListener("change", () => {
+        const file = uploadImageInput.files[0];
+        if (file) {
+            uploadImagePreview.src = URL.createObjectURL(file);
+        }
+    })
+}
+// hết preview ảnh

@@ -12,10 +12,9 @@
     --black1: #222;
     --black2: #999;
     --body-color: hsl(228, 100%, 99%);
-    --shadow-color: hsla(228, 80%, 4%, .1);
-    --main-color: #E95211;
+    --shadow-color: hsla(228, 80%, 4%, 0.1);
+    --main-color: #e95211;
 }
-
 
 /* body {
     min-height: 500px;
@@ -113,7 +112,6 @@
     white-space: nowrap;
 }
 
-
 /*  */
 
 /* .navigation ul li:hover a::before,
@@ -206,24 +204,27 @@
     display: flex;
 }
 
-
 /* sub menu */
 .sub-menu {
     display: none;
     background: transparent;
-    border-radius: 0 0 0 30px ;
+    border-radius: 0 0 0 30px;
 }
+
 .sub-menu a {
     font-size: 14px;
     padding: 14px 0px 14px 50px;
     display: block;
 }
-.sub-menu a:last-child{
-    border-radius: 0 0 0 30px ;
+
+.sub-menu a:last-child {
+    border-radius: 0 0 0 30px;
 }
-.sub-menu a:hover{
+
+.sub-menu a:hover {
     background-color: rgb(153, 153, 153, 0.3);
 }
+
 .dropdown {
     position: absolute;
     right: -120px;
@@ -231,13 +232,31 @@
     /* margin-left: 20px; */
     transition: 0.3s ease;
 }
+
 .rotate {
     transform: rotate(180deg);
     /* Thêm dấu chấm cho class */
 }
+
 .alert-message {
     position: fixed;
     top: 60px;
     right: 20px;
     z-index: 9999;
 }
+
+/* image-preview */
+.image-preview {
+    width: 150px;
+    height: auto;
+    margin-top: 15px;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.image-preview[src=""] {
+    display: none;
+}
+
+/* End image-preview */
