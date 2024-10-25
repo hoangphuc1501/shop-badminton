@@ -56,7 +56,8 @@ module.exports.index = async (req, res) => {
         products: products,
         totalPage: totalPage,
         currentPage: page,
-        toLocaleString: toLocaleString // Truyền hàm vào template
+        toLocaleString: toLocaleString, // Truyền hàm vào template
+        limitItem: limitItem
     });
 }
 // Foi963 trạng thái
