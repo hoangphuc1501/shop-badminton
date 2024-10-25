@@ -1,4 +1,55 @@
 extends ../../layouts/default.pug
 
 block main
-    h1 Trang danh sách sản phẩm
+    .container
+        h2 Danh sách sản phẩm
+        .row.my-5
+            .col-2
+                | ejfoidsoiu
+            .col-10
+                .collection-product
+                    .list-product
+                        h1 Tất cả sản phẩm
+                        .justify-content-space-between
+                            .list-product-title.justify-content-space-between
+                                a(href="#") Tất cả
+                                a(href="#") Nam
+                                a(href="#") Nữ
+                                a(href="#") Trẻ em
+                    .collection-list-product
+                        .row
+                            each item in product
+                                .col-3
+                                    .item-product
+                                        a(href="")
+                                            img(src=item.thumbnail, alt="")
+                                        h3.product-title
+                                            a(href= `/products/detail/${item.slug}`) #{item.title}
+                                        span.star
+                                            i.fa-solid.fa-star
+                                            i.fa-solid.fa-star
+                                            i.fa-solid.fa-star
+                                            i.fa-solid.fa-star
+                                            i.fa-solid.fa-star
+                                        span.promotion-price #{item.priceNew}
+                                            sup đ
+                                        span.price
+                                            del #{item.price}
+                                                sup đ
+                                        span.label-promotion #{item.discountPercentage} %
+                                        .action-product.display-flex
+                                            .button-action
+                                                p.action-title Yêu thích
+                                                button.love
+                                                    a(href="#")
+                                                        i.fa-solid.fa-heart
+                                            .button-action
+                                                p.action-title Xem nhanh
+                                                button.love
+                                                    a(href= `/products/detail/${item.slug}`)
+                                                        i.fa-solid.fa-eye
+                                            .button-action
+                                                p.action-title Mua ngay
+                                                button.love
+                                                    a(href="#")
+                                                        i.fa-solid.fa-cart-shopping

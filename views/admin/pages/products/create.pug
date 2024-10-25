@@ -9,7 +9,7 @@ block main
             enctype="multipart/form-data"
         )
             div(class="form-group")
-                label(for="title") Tiêu đề
+                label(for="title") Tên sản phẩm
                 input(
                     type="text"
                     class="form-control"
@@ -18,12 +18,31 @@ block main
                     
                 )
             div(class="form-group")
-                label(for="desc") Mô tả
+                label(for="brand") Thương hiệu sản phẩm
+                input(
+                    type="text"
+                    class="form-control"
+                    id="brand"
+                    name="brand"
+                    
+                )
+            div(class="form-group")
+                label(for="code") Mã sản phẩm
+                input(
+                    type="text"
+                    class="form-control"
+                    id="code"
+                    name="code"
+                    
+                )
+            div(class="form-group")
+                label(for="desc") Mô tả sản phẩm
                 textarea(
                     class="form-control"
                     id="desc"
                     name="description"
-                    rows="5"
+                    rows="40"
+                    textarea-mce
                 )
             div(class="form-group")
                 label(for="price") Giá
@@ -79,6 +98,15 @@ block main
                     name="position"
                     placeholder="Tự động tăng"
                     min="1"
+                )
+            div(class="form-group")
+                label(for="desc-short") Mô tả ngắn sản phẩm
+                textarea(
+                    class="form-control"
+                    id="desc-short"
+                    name="descriptionShort"
+                    rows="20"
+                    textarea-mce
                 )
             div(class="form-group form-check form-check-inline")
                 input(

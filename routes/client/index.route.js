@@ -2,7 +2,7 @@ const productsRoute = require("./product.route");
 const homeRoute = require("./home.route");
 
 module.exports = (app) =>{
-    app.use("/", productsRoute);
+    app.use("/", homeRoute);
 
-    app.get("/products", homeRoute)
+    app.use("/products", productsRoute)
 };

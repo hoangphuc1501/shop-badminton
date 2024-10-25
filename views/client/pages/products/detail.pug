@@ -1,0 +1,117 @@
+extends ../../layouts/default.pug
+block main
+    .box-link
+        .container
+            a(href="#") trang chủ &gt;
+            a(href="#") Vợt Cầu lông &gt;
+            a(href="#") Vợt Cầu lông yonex&gt;
+            a(href="#") Vợt cầu lông Yonex Nanoflare 700 Pro 2024 &gt;
+    .container
+        .row.my-3
+            .col-9.box-product-detail
+                .row.col-12
+                    .col-5.product-detail-list-img
+                        .img-product
+                            if (product.thumbnail)
+                                img.img-feature(
+                                        src=product.thumbnail
+                                        alt=product.title)
+                            .control.prev
+                                i.fa-solid.fa-chevron-left
+                            .control.next
+                                i.fa-solid.fa-chevron-right
+                        .list-image
+                            div
+                                if (product.thumbnail)
+                                    img(src=product.thumbnail)
+                            div
+                                img(src="https://cdn.shopvnb.com/uploads/san_pham/vot-cau-long-vnb-v200i-hong-1.webp")
+                            div
+                                img(src="https://cdn.shopvnb.com/uploads/san_pham/vot-cau-long-vnb-v200i-hong-3.webp")
+                            div
+                                img(src="https://cdn.shopvnb.com/uploads/san_pham/vot-cau-long-vnb-v200i-hong-3.webp")
+                    .col-7
+                        .product-detail-text
+                            if (product.title)                        
+                                h1.title-product #{product.title}
+                            .status-brand-code
+                                if (product.code)    
+                                    .code
+                                        p Mã: 
+                                            span.text-color #{product.code}
+                                if (product.brand)     
+                                    .brand
+                                        p Thương hiệu: 
+                                            a.text-color(href="#") #{product.brand}
+                                if (product.stock !== undefined)         
+                                    .status-detail
+                                        p
+                                            | Tình trạng: 
+                                            span.text-color 
+                                                if (product.stock === 0)
+                                                    | Hết hàng
+                                                else if (product.stock > 0)
+                                                    | Còn hàng
+                            .list-price
+                                if (product.priceNew)
+                                    span.promotion-price
+                                        | #{product.priceNew}
+                                        sup đ
+                                if (product.price)        
+                                    span.price Giá niêm yết: 
+                                        del
+                                            | #{toLocaleString(product.price)}
+                                            sup đ
+                                if (product.discountPercentage)
+                                    span.label-promotion
+                                        | (#{product.discountPercentage} %)
+                            hr
+                            .promotion-box
+                                    if (product.descriptionShort)
+                                    | !{product.descriptionShort}
+                            .detail-product-endow-pay
+                                .btn-add-card
+                                    button
+                                        a(href="#") Thêm vào giỏ hàng
+                                .btn-buy-full
+                                    button
+                                        a(href="#") Mua ngay
+                                .btn-pay-taichinh
+                                    a.btn-pay-taichinh-text(href="#")
+                                        b Mua trả góp
+                                        p Qua công ty tài chính
+                                    a.btn-pay-taichinh-text(href="#")
+                                        b Trả góp qua thẻ
+                                        p Visa, Mastercard, JCB, Amex
+                .description.my-5
+                    .description-title
+                        h3 Mô tả sản phẩm
+                        h3 Thông số kỹ thuật
+                    .description-content 
+                        if (product.description)
+                            | !{product.description}
+            .col-3
+                .card.category
+                    h3.category-title.card-header Danh mục sản phẩm
+                    .card-body.category-product
+                        .category-item
+                            a.sub-btn
+                                | Vợt Cầu lông
+                                i.fa-solid.fa-chevron-down.dropdown
+                            .sub-category
+                                .sub-item
+                                    a(href="#") Vợt yonex
+                        .category-item
+                            a.sub-btn
+                                | Vợt Cầu lông
+                                i.fa-solid.fa-chevron-down.dropdown
+                            .sub-category
+                                .sub-item
+                                    a(href="#") Vợt yonex
+                        .category-item
+                            a.sub-btn
+                                | Vợt Cầu lông
+                                i.fa-solid.fa-chevron-down.dropdown
+                            .sub-category
+                                .sub-item
+                                    a(href="#") Vợt yonex

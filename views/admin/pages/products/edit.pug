@@ -9,7 +9,7 @@ block main
             enctype="multipart/form-data"
         )
             div(class="form-group")
-                label(for="title") Tiêu đề
+                label(for="title") Tên sản phẩm
                 input(
                     type="text"
                     class="form-control"
@@ -17,13 +17,32 @@ block main
                     name="title"
                     value=product.title
                 )
+                div(class="form-group")
+                label(for="brand") Thương hiệu sản phẩm
+                input(
+                    type="text"
+                    class="form-control"
+                    id="brand"
+                    name="brand"
+                    value=product.brand
+                )
             div(class="form-group")
-                label(for="desc") Mô tả
+                label(for="code") Mã sản phẩm
+                input(
+                    type="text"
+                    class="form-control"
+                    id="code"
+                    name="code"
+                    value=product.code
+                )
+            div(class="form-group")
+                label(for="desc") Mô tả sản phẩm
                 textarea(
                     class="form-control"
                     id="desc"
                     name="description"
-                    rows="5"
+                    rows="40"
+                    textarea-mce
                 ) #{product.description}
             div(class="form-group")
                 label(for="price") Giá
@@ -81,6 +100,15 @@ block main
                     min="1"
                     value=product.position
                 )
+            div(class="form-group")
+                label(for="desc-short") Mô tả ngắn sản phẩm
+                textarea(
+                    class="form-control"
+                    id="desc-short"
+                    name="descriptionShort"
+                    rows="20"
+                    textarea-mce
+                ) #{product.descriptionShort}
             div(class="form-group form-check form-check-inline")
                 input(
                     type="radio"
