@@ -8,6 +8,11 @@ const productSchema = new mongoose.Schema({
         slug: "title",
         unique: true
     },
+    category_id: String,
+    love: {
+        type: Boolean,
+        default: false
+    },
     brand: String,
     code: String,
     description: String,

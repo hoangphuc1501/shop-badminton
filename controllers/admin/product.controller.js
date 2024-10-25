@@ -1,4 +1,5 @@
 const Products = require("../../models/product.model");
+const ProductCategory = require("../../models/product-category.model");
 const systemConfig = require("../../config/system");
 module.exports.index = async (req, res) => {
     const find = {
@@ -136,10 +137,13 @@ module.exports.changePosition = async (req, res) => {
 // hết đổi vị tri
 
 // Trang thêm mới
-module.exports.create = (req, res) => {
-
+module.exports.create = async (req, res) => {
+    const listCategory = await ProductCategory.find({
+        deleted: false
+    });
     res.render("admin/pages/products/create", {
-        pageTitle: "Thêm mới sản phẩm"
+        pageTitle: "Thêm mới sản phẩm",
+        listCategory: listCategory
     });
 }
 
@@ -166,9 +170,13 @@ module.exports.edit = async (req, res) => {
         _id: id,
         deleted: false
     });
+    const listCategory = await ProductCategory.find({
+        deleted: false
+    });
     res.render("admin/pages/products/edit", {
         pageTitle: "Chỉnh sửa sản phẩm",
-        product: product
+        product: product,
+        listCategory: listCategory
     });
 }
 module.exports.editPatch = async (req, res) => {
