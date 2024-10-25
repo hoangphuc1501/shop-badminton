@@ -1,9 +1,13 @@
 const ProductCategory = require("../../models/product-category.model");
 const systemConfig = require("../../config/system");
 
-module.exports.index = (req, res) => {
+module.exports.index = async (req, res) => {
+    const listCategory = await ProductCategory.find({
+        deleted:false
+    })
     res.render("admin/pages/categories/index.pug", {
-        title: "Danh mục sản phẩm"
+        title: "Danh mục sản phẩm",
+        listCategory: listCategory
     });
 }
 
