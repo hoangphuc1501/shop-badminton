@@ -34,13 +34,21 @@ module.exports.index = async (req, res) => {
     const totalPage = Math.ceil(totalProduct / limitItem);
     // Hết phân trang
 
+    //sắp xếp
+    const sort = {};
+    if (req.query.sortKey && req.query.sortValue) {
+        const sortKey = req.query.sortKey;
+        const sortValue = req.query.sortValue;
+        sort[sortKey] = sortValue;
+    } else {
+        sort["position"] = "desc";
+    }
+    // hết sắp xếp
     const products = await Products.
-    find(find)
-    .limit(limitItem)
-    .skip(skip)
-    .sort({
-        position: "desc"
-    });
+        find(find)
+        .limit(limitItem)
+        .skip(skip)
+        .sort(sort);
 
     const toLocaleString = (price) => price.toLocaleString('vi-VN');
     res.render("admin/pages/products/index.pug", {
@@ -82,8 +90,8 @@ module.exports.changeMulti = async (req, res) => {
         case "delete":
             await Products.updateMany({
                 _id: req.body.ids
-            },{
-                deleted:true
+            }, {
+                deleted: true
             })
             req.flash('success', 'Xóa sản phẩm thành công!');
             res.json({
@@ -116,7 +124,7 @@ module.exports.delete = async (req, res) => {
 module.exports.changePosition = async (req, res) => {
     await Products.updateOne({
         _id: req.body.id
-    },{
+    }, {
         position: req.body.position
     })
     req.flash('success', 'Đổi vị trí thành công!');
@@ -138,9 +146,9 @@ module.exports.createPost = async (req, res) => {
     req.body.price = parseInt(req.body.price);
     req.body.discountPercentage = parseInt(req.body.discountPercentage);
     req.body.stock = parseInt(req.body.stock);
-    if(req.body.position) {
+    if (req.body.position) {
         req.body.position = parseInt(req.body.position);
-    }else{
+    } else {
         const countRecord = await Products.countDocuments();
         req.body.position = countRecord + 1
     }
@@ -167,11 +175,11 @@ module.exports.editPatch = async (req, res) => {
     req.body.price = parseInt(req.body.price);
     req.body.discountPercentage = parseInt(req.body.discountPercentage);
     req.body.stock = parseInt(req.body.stock);
-    if(req.body.position) {
+    if (req.body.position) {
         req.body.position = parseInt(req.body.position);
     }
     await Products.updateOne({
-        _id:id,
+        _id: id,
         deleted: false
     }, req.body);
     req.flash("success", "Cập nhật sản phẩm thành công!");
@@ -187,7 +195,7 @@ module.exports.detail = async (req, res) => {
         deleted: false
     });
     product.priceNew = product.price * (100 - product.discountPercentage) / 100;
-        product.priceNew = (product.priceNew).toFixed(0);
+    product.priceNew = (product.priceNew).toFixed(0);
     const toLocaleString = (price) => price.toLocaleString('vi-VN');
     res.render("admin/pages/products/detail", {
         pageTitle: "Chi tiết sản phẩm",
