@@ -144,10 +144,6 @@ module.exports.createPost = async (req, res) => {
         const countRecord = await Products.countDocuments();
         req.body.position = countRecord + 1
     }
-    
-    if(req.file){
-        req.body.thumbnail = `/uploads/${req.file.filename}`;
-    }
     const record = new Products(req.body);
     await record.save();
     res.redirect(`/${systemConfig.prefixAdmin}/products`);
@@ -173,9 +169,6 @@ module.exports.editPatch = async (req, res) => {
     req.body.stock = parseInt(req.body.stock);
     if(req.body.position) {
         req.body.position = parseInt(req.body.position);
-    }
-    if(req.file){
-        req.body.thumbnail = `/uploads/${req.file.filename}`;
     }
     await Products.updateOne({
         _id:id,
