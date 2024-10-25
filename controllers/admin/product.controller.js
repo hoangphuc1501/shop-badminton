@@ -185,3 +185,21 @@ module.exports.editPatch = async (req, res) => {
     res.redirect("back");
 }
 // hết sửa sản phẩm
+
+// Chi tiết sản phẩm
+module.exports.detail = async (req, res) => {
+    const id = req.params.id;
+    const product = await Products.findOne({
+        _id: id,
+        deleted: false
+    });
+    product.priceNew = product.price * (100 - product.discountPercentage) / 100;
+        product.priceNew = (product.priceNew).toFixed(0);
+    const toLocaleString = (price) => price.toLocaleString('vi-VN');
+    res.render("admin/pages/products/detail", {
+        pageTitle: "Chi tiết sản phẩm",
+        product: product,
+        toLocaleString: toLocaleString
+    });
+}
+// hết chio tiết sản phẩm

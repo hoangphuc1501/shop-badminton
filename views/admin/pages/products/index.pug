@@ -87,7 +87,7 @@ block main
                                         height="auto"
                                     )
                                 td 
-                                    a(href="#") #{item.title} 
+                                    a(href=`/${prefixAdmin}/products/detail/${item.id}`) #{item.title} 
                                 td #{toLocaleString(item.price)} đ
                                 td
                                     input(

@@ -34,5 +34,5 @@ route.patch("/edit/:id",
     validate.createPost,
     controller.editPatch
 );
-
+route.get("/detail/:id", controller.detail);
 module.exports = route;
