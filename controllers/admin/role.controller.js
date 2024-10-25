@@ -5,13 +5,13 @@ module.exports.index = async (req, res) => {
     const records = await Role.find({
         deleted: false
     });
-    res.render("admin/pages/roles/index.pug",{
+    res.render("admin/pages/roles/index.pug", {
         pageTitle: "Nhóm quyền",
         records: records
     });
 }
 module.exports.create = async (req, res) => {
-    res.render("admin/pages/roles/create.pug",{
+    res.render("admin/pages/roles/create.pug", {
         pageTitle: "Tạo nhóm quyền"
     });
 }
@@ -27,9 +27,9 @@ module.exports.edit = async (req, res) => {
 
     const role = await Role.findOne({
         _id: id,
-        deleted:false
+        deleted: false
     })
-    res.render("admin/pages/roles/edit.pug",{
+    res.render("admin/pages/roles/edit.pug", {
         pageTitle: "Chỉnh sửa nhóm quyền",
         role: role
     });
@@ -40,8 +40,33 @@ module.exports.editPatch = async (req, res) => {
 
     const role = await Role.updateOne({
         _id: id,
-        deleted:false
+        deleted: false
     }, req.body)
     req.flash("success", "Cập nhật thành công!");
     res.redirect("back");
+}
+
+module.exports.permissions = async (req, res) => {
+    const records = await Role.find({
+        deleted: false
+    });
+    res.render("admin/pages/roles/permissions.pug", {
+        pageTitle: "Phân quyền quyền",
+        records: records
+    });
+}
+
+module.exports.permissionsPatch = async (req, res) => {
+    for (const item of req.body) {
+        await Role.updateOne({
+            _id: item.id,
+            deleted: false
+        }, {
+            permissions: item.permissions
+        });
+    }
+    req.flash("success", "Cập nhật thành công!");
+    res.json({
+        code: "success"
+    });
 }
