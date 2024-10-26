@@ -15,6 +15,10 @@ const productSchema = new mongoose.Schema({
     },
     brand: String,
     code: String,
+    featured: {
+        type: String,
+        default: 0
+    },
     description: String,
     descriptionShort: String,
     price: Number,

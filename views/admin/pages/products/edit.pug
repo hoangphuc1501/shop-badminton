@@ -31,6 +31,26 @@ block main
                             value=item.id
                             selected=(item.id == product.category_id ? true : false)
                         ) #{item.title}
+            div(class="mb-3 form-check form-check-inline")
+                input(
+                    type="radio"
+                    class="form-check-input"
+                    id="featured1"
+                    name="featured"
+                    value="1"
+                    checked=(product.featured == "1" ? true : false)
+                )
+                label(for="featured1" class="form-check-label") Nổi bật
+            div(class="mb-3 form-check form-check-inline")
+                input(
+                    type="radio"
+                    class="form-check-input"
+                    id="featured0"
+                    name="featured"
+                    value="0"
+                    checked=(product.featured == "0" ? true : false)
+                )
+                label(for="featured0" class="form-check-label") Không nổi bật
             div(class="mb-3")
                 label(for="brand" class="label-title") Thương hiệu sản phẩm
                 input(
