@@ -22,4 +22,7 @@ route.patch("/edit/:id",
     upload.single('avatar'),
     uploadCloud.uploadSingle,
     controller.editPatch);
+
+route.get("/change-password/:id", controller.changePassword);
+route.patch("/change-password/:id", controller.changePasswordPatch);
 module.exports = route;
