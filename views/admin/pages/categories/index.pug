@@ -93,6 +93,8 @@ block main
                                 th Tên danh mục
                                 th Vị trí
                                 th Trạng thái
+                                th Tạo bởi
+                                th Cập nhật bởi
                                 th Hành động
                         tbody
                             each item, index in listCategory
@@ -102,7 +104,7 @@ block main
                                         type="checkbox"
                                         input-change=item.id
                                         )
-                                    td #{index + 1}
+                                    td #{limitItem*(currentPage - 1) + index + 1}
                                     td
                                         img(
                                             src=item.thumbnail
@@ -135,6 +137,12 @@ block main
                                                 data-path=`/${prefixAdmin}/products-category/change-status`
                                                 class="btn-status bg-danger"
                                             ) Dừng hoạt động 
+                                    td
+                                        div #{item.createdByFullName}
+                                        div #{item.createdAtFormat}
+                                    td
+                                        div #{item.updatedByFullName}
+                                        div #{item.updatedAtFormat}
                                     td
                                         if (role.permissions.includes("products-category_edit"))
                                             a(

@@ -1,4 +1,6 @@
 const ProductCategory = require("../../models/product-category.model");
+const Account = require("../../models/account.model");
+const moment = require("moment");
 const systemConfig = require("../../config/system");
 
 module.exports.index = async (req, res) => {
@@ -48,6 +50,35 @@ module.exports.index = async (req, res) => {
     .skip(skip)
     .sort(sort);
 
+    for (const item of listCategory) {
+        // Thêm bởi
+        const infoCreate = await Account.findOne({
+            _id:  item.createdBy
+        })
+        if(infoCreate){
+            item.createdByFullName = infoCreate.fullName;
+        }else{
+            item.createdByFullName = "";
+        }
+
+        if(item.createdAt){
+            item.createdAtFormat = moment(item.createdAt).format("HH:mm - DD/MM/YY");
+        }
+
+        // Cập nhật bởi
+        const infoUpdate = await Account.findOne({
+            _id: item.updatedBy
+        })
+        if(infoUpdate){
+            item.updatedByFullName = infoUpdate.fullName;
+        }else{
+            item.updatedByFullName = "";
+        }
+
+        if(item.updatedAt){
+            item.updatedAtFormat = moment(item.updatedAt).format("HH:mm - DD/MM/YY");
+        }
+    }
     res.render("admin/pages/categories/index.pug", {
         pageTitle: "Danh sách danh mục sản phẩm",
         listCategory: listCategory,
@@ -89,8 +120,8 @@ module.exports.changeMulti = async (req, res) => {
                 _id: req.body.ids
             }, {
                 deleted: true,
-                // deletedBy: res.locals.user.id,
-                // deletedAt: new Date()
+                deletedBy: res.locals.user.id,
+                deletedAt: new Date()
             })
             req.flash('success', 'Xóa sản phẩm thành công!');
             res.json({
@@ -113,8 +144,8 @@ module.exports.delete = async (req, res) => {
         _id: req.body.id
     }, {
         deleted: true,
-        // deletedBy: res.locals.user.id,
-        // deletedAt: new Date()
+        deletedBy: res.locals.user.id,
+        deletedAt: new Date()
     })
     req.flash('success', 'Xóa sản phẩm thành công!');
     res.json({
@@ -147,6 +178,8 @@ module.exports.create = async (req, res) => {
 }
 
 module.exports.createPost = async (req, res) => {
+    req.body.createdBy = res.locals.user.id;
+    req.body.createdAt = new Date();
     if (req.body.position) {
         req.body.position = parseInt(req.body.position);
     } else {
@@ -175,6 +208,8 @@ module.exports.edit = async (req, res) => {
 }
 
 module.exports.editPatch = async (req, res) => {
+    req.body.updatedBy = res.locals.user.id;
+    req.body.updatedAt = new Date();
     const id = req.params.id
     if (req.body.position) {
         req.body.position = parseInt(req.body.position);
