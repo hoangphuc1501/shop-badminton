@@ -212,13 +212,12 @@ if (ListButtonDelete.length > 0) {
     ListButtonDelete.forEach((button) => {
         button.addEventListener("click", () => {
             Swal.fire({
-                title: "Are you sure?",
-                text: "You won't be able to revert this!",
+                title: "Bạn có chắc là muốn xóa không?",
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
                 cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, delete it!"
+                confirmButtonText: "Đồng ý"
             }).then((result) => {
                 if (result.isConfirmed) {
                     const path = button.getAttribute("data-path");
@@ -238,8 +237,7 @@ if (ListButtonDelete.length > 0) {
                         .then(data => {
                             if (data.code === "success") {
                                 Swal.fire({
-                                    title: "Deleted!",
-                                    text: "Your file has been deleted.",
+                                    title: "Đã xóa Thành công!",
                                     icon: "success"
                                 }).then(() => {
                                     // Reload the page after successful deletion
@@ -247,16 +245,14 @@ if (ListButtonDelete.length > 0) {
                                 });
                             } else {
                                 Swal.fire({
-                                    title: "Error!",
-                                    text: "Something went wrong.",
+                                    title: "Lỗi!",
                                     icon: "error"
                                 });
                             }
                         })
                         .catch(() => {
                             Swal.fire({
-                                title: "Error!",
-                                text: "Failed to delete the item.",
+                                title: "Lỗi!",
                                 icon: "error"
                             });
                         });
