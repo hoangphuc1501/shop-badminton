@@ -1,5 +1,7 @@
 const Products = require("../../models/product.model");
 const ProductCategory = require("../../models/product-category.model");
+const Account = require("../../models/account.model");
+const moment = require("moment");
 const systemConfig = require("../../config/system");
 module.exports.index = async (req, res) => {
     const find = {
@@ -51,6 +53,21 @@ module.exports.index = async (req, res) => {
         .skip(skip)
         .sort(sort);
 
+        for (const item of products) {
+            const infoCreate = await Account.findOne({
+                _id:  item.createdBy
+            })
+            if(infoCreate){
+                item.createdByFullName = infoCreate.fullName;
+            }else{
+                item.createdByFullName = "";
+            }
+
+            if(item.createdAt){
+                item.createdAtFormat = moment(item.createdAt).format("HH:mm - DD/MM/YY");
+            }
+        }
+    
     const toLocaleString = (price) => price.toLocaleString('vi-VN');
     res.render("admin/pages/products/index.pug", {
         pageTitle: "Trang danh sách sản phẩm",
@@ -151,6 +168,9 @@ module.exports.createPost = async (req, res) => {
     req.body.price = parseInt(req.body.price);
     req.body.discountPercentage = parseInt(req.body.discountPercentage);
     req.body.stock = parseInt(req.body.stock);
+    req.body.createdBy = res.locals.user.id;
+    req.body.createdAt = new Date();;
+    
     if (req.body.position) {
         req.body.position = parseInt(req.body.position);
     } else {
