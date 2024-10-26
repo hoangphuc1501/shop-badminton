@@ -125,7 +125,9 @@ module.exports.changeMulti = async (req, res) => {
             await Products.updateMany({
                 _id: req.body.ids
             }, {
-                deleted: true
+                deleted: true,
+                deletedBy: res.locals.user.id,
+                deletedAt: new Date()
             })
             req.flash('success', 'Xóa sản phẩm thành công!');
             res.json({
@@ -146,7 +148,9 @@ module.exports.delete = async (req, res) => {
     await Products.updateOne({
         _id: req.body.id
     }, {
-        deleted: true
+        deleted: true,
+        deletedBy: res.locals.user.id,
+        deletedAt: new Date()
     })
     req.flash('success', 'Xóa sản phẩm thành công!');
     res.json({
