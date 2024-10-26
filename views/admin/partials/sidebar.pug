@@ -7,11 +7,12 @@
                 span.icon
                     i.fa-solid.fa-house
                 span.title Trang quản trị
-        li  
-            a(href=`/${prefixAdmin}/dashboard`)
-                span.icon 
-                    i.bi.bi-clipboard-data
-                span.title Tổng quan
+        if (role.permissions.includes("dashboard_view"))
+            li  
+                a(href=`/${prefixAdmin}/dashboard`)
+                    span.icon 
+                        i.bi.bi-clipboard-data
+                    span.title Tổng quan
         li
             a.sub-btn
                 span.icon 
@@ -19,25 +20,31 @@
                 span.title  Sản phẩm
                     i.fa-solid.fa-chevron-down.dropdown
             .sub-menu
-                a.sub-item(href=`/${prefixAdmin}/products-category`) Danh mục sản phẩm
-                a.sub-item(href=`/${prefixAdmin}/products/create`) Thêm mới sản phẩm
-                a.sub-item(href=`/${prefixAdmin}/products`) Danh sách sản phẩm
+                if (role.permissions.includes("products-category_view"))
+                    a.sub-item(href=`/${prefixAdmin}/products-category`) Danh mục sản phẩm
+                if (role.permissions.includes("products_create"))
+                    a.sub-item(href=`/${prefixAdmin}/products/create`) Thêm mới sản phẩm
+                if (role.permissions.includes("products_view"))
+                    a.sub-item(href=`/${prefixAdmin}/products`) Danh sách sản phẩm
+        if (role.permissions.includes("roles_view"))
+            li
+                a(href=`/${prefixAdmin}/roles`)
+                    span.icon 
+                        i.bi.bi-trash-fill
+                    span.title Nhóm quyền
+        if (role.permissions.includes("roles_permissions"))    
+            li
+                a(href=`/${prefixAdmin}/roles/permissions`)
+                    span.icon 
+                        i.bi.bi-trash-fill
+                    span.title Phân quyền
+        if (role.permissions.includes("accounts_view")) 
+            li
+                a(href=`/${prefixAdmin}/accounts`)
+                    span.icon 
+                        i.bi.bi-trash-fill
+                    span.title Tài khoản
         
-        li
-            a(href=`/${prefixAdmin}/roles`)
-                span.icon 
-                    i.bi.bi-trash-fill
-                span.title Nhóm quyền
-        li
-            a(href=`/${prefixAdmin}/roles/permissions`)
-                span.icon 
-                    i.bi.bi-trash-fill
-                span.title Phân quyền
-        li
-            a(href=`/${prefixAdmin}/accounts`)
-                span.icon 
-                    i.bi.bi-trash-fill
-                span.title Tài khoản
         li
             a(href=`/${prefixAdmin}/trash`)
                 span.icon 

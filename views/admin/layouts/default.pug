@@ -13,21 +13,22 @@ html(lang="en")
         link(rel="stylesheet" href="/admin/css/product-detail.css")
         link(rel="stylesheet" href="/admin/css/style.css")
     body 
-        - if (messages.success)
-            div(
-                class="alert alert-success alert-message"
-                alert-message
-            ) #{messages.success}
-        - if (messages.error)
-            div(
-                class="alert alert-danger alert-message"
-                alert-message
-            ) #{messages.error}
+        if(role.permissions.length > 0)
+            - if (messages.success)
+                div(
+                    class="alert alert-success alert-message"
+                    alert-message
+                ) #{messages.success}
+            - if (messages.error)
+                div(
+                    class="alert alert-danger alert-message"
+                    alert-message
+                ) #{messages.error}
 
-        .wrapper
-            include ../partials/header.pug
-            include ../partials/sidebar.pug
-            block main 
+            .wrapper
+                include ../partials/header.pug
+                include ../partials/sidebar.pug
+                block main 
 
         
 

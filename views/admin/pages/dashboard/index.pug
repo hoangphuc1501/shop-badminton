@@ -1,29 +1,34 @@
 extends ../../layouts/default.pug
 block main 
     .main
-        .card-box
-            .row
-                .col-3
-                    .card
-                        .data-card
-                            .number-card 1,504
-                            .card-name Daily Views
-                        .icon-card xxx
-                .col-3
-                    .card
-                        .data-card
-                            .number-card 1,504
-                            .card-name Daily Views
-                        .icon-card xxx
-                .col-3
-                    .card
-                        .data-card
-                            .number-card 1,504
-                            .card-name Daily Views
-                        .icon-card xxx
-                .col-3
-                    .card
-                        .data-card
-                            .number-card 1,504
-                            .card-name Daily Views
-                        .icon-card xxx
+        if (role.permissions.includes("dashboard_view"))
+            .card-box
+                .row
+                    .col-3
+                        .card
+                            .data-card
+                                .number-card 1,504
+                                .card-name Daily Views
+                            .icon-card xxx
+                    .col-3
+                        .card
+                            .data-card
+                                .number-card 1,504
+                                .card-name Daily Views
+                            .icon-card xxx
+                    .col-3
+                        .card
+                            .data-card
+                                .number-card 1,504
+                                .card-name Daily Views
+                            .icon-card xxx
+                    .col-3
+                        .card
+                            .data-card
+                                .number-card 1,504
+                                .card-name Daily Views
+                            .icon-card xxx
+
+            div #{user.fullName}
+            div #{role.title}
+            //- div #{role.permissions}
