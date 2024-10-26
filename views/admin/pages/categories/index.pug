@@ -1,7 +1,8 @@
 extends ../../layouts/default.pug
 block main
-    h1 #{pageTitle}
     .main
+        h2
+            .title-page #{pageTitle}
         .card.mb-3
             .card-header Danh sách
             .card-body
@@ -20,7 +21,7 @@ block main
                     tr
                         th STT
                         th Hình ảnh
-                        th Tiêu đề
+                        th Tên danh mục
                         th Vị trí
                         th Trạng thái
                         th Hành động
@@ -46,33 +47,38 @@ block main
                                 )
                             td
                                 if (item.status === "active")
-                                    a(
-                                        href="javascript:;"
-                                        class="badge bg-success"
+                                    button(
+                                        class="btn-status bg-success"
                                         data-status="active"
                                         data-id=item.id
                                         button-change-status
                                     ) Hoạt động
                                 else
-                                    a(
-                                        href="javascript:;"
-                                        class="badge bg-danger"
+                                    button(
+                                        class="btn-status bg-danger"
                                         data-status="inactive"
                                         data-id=item.id
                                         button-change-status
                                     ) Dừng hoạt động
                             td
                                 a(
-                                    class="btn btn-info btn-sm"
-                                    href=`/${prefixAdmin}/products-category/detail/${item.id}`
-                                ) Chi tiết
-                                a(
-                                    class="btn btn-warning btn-sm ml-1"
+                                    class="btn btn-warning btn-sm me-1"
                                     href=`/${prefixAdmin}/products-category/edit/${item.id}`
                                 ) Sửa
                                 button(
-                                    class="btn btn-danger btn-sm ml-1"
+                                    class="btn btn-danger btn-sm"
                                     item-id=item.id
                                     button-delete
                                     data-path=`/${prefixAdmin}/products-category/delete`
                                 ) Xóa
+
+
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item"><a class="page-link active" href="#">Previous</a></li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                </ul>
+            </nav>

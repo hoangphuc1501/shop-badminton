@@ -1,13 +1,14 @@
 extends ../../layouts/default.pug
 block main
     .main
-        h1 #{pageTitle}
+        h2
+            .title-page #{pageTitle}
         form(
             action=`/${prefixAdmin}/roles/create`
             method="POST"
         )
-            div(class="form-group")
-                label(for="title") Tiêu đề
+            div(class="mb-3")
+                label(for="title" class="label-title") Tiêu đề
                 input(
                     type="text"
                     class="form-control"
@@ -15,16 +16,16 @@ block main
                     name="title"
                     required
                 )
-            div(class="form-group")
-                label(for="desc") Mô tả
+            div(class="mb-3")
+                label(for="desc" class="label-title") Mô tả
                 input(
                     type="text"
                     class="form-control"
                     id="desc"
                     name="description"
                 )
-            div(class="form-group")
+            div(class="mb-3")
                 button(
                     type="submit"
-                    class="btn btn-primary"
+                    class="btn bg-main px-5"
                 ) Tạo mới

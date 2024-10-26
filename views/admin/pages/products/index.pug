@@ -2,13 +2,16 @@ extends ../../layouts/default.pug
 include ../../mixins/box-filter.pug
 block main 
     .main
-        h2 Danh sách sản phẩm 
+        h2
+            .title-page
+                | Danh sách sản phẩm 
         .card.mb-3
             .card-header 
-                h4 Bộ lọc và tìm kiếm
+                h3
+                    | Bộ lọc và tìm kiếm
             .card-body
                 .row
-                    .col-4
+                    .col-2
                         +box-filter([
                             {
                                 label: "Tất cả",
@@ -23,13 +26,7 @@ block main
                                 value: "inactive"
                             }
                         ])
-                    .col-8
-                        include ../../partials/box-search.pug
-        .card.mb-3
-            .card-header Sắp xếp
-            .card-body
-                .row
-                    .col-4
+                    .col-2
                         select(class="form-control" sort-select)
                             option(value="position-desc") Vị trí giảm dần
                             option(value="position-asc") Vị trí tăng dần
@@ -37,11 +34,17 @@ block main
                             option(value="price-asc") Giá tăng dần
                             option(value="title-desc") Tiêu đề từ Z đến A
                             option(value="title-asc") Tiêu đề từ A đến Z
-        .card 
-            .card-header Danh sách
-            .card-body
-                .row.mb-3
-                    .col-4
+                    .col-2
+                        select(class="form-control" sort-select)
+                            option(value="position-desc") Vị trí giảm dần
+                            option(value="position-asc") Vị trí tăng dần
+                            option(value="price-desc") Giá giảm dần
+                            option(value="price-asc") Giá tăng dần
+                            option(value="title-desc") Tiêu đề từ Z đến A
+                            option(value="title-asc") Tiêu đề từ A đến Z
+                    .col-3
+                        include ../../partials/box-search.pug
+                    .col-3 
                         form(
                             form-change-multi
                             data-path=`/${prefixAdmin}/products/change-multi`
@@ -63,26 +66,28 @@ block main
                                 ])
                                 .input-group-append
                                     button(
-                                    class="btn btn-success"
+                                    class="btn btn-main-color"
                                     type="submit"
                                     ) Áp dụng
-                    .col-8.text-center
-                        a(
-                            href=`/${prefixAdmin}/products/create`
-                            class="btn btn-outline-success"
-                        ) + Thêm mới
+                    
+        .card 
+            .card-header 
+                h3
+                    | Danh sách sản phẩm
+            .card-body
                 table.table.table-hover.table-sm
                     thead
                         tr
                             th
                             th STT
                             th Hình ảnh
-                            th Tiêu đề
+                            th Tên sản phẩm
                             th Giá
                             th Vị trí
                             th Trạng thái
                             th Hành động
                     tbody
+                        
                         each item, index in products
                             tr 
                                 td
@@ -99,7 +104,9 @@ block main
                                         height="auto"
                                     )
                                 td 
-                                    a(href=`/${prefixAdmin}/products/detail/${item.id}`) #{item.title} 
+                                    a(class="a-title-link"
+                                        href=`/${prefixAdmin}/products/detail/${item.id}`
+                                        ) #{item.title} 
                                 td #{toLocaleString(item.price)} đ
                                 td
                                     input(
@@ -116,37 +123,38 @@ block main
                                             item-id=item.id
                                             button-change-status="inactive"
                                             data-path=`/${prefixAdmin}/products/change-status`
-                                            class="badge bg-success"
+                                            class="btn-status bg-success"
                                         ) Hoạt động
                                     else if (item.status == "inactive")
                                         button(
                                             item-id=item.id
                                             button-change-status="active"
                                             data-path=`/${prefixAdmin}/products/change-status`
-                                            class="badge bg-danger"
+                                            class="btn-status bg-danger"
                                         ) Dừng hoạt động 
                                 td
                                     a(href=`/${prefixAdmin}/products/edit/${item.id}` 
-                                        class="btn btn-warning btn-sm"
+                                        class="btn btn-warning btn-sm me-1"
                                         item-id=item.id
                                         button-edit
                                         data-path=`/${prefixAdmin}/products/edit`
                                         ) Sửa
                                     button(
-                                        class="btn btn-danger btn-sm ml-1"
+                                        class="btn btn-danger btn-sm"
                                         item-id=item.id
                                         button-delete
                                         data-path=`/${prefixAdmin}/products/delete`
                                     ) Xóa  
 
-                nav(class="mt-3")
+            .page-panigation
+                nav(class="" aria-label="Page navigation example")
                     ul(class="pagination")
                         if(currentPage > 1)
                             li(class="page-item")
-                                button(class="page-link" button-pagination=currentPage-1) Trang trước
+                                button(class="page-link" button-pagination=currentPage-1) &laquo;
                         - for (var i = 1; i <= totalPage; i++)
                             li(class="page-item")
                                 button(class="page-link" button-pagination=i) #{i}
                         if(currentPage < totalPage)
                             li(class="page-item")
-                                button(class="page-link" button-pagination=currentPage+1) Kế tiếp
+                                button(class="page-link" button-pagination=currentPage+1) &raquo;

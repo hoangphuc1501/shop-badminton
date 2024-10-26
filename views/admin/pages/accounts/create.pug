@@ -1,14 +1,15 @@
 extends ../../layouts/default.pug
 block main
     .main
-        h1(class="mb-4") #{pageTitle}
+        h2
+            .title-page #{pageTitle}
         form(
             action=`/${prefixAdmin}/accounts/create`
             method="POST"
                 enctype="multipart/form-data"
         )
-            div(class="form-group")
-                label(for="fullName") Họ tên *
+            div(class="mb-3")
+                label(for="fullName" class="label-title") Họ tên *
                 input(
                     type="text"
                     class="form-control"
@@ -16,8 +17,8 @@ block main
                     name="fullName"
                     required
                 )
-            div(class="form-group")
-                label(for="email") Email *
+            div(class="mb-3")
+                label(for="email" class="label-title") Email *
                 input(
                     type="email"
                     class="form-control"
@@ -25,8 +26,8 @@ block main
                     name="email"
                     required
                 )
-            div(class="form-group")
-                label(for="password") Mật khẩu *
+            div(class="mb-3")
+                label(for="password" class="label-title") Mật khẩu *
                 input(
                     type="password"
                     class="form-control"
@@ -34,21 +35,21 @@ block main
                     name="password"
                     required
                 )
-            div(class="form-group")
-                label(for="phone") Số điện thoại
+            div(class="mb-3")
+                label(for="phone" class="label-title") Số điện thoại
                 input(
                     type="text"
                     class="form-control"
                     id="phone"
                     name="phone"
                 )
-            div(class="form-group"
+            div(class="mb-3"
                 upload-image
             )
-                label(for="avatar") Avatar
+                label(for="avatar" class="label-title") Avatar
                 input(
                     type="file"
-                    class="form-control-file"
+                    class="form-control"
                     id="avatar"
                     name="avatar"
                     accept="image/*"
@@ -59,13 +60,13 @@ block main
                     class="image-preview"
                     upload-image-preview
                 )
-            div(class="form-group")
-                label(for="role_id") Nhóm quyền
+            div(class="mb-3")
+                label(for="role_id" class="label-title") Nhóm quyền
                 select(name="role_id" id="role_id" class="form-control")
                     option(disabled) -- Chọn --
                     each role in roles
                         option(value=role.id) #{role.title}
-            div(class="form-group form-check form-check-inline")
+            div(class="mb-3 form-check form-check-inline")
                 input(
                     type="radio"
                     class="form-check-input"
@@ -75,7 +76,7 @@ block main
                     checked
                 )
                 label(for="statusActive" class="form-check-label") Hoạt động
-            div(class="form-group form-check form-check-inline")
+            div(class="mb-3 form-check form-check-inline")
                 input(
                     type="radio"
                     class="form-check-input"
@@ -84,8 +85,8 @@ block main
                     value="inactive"
                 )
                 label(for="statusInActive" class="form-check-label") Dừng hoạt động
-            div(class="form-group")
+            div(class="mb-3")
                 button(
                     type="submit"
-                    class="btn btn-primary"
+                    class="btn px-5 bg-main"
                 ) Tạo mới

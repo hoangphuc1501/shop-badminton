@@ -18,7 +18,7 @@ module.exports.index = async (req, res) => {
     }
 
     res.render("admin/pages/accounts/index.pug", {
-        title: "Danh sách tài khoản",
+        pageTitle: "Danh sách tài khoản",
         records: records
     });
 }
@@ -28,7 +28,7 @@ module.exports.create = async (req, res) => {
         deleted: false
     });
     res.render("admin/pages/accounts/create.pug", {
-        title: "Tạo tài khoản",
+        pageTitle: "Tạo tài khoản",
         roles: roles
     });
 }

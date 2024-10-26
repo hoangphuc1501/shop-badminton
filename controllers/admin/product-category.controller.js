@@ -6,7 +6,7 @@ module.exports.index = async (req, res) => {
         deleted:false
     })
     res.render("admin/pages/categories/index.pug", {
-        title: "Danh mục sản phẩm",
+        pageTitle: "Danh sách danh mục sản phẩm",
         listCategory: listCategory
     });
 }
@@ -16,7 +16,7 @@ module.exports.create = async (req, res) => {
         deleted:false
     })
     res.render("admin/pages/categories/create.pug", {
-        title: "Thêm mới danh mục sản phẩm",
+        pageTitle: "Thêm mới danh mục sản phẩm",
         listCategory: listCategory
     });
 }
@@ -43,7 +43,7 @@ module.exports.edit = async (req, res) => {
         deleted:false
     })
     res.render("admin/pages/categories/edit.pug", {
-        title: "Chỉnh sửa danh mục sản phẩm",
+        pageTitle: "Chỉnh sửa danh mục sản phẩm",
         listCategory: listCategory,
         category: category
     });

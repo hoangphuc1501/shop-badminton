@@ -1,14 +1,15 @@
 extends ../../layouts/default.pug
 block main
-    h1 #{pageTitle}
     .main
+        h2
+            .title-page #{pageTitle}
         form(
             action=`/${prefixAdmin}/products-category/create`
             method="POST"
             enctype="multipart/form-data"
         )
-            div(class="form-group")
-                label(for="title") Tiêu đề
+            div(class="mb-3")
+                label(for="title" class="label-title") Tên danh mục
                 input(
                     type="text"
                     class="form-control"
@@ -16,8 +17,8 @@ block main
                     name="title"
                     required
                 )
-            div(class="form-group")
-                label(for="parent_id") Danh mục cha
+            div(class="mb-3")
+                label(for="parent_id" class="label-title") Danh mục cha
                 select(
                     class="form-control"
                     id="parent_id"
@@ -26,8 +27,8 @@ block main
                     option(value="") -- Chọn danh mục --
                     each item in listCategory
                         option(value=item.id) #{item.title}
-            div(class="form-group")
-                label(for="desc") Mô tả
+            div(class="mb-3")
+                label(for="desc" class="label-title") Mô tả
                 textarea(
                     type="text"
                     class="form-control"
@@ -37,13 +38,13 @@ block main
                     textarea-mce
                 )
             div(
-                class="form-group"
+                class="mb-3"
                 upload-image
             )
-                label(for="thumbnail") Ảnh
+                label(for="thumbnail" class="label-title") Ảnh
                 input(
                     type="file"
-                    class="form-control-file"
+                    class="form-control"
                     id="thumbnail"
                     name="thumbnail"
                     accept="image/*"
@@ -54,8 +55,8 @@ block main
                     class="image-preview"
                     upload-image-preview
                 )
-            div(class="form-group")
-                label(for="position") Vị trí
+            div(class="mb-3")
+                label(for="position" class="label-title") Vị trí
                 input(
                     type="number"
                     class="form-control"
@@ -64,7 +65,7 @@ block main
                     placeholder="Tự động tăng"
                     min="1"
                 )
-            div(class="form-group form-check form-check-inline")
+            div(class="mb-3 form-check form-check-inline")
                 input(
                     type="radio"
                     class="form-check-input"
@@ -74,7 +75,7 @@ block main
                     checked
                 )
                 label(for="statusActive" class="form-check-label") Hoạt động
-            div(class="form-group form-check form-check-inline")
+            div(class="mb-3 form-check form-check-inline")
                 input(
                     type="radio"
                     class="form-check-input"
@@ -83,8 +84,8 @@ block main
                     value="inactive"
                 )
                 label(for="statusInActive" class="form-check-label") Dừng hoạt động
-            div(class="form-group")
+            div(class="mb-3")
                 button(
                     type="submit"
-                    class="btn btn-primary"
+                    class="btn px-5 bg-main"
                 ) Tạo mới

@@ -2,14 +2,15 @@ extends ../../layouts/default.pug
 include ../../mixins/box-filter.pug
 block main 
     .main
-        h1 #{pageTitle}
+        h2
+            .title-page #{pageTitle}
         form(
             action=`/${prefixAdmin}/products/create`
             method="POST"
             enctype="multipart/form-data"
         )
-            div(class="form-group")
-                label(for="title") Tên sản phẩm
+            div(class="mb-3")
+                label(for="title" class="label-title") Tên sản phẩm
                 input(
                     type="text"
                     class="form-control"
@@ -17,8 +18,8 @@ block main
                     name="title"
                     
                 )
-            div(class="form-group")
-                label(for="category_id") Danh mục
+            div(class="mb-3")
+                label(for="category_id" class="label-title") Danh mục
                 select(
                     class="form-control"
                     id="category_id"
@@ -27,8 +28,8 @@ block main
                     option(value="") -- Chọn danh mục --
                     each item in listCategory
                         option(value=item.id) #{item.title}
-            div(class="form-group")
-                label(for="brand") Thương hiệu sản phẩm
+            div(class="mb-3")
+                label(for="brand" class="label-title") Thương hiệu sản phẩm
                 input(
                     type="text"
                     class="form-control"
@@ -36,8 +37,8 @@ block main
                     name="brand"
                     
                 )
-            div(class="form-group")
-                label(for="code") Mã sản phẩm
+            div(class="mb-3")
+                label(for="code" class="label-title") Mã sản phẩm
                 input(
                     type="text"
                     class="form-control"
@@ -45,8 +46,8 @@ block main
                     name="code"
                     
                 )
-            div(class="form-group")
-                label(for="desc") Mô tả sản phẩm
+            div(class="mb-3")
+                label(for="desc" class="label-title") Mô tả sản phẩm
                 textarea(
                     class="form-control"
                     id="desc"
@@ -54,8 +55,8 @@ block main
                     rows="40"
                     textarea-mce
                 )
-            div(class="form-group")
-                label(for="price") Giá
+            div(class="mb-3")
+                label(for="price" class="label-title") Giá
                 input(
                     type="number"
                     class="form-control"
@@ -64,8 +65,8 @@ block main
                     value="0"
                     min="0"
                 )
-            div(class="form-group")
-                label(for="discount") % Giảm giá
+            div(class="mb-3")
+                label(for="discount" class="label-title") % Giảm giá
                 input(
                     type="number"
                     class="form-control"
@@ -74,7 +75,7 @@ block main
                     value="0"
                     min="0"
                 )
-            div(class="form-group")
+            div(class="mb-3" class="label-title")
                 label(for="stock") Số lượng
                 input(
                     type="number"
@@ -84,8 +85,8 @@ block main
                     value="0"
                     min="0"
                 )
-            div(class="form-group" upload-image)
-                label(for="thumbnail") Ảnh
+            div(class="mb-3" upload-image)
+                label(for="thumbnail" class="label-title") Ảnh
                 input(
                     type="file"
                     class="form-control"
@@ -99,8 +100,8 @@ block main
                     class="image-preview"
                     upload-image-preview
                 )
-            div(class="form-group")
-                label(for="position") Vị trí
+            div(class="mb-3")
+                label(for="position" class="label-title") Vị trí
                 input(
                     type="number"
                     class="form-control"
@@ -109,8 +110,8 @@ block main
                     placeholder="Tự động tăng"
                     min="1"
                 )
-            div(class="form-group")
-                label(for="desc-short") Mô tả ngắn sản phẩm
+            div(class="mb-3")
+                label(for="desc-short" class="label-title") Mô tả ngắn sản phẩm
                 textarea(
                     class="form-control"
                     id="desc-short"
@@ -118,7 +119,7 @@ block main
                     rows="20"
                     textarea-mce
                 )
-            div(class="form-group form-check form-check-inline")
+            div(class="mb-3 form-check form-check-inline")
                 input(
                     type="radio"
                     class="form-check-input"
@@ -128,7 +129,7 @@ block main
                     checked
                 )
                 label(for="statusActive" class="form-check-label") Hoạt động
-            div(class="form-group form-check form-check-inline")
+            div(class="mb-3 form-check form-check-inline")
                 input(
                     type="radio"
                     class="form-check-input"
@@ -137,8 +138,8 @@ block main
                     value="inactive"
                 )
                 label(for="statusInActive" class="form-check-label") Dừng hoạt động
-            div(class="form-group")
+            div(class="mb-5")
                 button(
                     type="submit"
-                    class="btn btn-primary"
+                    class="btn px-5 bg-main"
                 ) Tạo mới

@@ -51,7 +51,7 @@ module.exports.permissions = async (req, res) => {
         deleted: false
     });
     res.render("admin/pages/roles/permissions.pug", {
-        pageTitle: "Phân quyền quyền",
+        pageTitle: "Phân quyền",
         records: records
     });
 }

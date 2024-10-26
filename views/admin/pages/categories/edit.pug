@@ -1,14 +1,15 @@
 extends ../../layouts/default.pug
 block main
-    h1 #{pageTitle}
     .main
+        h2
+            .title-page #{pageTitle}
         form(
             action=`/${prefixAdmin}/products-category/edit/${category.id}?_method=PATCH`
             method="POST"
             enctype="multipart/form-data"
         )
-            div(class="form-group")
-                label(for="title") Tiêu đề
+            div(class="mb-3")
+                label(for="title" class="label-title") Tên danh mục
                 input(
                     type="text"
                     class="form-control"
@@ -17,8 +18,8 @@ block main
                     required
                     value=category.title
                 )
-            div(class="form-group")
-                label(for="parent_id") Danh mục cha
+            div(class="mb-3")
+                label(for="parent_id" class="label-title") Danh mục cha
                 select(
                     class="form-control"
                     id="parent_id"
@@ -30,8 +31,8 @@ block main
                             value=item.id
                             selected=(item.id == category.parent_id ? true : false)
                         ) #{item.title}
-            div(class="form-group")
-                label(for="desc") Mô tả
+            div(class="mb-3")
+                label(for="desc" class="label-title") Mô tả
                 textarea(
                     type="text"
                     class="form-control"
@@ -41,13 +42,13 @@ block main
                     textarea-mce
                 ) #{category.description}
             div(
-                class="form-group"
+                class="mb-3"
                 upload-image
             )
-                label(for="thumbnail") Ảnh
+                label(for="thumbnail" class="label-title") Ảnh
                 input(
                     type="file"
-                    class="form-control-file"
+                    class="form-control"
                     id="thumbnail"
                     name="thumbnail"
                     accept="image/*"
@@ -58,8 +59,8 @@ block main
                     class="image-preview"
                     upload-image-preview
                 )
-            div(class="form-group")
-                label(for="position") Vị trí
+            div(class="mb-3")
+                label(for="position" class="label-title") Vị trí
                 input(
                     type="number"
                     class="form-control"
@@ -69,7 +70,7 @@ block main
                     min="1"
                     value=category.position
                 )
-            div(class="form-group form-check form-check-inline")
+            div(class="mb-3 form-check form-check-inline")
                 input(
                     type="radio"
                     class="form-check-input"
@@ -79,7 +80,7 @@ block main
                     checked=(category.status == "active" ? true : false)
                 )
                 label(for="statusActive" class="form-check-label") Hoạt động
-            div(class="form-group form-check form-check-inline")
+            div(class="mb-3 form-check form-check-inline")
                 input(
                     type="radio"
                     class="form-check-input"
@@ -89,8 +90,8 @@ block main
                     checked=(category.status == "inactive" ? true : false)
                 )
                 label(for="statusInActive" class="form-check-label") Dừng hoạt động
-            div(class="form-group")
+            div(class="mb-3")
                 button(
                     type="submit"
-                    class="btn btn-primary"
+                    class="btn bg-main px-5"
                 ) Cập nhật

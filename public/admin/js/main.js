@@ -96,7 +96,7 @@ if (listButtonPagination.length > 0) {
     const pageCurrent = url.searchParams.get("page") || 1;
     const buttonCurrent = document.querySelector(`[button-pagination="${pageCurrent}"]`);
     if (buttonCurrent) {
-        buttonCurrent.parentNode.classList.add("active");
+        buttonCurrent.classList.add("active");
     }
 }
 

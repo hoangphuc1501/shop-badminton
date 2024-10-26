@@ -1,7 +1,8 @@
 extends ../../layouts/default.pug
 block main
     .main
-        h1(class="mb-4") Danh sách tài khoản
+        h2
+            .title-page #{pageTitle}
         .card.mb-3
             .card-header Danh sách
             .card-body
@@ -40,26 +41,20 @@ block main
                             td #{item.email}
                             td
                                 if (item.status === "active")
-                                    a(
-                                        href="javascript:;"
-                                        class="badge badge-success"
+                                    button(
+                                        class="btn-status bg-success"
                                         data-status="active"
                                     ) Hoạt động
                                 else
-                                    a(
-                                        href="javascript:;"
-                                        class="badge badge-danger"
+                                    button(
+                                        class="btn-status bg-danger"
                                         data-status="inactive"
                                     ) Dừng hoạt động
                             td
                                 a(
-                                    class="btn btn-secondary btn-sm"
-                                    href=`/${prefixAdmin}/accounts/detail/${item.id}`
-                                ) Chi tiết
-                                a(
-                                    class="btn btn-warning btn-sm ml-1"
+                                    class="btn btn-warning btn-sm me-1"
                                     href=`/${prefixAdmin}/accounts/edit/${item.id}`
                                 ) Sửa
                                 button(
-                                    class="btn btn-danger btn-sm ml-1"
+                                    class="btn btn-danger btn-sm"
                                 ) Xóa
