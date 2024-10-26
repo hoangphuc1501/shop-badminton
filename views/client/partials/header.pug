@@ -9,7 +9,7 @@ header.header
                     i.bi.bi-headset
                     | HOTLINE:
                     span  0333573303
-            form.form-search(action='', method="get")
+            form.form-search(action='' method="get")
                 input(type="text" placeholder="Tìm sản phẩm...")
                 button
                     i.bi.bi-search
@@ -53,12 +53,26 @@ header.header
         .container
             ul.menu
                 li
-                    a(href="#") Trang chủ
+                    a(href="/") Trang chủ
                 li
                     a(href="#") Giới thiệu
                 li
-                    a(href="#") Sản phẩm 
+                    a(href="/products") Sản phẩm 
                         i.fa-solid.fa-chevron-down
+                    .box-sub-menu
+                        .row
+                            each item in allCategory
+                                if item.children
+                                    each childItem in item.children
+                                        .col-2
+                                            ul.sub-menu-head
+                                                h3
+                                                    a(href=`/products/${childItem.slug}`) #{childItem.title}
+                                                hr
+                                                if childItem.children
+                                                    each itemChild in childItem.children
+                                                        li
+                                                            a(href=`/products/${itemChild.slug}`) #{itemChild.title}
                 li
                     a(href="#") Sale off
                 li

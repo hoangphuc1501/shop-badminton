@@ -28,6 +28,7 @@ body {
 .header {
     width: 100%;
     height: 140px;
+    position: relative;
 }
 
 /* header top */
@@ -218,9 +219,67 @@ body {
     background: rgb(255, 255, 255, 0.1);
     color: #ffffff;
 }
+.menu li:hover .box-sub-menu{
+    display: block;
+}
+.box-sub-menu{
+    width: 100%;
+    height: 500px;
+    position: absolute;
+    background-color: #fff;
+    margin-top: 15px;
+    left: 0;
+    right: 0;
+    display: none;
+    overflow: scroll;
+    overflow-x: hidden;
+    box-shadow: 0 0 10px rgb(0, 0, 0, 0.3);
+    z-index: 1000;
+}
 
+.sub-menu-head{
+    min-height: 300px;
+    margin: 0 10px;
+    margin-top: 5px;
+    list-style: none;
+    padding: 0 10px ;
+}
+.sub-menu-head hr{
+    margin: 4px 0;
+}
+.sub-menu-head li{
+    margin: 5px 0;
+}
+.sub-menu-head li a{
+    padding: 0;
+    margin: 0;
+    color: #000;
+    text-transform: lowercase;
+}
+.sub-menu-head li a:hover{
+    color: var(--main-color);
+    background: none;
+}
+.sub-menu-head h3{
+    padding: 0;
+    margin: 0;
+}
+.sub-menu-head h3 a{
+    padding: 10px 0;
+    margin: 0;
+    color: var(--main-color);
+    font-size: 14px;
+    display: block;
+}
+.sub-menu-head h3 a:hover{
+    color: var(--main-color);
+    background: none;
+}
 /* end main header */
 
+.body{
+    height: 100vh;
+}
 /* footer */
 .footer {
     width: 100%;
