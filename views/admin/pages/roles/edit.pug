@@ -3,31 +3,33 @@ block main
     .main
         h2
             .title-page #{pageTitle}
-        form(
-            action=`/${prefixAdmin}/roles/edit/${role.id}?_method=PATCH`
-            method="POST"
-        )
-            div(class="mb-3")
-                label(for="title" class="label-title") Tiêu đề
-                input(
-                    type="text"
-                    class="form-control"
-                    id="title"
-                    name="title"
-                    required
-                    value=role.title
+        .row.justify-content-center
+            .col-6
+                form(
+                    action=`/${prefixAdmin}/roles/edit/${role.id}?_method=PATCH`
+                    method="POST"
                 )
-            div(class="mb-3")
-                label(for="desc" class="label-title") Mô tả
-                input(
-                    type="text"
-                    class="form-control"
-                    id="desc"
-                    name="description"
-                    value=role.description
-                )
-            div(class="mb-3")
-                button(
-                    type="submit"
-                    class="btn px-5 bg-main"
-                ) Cập nhật
+                    div(class="mb-3")
+                        label(for="title" class="label-title") Tiêu đề
+                        input(
+                            type="text"
+                            class="form-control"
+                            id="title"
+                            name="title"
+                            required
+                            value=role.title
+                        )
+                    div(class="mb-3")
+                        label(for="desc" class="label-title") Mô tả
+                        input(
+                            type="text"
+                            class="form-control"
+                            id="desc"
+                            name="description"
+                            value=role.description
+                        )
+                    div(class="mb-3 d-grid gap-2")
+                        button(
+                            type="submit"
+                            class="btn px-5 bg-main"
+                        ) Cập nhật

@@ -38,14 +38,26 @@ module.exports.edit = async (req, res) => {
 module.exports.editPatch = async (req, res) => {
     const id = req.params.id;
 
-    const role = await Role.updateOne({
+    await Role.updateOne({
         _id: id,
         deleted: false
     }, req.body)
     req.flash("success", "Cập nhật thành công!");
     res.redirect("back");
 }
-
+// xóa sản phẩm
+module.exports.delete = async (req, res) => {
+    await Role.updateOne({
+        _id: req.body.id
+    }, {
+        deleted: true,
+    })
+    req.flash('success', 'Xóa nhóm quyền thành công!');
+    res.json({
+        code: "success"
+    })
+}
+// hết xóa sản phẩm
 module.exports.permissions = async (req, res) => {
     const records = await Role.find({
         deleted: false
