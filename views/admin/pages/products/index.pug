@@ -86,6 +86,7 @@ block main
                             th Vị trí
                             th Trạng thái
                             th Tạo bởi
+                            th Cập nhật bởi
                             th Hành động
                     tbody
                         
@@ -136,6 +137,9 @@ block main
                                 td
                                     div #{item.createdByFullName}
                                     div #{item.createdAtFormat}
+                                td
+                                    div #{item.updatedByFullName}
+                                    div #{item.updatedAtFormat}
                                 td
                                     a(href=`/${prefixAdmin}/products/edit/${item.id}` 
                                         class="btn btn-warning btn-sm me-1"

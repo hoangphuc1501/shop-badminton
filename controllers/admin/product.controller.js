@@ -54,6 +54,7 @@ module.exports.index = async (req, res) => {
         .sort(sort);
 
         for (const item of products) {
+            // Thêm bởi
             const infoCreate = await Account.findOne({
                 _id:  item.createdBy
             })
@@ -65,6 +66,20 @@ module.exports.index = async (req, res) => {
 
             if(item.createdAt){
                 item.createdAtFormat = moment(item.createdAt).format("HH:mm - DD/MM/YY");
+            }
+
+            // Cập nhật bởi
+            const infoUpdate = await Account.findOne({
+                _id: item.updatedBy
+            })
+            if(infoUpdate){
+                item.updatedByFullName = infoUpdate.fullName;
+            }else{
+                item.updatedByFullName = "";
+            }
+
+            if(item.updatedAt){
+                item.updatedAtFormat = moment(item.updatedAt).format("HH:mm - DD/MM/YY");
             }
         }
     
@@ -204,6 +219,8 @@ module.exports.editPatch = async (req, res) => {
     req.body.price = parseInt(req.body.price);
     req.body.discountPercentage = parseInt(req.body.discountPercentage);
     req.body.stock = parseInt(req.body.stock);
+    req.body.updatedBy = res.locals.user.id;
+    req.body.updatedAt = new Date();
     if (req.body.position) {
         req.body.position = parseInt(req.body.position);
     }
