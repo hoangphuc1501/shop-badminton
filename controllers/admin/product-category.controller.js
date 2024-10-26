@@ -2,15 +2,140 @@ const ProductCategory = require("../../models/product-category.model");
 const systemConfig = require("../../config/system");
 
 module.exports.index = async (req, res) => {
-    const listCategory = await ProductCategory.find({
+    const find = {
         deleted:false
-    })
+    }
+    // lọc theo trạng thái
+    if (req.query.status) {
+        find.status = req.query.status;
+    }
+    // hết lọc theo trạng thái
+    // tìm kiếm
+    if(req.query.keyword){
+        const regex = new RegExp(req.query.keyword, "i");
+        find.title = regex;
+    }
+    // hết tìm kiếm
+    // Phân trang
+    let limitItem = 4;
+    let page = 1;
+
+    if (req.query.page) {
+        page = parseInt(req.query.page);
+    }
+    if (req.query.limit) {
+        limitItem = parseInt(req.query.limit);
+    }
+
+    const skip = (page - 1) * limitItem;
+    const totalCategory = await ProductCategory.countDocuments(find);
+    const totalPage = Math.ceil(totalCategory / limitItem);
+    // Hết phân trang
+    //sắp xếp
+    const sort = {};
+    if (req.query.sortKey && req.query.sortValue) {
+        const sortKey = req.query.sortKey;
+        const sortValue = req.query.sortValue;
+        sort[sortKey] = sortValue;
+    } else {
+        sort["position"] = "desc";
+    }
+    // hết sắp xếp
+
+    const listCategory = await ProductCategory
+    .find(find)
+    .limit(limitItem)
+    .skip(skip)
+    .sort(sort);
+
     res.render("admin/pages/categories/index.pug", {
         pageTitle: "Danh sách danh mục sản phẩm",
-        listCategory: listCategory
+        listCategory: listCategory,
+        totalPage: totalPage,
+        currentPage: page,
+        limitItem: limitItem
     });
 }
+// Đổi trạng thái
+module.exports.changeStatus = async (req, res) => {
+    await ProductCategory.updateOne({
+        _id: req.body.id
+    }, {
+        status: req.body.status
+    })
+    req.flash('success', 'Thay đổi trạng thái thành công!');
+    res.json({
+        code: "success"
+    })
+}
+// hết đổi trạng thái
+// Đổi trạng thái nhiều bản ghi
+module.exports.changeMulti = async (req, res) => {
+    switch (req.body.status) {
+        case "active":
+        case "inactive":
+            await ProductCategory.updateMany({
+                _id: req.body.ids
+            }, {
+                status: req.body.status
+            })
+            req.flash('success', 'Thay đổi trạng thái thành công!');
+            res.json({
+                code: "success"
+            })
+            break;
+        case "delete":
+            await ProductCategory.updateMany({
+                _id: req.body.ids
+            }, {
+                deleted: true,
+                // deletedBy: res.locals.user.id,
+                // deletedAt: new Date()
+            })
+            req.flash('success', 'Xóa sản phẩm thành công!');
+            res.json({
+                code: "success"
+            })
+            break;
+        default:
+            res.json({
+                code: "error",
+                message: "Trạng thái không hợp lệ"
+            })
+            break;
+    }
+}
+// hết đổi trạng thái nhiều bản ghi
 
+// xóa sản phẩm
+module.exports.delete = async (req, res) => {
+    await ProductCategory.updateOne({
+        _id: req.body.id
+    }, {
+        deleted: true,
+        // deletedBy: res.locals.user.id,
+        // deletedAt: new Date()
+    })
+    req.flash('success', 'Xóa sản phẩm thành công!');
+    res.json({
+        code: "success"
+    })
+}
+// hết xóa sản phẩm
+// đổi vị trí
+module.exports.changePosition = async (req, res) => {
+    await ProductCategory.updateOne({
+        _id: req.body.id
+    }, {
+        position: req.body.position
+    })
+    req.flash('success', 'Đổi vị trí thành công!');
+    res.json({
+        code: "success"
+    })
+}
+// hết đổi vị tri
+// Thêm danh mục
 module.exports.create = async (req, res) => {
     const listCategory = await ProductCategory.find({
         deleted:false
@@ -32,7 +157,7 @@ module.exports.createPost = async (req, res) => {
     await record.save();
     res.redirect(`/${systemConfig.prefixAdmin}/products-category`);
 }
-
+// hết thêm danh mục
 module.exports.edit = async (req, res) => {
     const id = req.params.id
     const listCategory = await ProductCategory.find({

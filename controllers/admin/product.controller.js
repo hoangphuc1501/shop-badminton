@@ -93,7 +93,7 @@ module.exports.index = async (req, res) => {
         limitItem: limitItem
     });
 }
-// Foi963 trạng thái
+// Đổi trạng thái
 module.exports.changeStatus = async (req, res) => {
     await Products.updateOne({
         _id: req.body.id
@@ -142,7 +142,7 @@ module.exports.changeMulti = async (req, res) => {
             break;
     }
 }
-
+// hết đổi trạng thái nhiều bản ghi
 // xóa sản phẩm
 module.exports.delete = async (req, res) => {
     await Products.updateOne({
@@ -157,7 +157,7 @@ module.exports.delete = async (req, res) => {
         code: "success"
     })
 }
-
+// hết xóa sản phẩm
 // đổi vị trí
 module.exports.changePosition = async (req, res) => {
     await Products.updateOne({
