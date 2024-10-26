@@ -25,4 +25,5 @@ route.patch("/edit/:id",
 
 route.get("/change-password/:id", controller.changePassword);
 route.patch("/change-password/:id", controller.changePasswordPatch);
+route.get("/my-profile", controller.myProfile);
 module.exports = route;

@@ -91,3 +91,9 @@ module.exports.changePasswordPatch = async (req, res) => {
     req.flash("success", "Đổi mật khẩu thành công!");
     res.redirect("back");
 }
+
+module.exports.myProfile = async (req, res) => {
+    res.render("admin/pages/accounts/profile.pug", {
+        pageTitle: "Thông tin tài khoản"
+    });
+}
