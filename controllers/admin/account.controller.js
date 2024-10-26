@@ -88,6 +88,6 @@ module.exports.changePasswordPatch = async (req, res) => {
     },{
         password: md5(req.body.password)
     });
-    req.flash("success", "đổi mật khẩu thành công!");
+    req.flash("success", "Đổi mật khẩu thành công!");
     res.redirect("back");
 }
