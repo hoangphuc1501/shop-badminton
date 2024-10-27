@@ -350,7 +350,7 @@ body {
 /* class css dùng chung cho mọi sản phẩm */
 
 .item-product {
-    /* width: 327px; */
+    width: 250px;
     height: 390px;
     position: relative;
     overflow: hidden;

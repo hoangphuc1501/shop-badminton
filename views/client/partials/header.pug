@@ -9,8 +9,16 @@ header.header
                     i.bi.bi-headset
                     | HOTLINE:
                     span  0333573303
-            form.form-search(action='' method="get")
-                input(type="text" placeholder="Tìm sản phẩm...")
+            form.form-search(
+                    action="/products/search"
+                    method="get"
+                )
+                input(
+                    type="text" 
+                    placeholder="Tìm sản phẩm..."
+                    name="keyword"
+                    value=keyword
+                )
                 button
                     i.bi.bi-search
             .box-hea
