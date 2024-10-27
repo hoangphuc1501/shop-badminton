@@ -8,6 +8,5 @@ module.exports.category = async (req, res, next) => {
 
     const allCategory = createTreeHelper.getAllCategory(categoryProduct);
     res.locals.allCategory = allCategory;
-    console.log(allCategory)
     next();
 }
