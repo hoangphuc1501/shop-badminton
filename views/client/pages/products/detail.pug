@@ -70,9 +70,27 @@ block main
                                     if (product.descriptionShort)
                                     | !{product.descriptionShort}
                             .detail-product-endow-pay
-                                .btn-add-card
-                                    button
-                                        a(href="#") Thêm vào giỏ hàng
+                                form(
+                                    action=`/cart/add/${product.id}`
+                                    method="POST"
+                                )
+                                    input(
+                                        class="form-control mb-2"
+                                        type="number"
+                                        name="quantity"
+                                        value="1"
+                                        min="1"
+                                        max=product.stock
+                                        style = "width: 150px;"
+                                    )
+                                    .btn-add-card
+                                        button(
+                                            type="submit"
+                                            class="btn btn-success btn-block"
+                                    ) Thêm vào giỏ hàng
+                                //- .btn-add-card
+                                //-     button
+                                //-         a(href="#") Thêm vào giỏ hàng
                                 .btn-buy-full
                                     button
                                         a(href="#") Mua ngay
