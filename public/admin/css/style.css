@@ -237,13 +237,14 @@ body {
 .rotate {
     transform: rotate(180deg);
 }
-
+/* alert-message */
 .alert-message {
     position: fixed;
     top: 60px;
     right: 20px;
     z-index: 9999;
 }
+/* hết alert-message */
 
 /* image-preview */
 .image-preview {

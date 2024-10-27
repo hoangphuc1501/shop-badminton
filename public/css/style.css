@@ -488,14 +488,12 @@ body {
     border-radius: 10px;
 }
 
+
 /* Đăng ký đăng nhập */
 .login-form-list {
     min-height: 400px;
-    margin: 40px auto;
+    margin: 100px auto;
 }
-
-
-/*Trang login*/
 
 .tab {
     text-align: center;
@@ -505,6 +503,9 @@ body {
 .tab a {
     cursor: pointer;
     color: #0D6EFD;
+}
+.tab a:hover{
+    color: var(--main-color);
 }
 
 .form {
@@ -643,5 +644,16 @@ body {
     color: #000000;
     text-decoration: none;
 }
-
+.form-remember a:hover{
+    color: var(--main-color);
+}
 /* hết Đăng ký đăng nhập */
+
+/* alert-message */
+.alert-message {
+    position: fixed;
+    top: 60px;
+    right: 20px;
+    z-index: 9999;
+}
+/* hết alert-message */

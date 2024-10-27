@@ -15,7 +15,7 @@ module.exports.registerPost = async (req, res) => {
         deleted: false
     });
     if(existUser){
-        // req.flash("error", "email đã tồn tại trong hệ thống!");
+        req.flash("error", "Email đã tồn tại!");
         res.redirect("back");
         return;
     }
@@ -32,5 +32,39 @@ module.exports.registerPost = async (req, res) => {
 
     res.cookie("tokenUser", newUser.token);
     req.flash("success", "Đăng ký tài khoản thành công!");
+    res.redirect("/");
+}
+
+module.exports.login = (req, res) => {
+    res.render("client/pages/users/login",{
+        pageTitle: "Đăng nhập tài khoản"
+    })
+}
+module.exports.loginPost = async (req, res) => {
+    const email = req.body.email
+    const password = req.body.password
+
+    const existUser = await User.findOne({
+        email: email,
+        deleted: false
+    })
+    if(!existUser){
+        req.flash("error", "Email không tồn tại!");
+        res.redirect("back");
+        return;
+    }
+    if(md5(password) != existUser.password){
+        req.flash("error", "Sai mật khẩu!");
+        res.redirect("back");
+        return;
+    }
+    if(existUser.status != "active"){
+        req.flash("error", "Tài khoản đang bị khóa!");
+        res.redirect("back");
+        return;
+    }
+
+    res.cookie("tokenUser", existUser.token);
+    req.flash("success", "Đăng nhập thành công!");
     res.redirect("/");
 }
