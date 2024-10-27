@@ -488,3 +488,160 @@ body {
     border-radius: 10px;
 }
 
+/* Đăng ký đăng nhập */
+.login-form-list {
+    min-height: 400px;
+    margin: 40px auto;
+}
+
+
+/*Trang login*/
+
+.tab {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.tab a {
+    cursor: pointer;
+    color: #0D6EFD;
+}
+
+.form {
+    width: 500px;
+    min-height: 400px;
+    padding: 32px 24px;
+    text-align: center;
+    border-radius: 20px;
+    margin: 24px;
+    align-self: center;
+    border: 1px solid black;
+    box-shadow: 0 0 10px rgb(255, 255, 255, 0.3);
+    margin: 0 auto;
+}
+
+.form p {
+    font-size: 16px;
+    color: #000000;
+    margin: 10px;
+}
+
+.form .heading {
+    font-size: 30px;
+    color: #000000;
+    margin-bottom: 30px;
+}
+
+.form .desc {
+    text-align: center;
+    color: #636d77;
+    font-size: 1.6rem;
+    font-weight: lighter;
+    line-height: 2.4rem;
+    margin-top: 16px;
+    font-weight: 300;
+}
+
+.form-group {
+    display: flex;
+    margin-bottom: 16px;
+    flex-direction: column;
+    position: relative;
+}
+
+.form-label,
+.form-message {
+    text-align: left;
+}
+
+.form-label {
+    font-weight: 700;
+    padding-bottom: 6px;
+    line-height: 1.8rem;
+    font-size: 1.4rem;
+}
+
+.form-control {
+    height: 40px;
+    padding: 8px 12px;
+    border: 1px solid #b3b3b3;
+    border-radius: 15px;
+    outline: none;
+    font-size: 15px;
+}
+
+.form-group label {
+    position: absolute;
+    right: 15px;
+    top: 8px;
+    color: #636d77;
+}
+
+.form-account a i {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 20px;
+    padding: 12px;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgb(255, 255, 255, 0.3);
+    background-color: rgb(0, 0, 0, 0.7);
+}
+
+.form-control:hover {
+    border-color: #1dbfaf;
+}
+
+
+.form-group .form-message {
+    color: #f33a58;
+}
+
+.form-message {
+    font-size: 16px;
+    line-height: 1.6rem;
+    padding: 4px 0 0;
+}
+
+.form-submit {
+    outline: none;
+    background-color: var(--main-color);
+    margin-top: 12px;
+    padding: 12px 16px;
+    font-weight: 600;
+    color: #fff;
+    border: none;
+    width: 100%;
+    font-size: 16px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.form-submit:hover {
+    background-color: rgb(232, 82, 17, 0.8);
+}
+
+.form-remember {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 10px;
+}
+
+.form-remember label {
+    font-size: 16px;
+    color: #000000;
+    margin-right: 150px;
+}
+
+.form-remember input {
+    margin-right: 7px;
+    border: 1px solid black;
+}
+
+.form-remember a {
+    font-size: 16px;
+    color: #000000;
+    text-decoration: none;
+}
+
+/* hết Đăng ký đăng nhập */
