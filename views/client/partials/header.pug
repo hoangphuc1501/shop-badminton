@@ -37,14 +37,24 @@ header.header
                         i.bi.bi-person-fill
                     span.item-title Tài khoản
                 ul.box-hea-sub
-                    li
-                        a(href="/user/login")
-                            i.bi.bi-box-arrow-in-right
-                            | Đăng nhập
-                    li
-                        a(href="/user/register")
-                            i.bi.bi-person-fill-add
-                            | Đăng ký
+                    if (!user)
+                        li
+                            a(href="/user/login")
+                                i.bi.bi-box-arrow-in-right
+                                | Đăng nhập
+                        li
+                            a(href="/user/register")
+                                i.bi.bi-person-fill-add
+                                | Đăng ký
+                    else 
+                        li
+                            a(href="/user/profile")
+                                i.bi.bi-person-fill
+                                | #{user.fullName}
+                        li
+                            a(href="/user/logout")
+                                i.bi.bi-box-arrow-in-left
+                                | Đăng xuất
             .box-hea
                 a(href="#")
                     span.box-icon
