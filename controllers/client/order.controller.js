@@ -40,6 +40,7 @@ module.exports.orderPost = async (req, res) => {
     const dataOrder = {
         fullName: order.fullName,
         phone: order.phone,
+        email:order.email,
         address: order.address,
         products: []
     };
