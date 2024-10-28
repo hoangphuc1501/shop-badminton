@@ -16,7 +16,7 @@ const streamifier = require('streamifier')
 const upload = multer();
 // hết lưu hình ảnh
 const validate = require("../../validates/admin/product.validate");
-const uploadCloud = require("../../middlewares/admin/uploadcloud.middleware");
+const uploadCloud = require("../../middlewares/admin/uploadCloud.middleware");
 const controller = require("../../controllers/admin/product.controller");
 
 route.get("/", controller.index);
