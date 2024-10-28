@@ -1,5 +1,223 @@
 extends ../../layouts/default.pug
 
 block main 
-    .container 
-        h1 Trang chủ
+    #carouselExampleAutoplaying.carousel.slide(data-bs-ride="carousel")
+        .carousel-inner
+            .carousel-item.active
+                img.d-block.w-100(src="https://cdn.shopvnb.com/img/1920x640/uploads/slider/banner-sale-12_1695182579.webp" alt="...")
+            .carousel-item
+                img.d-block.w-100(src="https://cdn.shopvnb.com/img/1920x640/uploads/slider/astrox88-sd-key-visual-2880x1120-_1718650445.webp" alt="...")
+            .carousel-item
+                img.d-block.w-100(src="https://cdn.shopvnb.com/img/1920x640/uploads/slider/thiet-ke-chua-co-ten-12_1727137763.webp" alt="...")
+        button.carousel-control-prev(type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev")
+            span.carousel-control-prev-icon(aria-hidden="true")
+            span.visually-hidden Previous
+        button.carousel-control-next(type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next")
+            span.carousel-control-next-icon(aria-hidden="true")
+            span.visually-hidden Next
+    .container
+        //- sản phẩm nổi bật
+        .product-outstanding
+            .product-outstanding-title
+                a(href="#") Sản phẩm nổi bật
+            .list-product-outstanding
+                .item-product
+                    a(href="#")
+                        img(src="https://cdn.shopvnb.com/img/300x300/uploads/gallery/vot-cau-long-yonex-arcsaber-1-clear-blue-chinh-hang_1715112569.webp" alt="")
+                    h3.product-title
+                        a(href="#") sản phẩm 1
+                    span.star
+                        i.fa-solid.fa-star
+                        i.fa-solid.fa-star
+                        i.fa-solid.fa-star
+                        i.fa-solid.fa-star
+                        i.fa-solid.fa-star
+                    span.promotion-price 100
+                        sup đ
+                    span.price
+                        del 100
+                            sup đ
+                    span.label-promotion 100đ
+                    .action-product.display-flex
+                        .button-action
+                            p.action-title yêu thích
+                            button.love
+                                a(href="#")
+                                    i.fa-solid.fa-heart
+                        .button-action
+                            p.action-title yêu thích
+                            button.love
+                                a(href="#")
+                                    i.fa-solid.fa-eye
+                        .button-action
+                            p.action-title yêu thích
+                            button.love
+                                a(href="#")
+                                    i.fa-solid.fa-cart-shopping
+                .item-product
+                    a(href="#")
+                        img(src="https://cdn.shopvnb.com/img/300x300/uploads/gallery/vot-cau-long-yonex-arcsaber-1-clear-blue-chinh-hang_1715112569.webp" alt="")
+                    h3.product-title
+                        a(href="#") sản phẩm 1
+                    span.star
+                        i.fa-solid.fa-star
+                        i.fa-solid.fa-star
+                        i.fa-solid.fa-star
+                        i.fa-solid.fa-star
+                        i.fa-solid.fa-star
+                    span.promotion-price 100
+                        sup đ
+                    span.price
+                        del 100
+                            sup đ
+                    span.label-promotion 100đ
+                    .action-product.display-flex
+                        .button-action
+                            p.action-title yêu thích
+                            button.love
+                                a(href="#")
+                                    i.fa-solid.fa-heart
+                        .button-action
+                            p.action-title yêu thích
+                            button.love
+                                a(href="#")
+                                    i.fa-solid.fa-eye
+                        .button-action
+                            p.action-title yêu thích
+                            button.love
+                                a(href="#")
+                                    i.fa-solid.fa-cart-shopping
+                .item-product
+                    a(href="#")
+                        img(src="https://cdn.shopvnb.com/img/300x300/uploads/gallery/vot-cau-long-yonex-arcsaber-1-clear-blue-chinh-hang_1715112569.webp" alt="")
+                    h3.product-title
+                        a(href="#") sản phẩm 1
+                    span.star
+                        i.fa-solid.fa-star
+                        i.fa-solid.fa-star
+                        i.fa-solid.fa-star
+                        i.fa-solid.fa-star
+                        i.fa-solid.fa-star
+                    span.promotion-price 100
+                        sup đ
+                    span.price
+                        del 100
+                            sup đ
+                    span.label-promotion 100đ
+                    .action-product.display-flex
+                        .button-action
+                            p.action-title yêu thích
+                            button.love
+                                a(href="#")
+                                    i.fa-solid.fa-heart
+                        .button-action
+                            p.action-title yêu thích
+                            button.love
+                                a(href="#")
+                                    i.fa-solid.fa-eye
+                        .button-action
+                            p.action-title yêu thích
+                            button.love
+                                a(href="#")
+                                    i.fa-solid.fa-cart-shopping
+                .item-product
+                    a(href="#")
+                        img(src="https://cdn.shopvnb.com/img/300x300/uploads/gallery/vot-cau-long-yonex-arcsaber-1-clear-blue-chinh-hang_1715112569.webp" alt="")
+                    h3.product-title
+                        a(href="#") sản phẩm 1
+                    span.star
+                        i.fa-solid.fa-star
+                        i.fa-solid.fa-star
+                        i.fa-solid.fa-star
+                        i.fa-solid.fa-star
+                        i.fa-solid.fa-star
+                    span.promotion-price 100
+                        sup đ
+                    span.price
+                        del 100
+                            sup đ
+                    span.label-promotion 100đ
+                    .action-product.display-flex
+                        .button-action
+                            p.action-title yêu thích
+                            button.love
+                                a(href="#")
+                                    i.fa-solid.fa-heart
+                        .button-action
+                            p.action-title yêu thích
+                            button.love
+                                a(href="#")
+                                    i.fa-solid.fa-eye
+                        .button-action
+                            p.action-title yêu thích
+                            button.love
+                                a(href="#")
+                                    i.fa-solid.fa-cart-shopping
+                .item-product
+                    a(href="#")
+                        img(src="https://cdn.shopvnb.com/img/300x300/uploads/gallery/vot-cau-long-yonex-arcsaber-1-clear-blue-chinh-hang_1715112569.webp" alt="")
+                    h3.product-title
+                        a(href="#") sản phẩm 1
+                    span.star
+                        i.fa-solid.fa-star
+                        i.fa-solid.fa-star
+                        i.fa-solid.fa-star
+                        i.fa-solid.fa-star
+                        i.fa-solid.fa-star
+                    span.promotion-price 100
+                        sup đ
+                    span.price
+                        del 100
+                            sup đ
+                    span.label-promotion 100đ
+                    .action-product.display-flex
+                        .button-action
+                            p.action-title yêu thích
+                            button.love
+                                a(href="#")
+                                    i.fa-solid.fa-heart
+                        .button-action
+                            p.action-title yêu thích
+                            button.love
+                                a(href="#")
+                                    i.fa-solid.fa-eye
+                        .button-action
+                            p.action-title yêu thích
+                            button.love
+                                a(href="#")
+                                    i.fa-solid.fa-cart-shopping
+
+            .view-all
+                a(href="")
+                    i.fa-solid.fa-circle-chevron-right 
+                    | Xem tất cả
+        //- sale off
+        .flash-sale-baner
+            .sale-off-title 
+                h3 Sale off
+                hr
+            .row 
+                .col-4
+                    .list-banner-sale
+                        img(src="https://golfcity.com.vn/wp-content/uploads/2023/04/banner-giay-1.gif" alt="ERROR")
+                .col-4
+                    .list-banner-sale
+                        img(src="https://golfcity.com.vn/wp-content/uploads/2023/02/file-in1-556-%C3%97-191-px-1920-%C3%97-600-px-575-%C3%97-450-px-1000-%C3%97-639-px-2.gif" alt="ERROR")
+                .col-4        
+                    .list-banner-sale
+                        img(src="https://golfcity.com.vn/wp-content/uploads/2023/02/file-in1-556-%C3%97-191-px-1920-%C3%97-600-px-575-%C3%97-450-px-1000-%C3%97-639-px-2.gif" alt="ERROR")
+
+        //- đặc trưng
+        .section-featured
+            .featured-inner
+                img(src="https://golfgroup.com.vn/wp-content/themes/ggc/images/icons/ghht.svg" alt="")
+                p Giao hàng hỏa tốc
+            .featured-inner
+                img(src="https://golfgroup.com.vn/wp-content/themes/ggc/images/icons/bdtd.svg" alt="")
+                p Bảo dưỡng trọn đời
+            .featured-inner
+                img(src="https://golfgroup.com.vn/wp-content/themes/ggc/images/icons/card.svg" alt="")
+                p Thanh toán linh hoạt
+            .featured-inner
+                img(src="https://golfgroup.com.vn/wp-content/themes/ggc/images/icons/1vs1.svg" alt="")
+                p Lỗi 1 đổi 1 tại nhà
