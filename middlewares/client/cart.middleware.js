@@ -17,7 +17,8 @@ module.exports.cart = async (req, res, next) => {
         const cart = await Cart.findOne({
             _id: req.cookies.cartId
         });
-        res.locals.minicart = cart.products.length;
+        // res.locals.minicart = cart.products.length;
+        res.locals.minicart = cart && cart.products ? cart.products.length : 0;
     }
     next();
 }
