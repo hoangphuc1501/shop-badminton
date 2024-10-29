@@ -5,7 +5,23 @@ block main
         h2 #{pageTitle}
         .row.my-5
             .col-2
-                | ejfoidsoiu
+                .category-product-fillter 
+                    | sfdakj 
+                .categoty-product-list 
+                    .product-list-title 
+                        h3 Danh sách sản phẩm 
+                    .categoty-item
+                        ul 
+                            li 
+                                a(href="#") Vợt cầu lông yonex
+                            li 
+                                a(href="#") Vợt cầu lông yonex
+                            li 
+                                a(href="#") Vợt cầu lông yonex
+                            li 
+                                a(href="#") Vợt cầu lông yonex 
+                            li 
+                                a(href="#") Vợt cầu lông yonex
             .col-10
                 .collection-product
                     .list-product
@@ -19,4 +35,5 @@ block main
                     .collection-list-product
                         .row
                             each item in product
-                                +product-item(item)
+                                .col-3
+                                    +product-item(item)

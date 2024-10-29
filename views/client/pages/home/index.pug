@@ -1,5 +1,5 @@
 extends ../../layouts/default.pug
-
+include ../../mixins/product-item.pug
 block main 
     #carouselExampleAutoplaying.carousel.slide(data-bs-ride="carousel")
         .carousel-inner
@@ -16,177 +16,25 @@ block main
             span.carousel-control-next-icon(aria-hidden="true")
             span.visually-hidden Next
     .container
+        //- sản phẩm mới
+        .product-outstanding
+            .product-outstanding-title
+                a(href="#") Sản phẩm mới
+            .list-product-outstanding
+                each item in productNew
+                    +product-item(item)
+            .view-all
+                a(href="")
+                    i.fa-solid.fa-circle-chevron-right 
+                    | Xem tất cả
+
         //- sản phẩm nổi bật
         .product-outstanding
             .product-outstanding-title
                 a(href="#") Sản phẩm nổi bật
             .list-product-outstanding
-                .item-product
-                    a(href="#")
-                        img(src="https://cdn.shopvnb.com/img/300x300/uploads/gallery/vot-cau-long-yonex-arcsaber-1-clear-blue-chinh-hang_1715112569.webp" alt="")
-                    h3.product-title
-                        a(href="#") sản phẩm 1
-                    span.star
-                        i.fa-solid.fa-star
-                        i.fa-solid.fa-star
-                        i.fa-solid.fa-star
-                        i.fa-solid.fa-star
-                        i.fa-solid.fa-star
-                    span.promotion-price 100
-                        sup đ
-                    span.price
-                        del 100
-                            sup đ
-                    span.label-promotion 100đ
-                    .action-product.display-flex
-                        .button-action
-                            p.action-title yêu thích
-                            button.love
-                                a(href="#")
-                                    i.fa-solid.fa-heart
-                        .button-action
-                            p.action-title yêu thích
-                            button.love
-                                a(href="#")
-                                    i.fa-solid.fa-eye
-                        .button-action
-                            p.action-title yêu thích
-                            button.love
-                                a(href="#")
-                                    i.fa-solid.fa-cart-shopping
-                .item-product
-                    a(href="#")
-                        img(src="https://cdn.shopvnb.com/img/300x300/uploads/gallery/vot-cau-long-yonex-arcsaber-1-clear-blue-chinh-hang_1715112569.webp" alt="")
-                    h3.product-title
-                        a(href="#") sản phẩm 1
-                    span.star
-                        i.fa-solid.fa-star
-                        i.fa-solid.fa-star
-                        i.fa-solid.fa-star
-                        i.fa-solid.fa-star
-                        i.fa-solid.fa-star
-                    span.promotion-price 100
-                        sup đ
-                    span.price
-                        del 100
-                            sup đ
-                    span.label-promotion 100đ
-                    .action-product.display-flex
-                        .button-action
-                            p.action-title yêu thích
-                            button.love
-                                a(href="#")
-                                    i.fa-solid.fa-heart
-                        .button-action
-                            p.action-title yêu thích
-                            button.love
-                                a(href="#")
-                                    i.fa-solid.fa-eye
-                        .button-action
-                            p.action-title yêu thích
-                            button.love
-                                a(href="#")
-                                    i.fa-solid.fa-cart-shopping
-                .item-product
-                    a(href="#")
-                        img(src="https://cdn.shopvnb.com/img/300x300/uploads/gallery/vot-cau-long-yonex-arcsaber-1-clear-blue-chinh-hang_1715112569.webp" alt="")
-                    h3.product-title
-                        a(href="#") sản phẩm 1
-                    span.star
-                        i.fa-solid.fa-star
-                        i.fa-solid.fa-star
-                        i.fa-solid.fa-star
-                        i.fa-solid.fa-star
-                        i.fa-solid.fa-star
-                    span.promotion-price 100
-                        sup đ
-                    span.price
-                        del 100
-                            sup đ
-                    span.label-promotion 100đ
-                    .action-product.display-flex
-                        .button-action
-                            p.action-title yêu thích
-                            button.love
-                                a(href="#")
-                                    i.fa-solid.fa-heart
-                        .button-action
-                            p.action-title yêu thích
-                            button.love
-                                a(href="#")
-                                    i.fa-solid.fa-eye
-                        .button-action
-                            p.action-title yêu thích
-                            button.love
-                                a(href="#")
-                                    i.fa-solid.fa-cart-shopping
-                .item-product
-                    a(href="#")
-                        img(src="https://cdn.shopvnb.com/img/300x300/uploads/gallery/vot-cau-long-yonex-arcsaber-1-clear-blue-chinh-hang_1715112569.webp" alt="")
-                    h3.product-title
-                        a(href="#") sản phẩm 1
-                    span.star
-                        i.fa-solid.fa-star
-                        i.fa-solid.fa-star
-                        i.fa-solid.fa-star
-                        i.fa-solid.fa-star
-                        i.fa-solid.fa-star
-                    span.promotion-price 100
-                        sup đ
-                    span.price
-                        del 100
-                            sup đ
-                    span.label-promotion 100đ
-                    .action-product.display-flex
-                        .button-action
-                            p.action-title yêu thích
-                            button.love
-                                a(href="#")
-                                    i.fa-solid.fa-heart
-                        .button-action
-                            p.action-title yêu thích
-                            button.love
-                                a(href="#")
-                                    i.fa-solid.fa-eye
-                        .button-action
-                            p.action-title yêu thích
-                            button.love
-                                a(href="#")
-                                    i.fa-solid.fa-cart-shopping
-                .item-product
-                    a(href="#")
-                        img(src="https://cdn.shopvnb.com/img/300x300/uploads/gallery/vot-cau-long-yonex-arcsaber-1-clear-blue-chinh-hang_1715112569.webp" alt="")
-                    h3.product-title
-                        a(href="#") sản phẩm 1
-                    span.star
-                        i.fa-solid.fa-star
-                        i.fa-solid.fa-star
-                        i.fa-solid.fa-star
-                        i.fa-solid.fa-star
-                        i.fa-solid.fa-star
-                    span.promotion-price 100
-                        sup đ
-                    span.price
-                        del 100
-                            sup đ
-                    span.label-promotion 100đ
-                    .action-product.display-flex
-                        .button-action
-                            p.action-title yêu thích
-                            button.love
-                                a(href="#")
-                                    i.fa-solid.fa-heart
-                        .button-action
-                            p.action-title yêu thích
-                            button.love
-                                a(href="#")
-                                    i.fa-solid.fa-eye
-                        .button-action
-                            p.action-title yêu thích
-                            button.love
-                                a(href="#")
-                                    i.fa-solid.fa-cart-shopping
-
+                each item in productFeatured
+                    +product-item(item)
             .view-all
                 a(href="")
                     i.fa-solid.fa-circle-chevron-right 
@@ -206,6 +54,23 @@ block main
                 .col-4        
                     .list-banner-sale
                         img(src="https://golfcity.com.vn/wp-content/uploads/2023/02/file-in1-556-%C3%97-191-px-1920-%C3%97-600-px-575-%C3%97-450-px-1000-%C3%97-639-px-2.gif" alt="ERROR")
+        //- danh mục sản phẩm
+        each item in allCategory
+            .box-category
+                .sale-off-title
+                    h3 Sản phẩm #{item.title}
+                    hr
+                .row
+                    if item.children
+                        each itemChild in item.children
+                            .col-3
+                                .category-item
+                                    a(href="#")
+                                    .category-img
+                                        img(src=itemChild.thumbnail alt="error")
+                                    .category-content
+                                        h3 #{itemChild.title}
+
 
         //- đặc trưng
         .section-featured
@@ -221,3 +86,46 @@ block main
             .featured-inner
                 img(src="https://golfgroup.com.vn/wp-content/themes/ggc/images/icons/1vs1.svg" alt="")
                 p Lỗi 1 đổi 1 tại nhà
+
+        //- tin tức
+        .news-box
+            .sale-off-title
+                h3 Tin tức
+                hr
+            .row
+                .col-3
+                    .news-item
+                        .news-img
+                            img(src="https://cdn.shopvnb.com/img/400x240/uploads/images/san-pickleball-viemin-town.jpg" alt="error")
+                        .news-content
+                            h3.title-item
+                                a(href="#") Khám phá sân Pickleball Viemin Town chất lượng và
+                            p.news-time 20-10-2002
+                            p Sân Pickleball Viemin Town với không gian rộng rãi, thoáng mát, được biết đến . 
+                .col-3
+                    .news-item
+                        .news-img
+                            img(src="https://cdn.shopvnb.com/img/400x240/uploads/images/san-pickleball-viemin-town.jpg" alt="error")
+                        .news-content
+                            h3.title-item
+                                a(href="#") Khám phá sân Pickleball Viemin Town chất lượng và
+                            p.news-time 20-10-2002 - 22: 22
+                            p Sân Pickleball Viemin Town với không gian rộng rãi, thoáng mát, được biết đến . 
+                .col-3
+                    .news-item
+                        .news-img
+                            img(src="https://cdn.shopvnb.com/img/400x240/uploads/images/san-pickleball-viemin-town.jpg" alt="error")
+                        .news-content
+                            h3.title-item
+                                a(href="#") Khám phá sân Pickleball Viemin Town chất lượng và
+                            p.news-time 20-10-2002
+                            p Sân Pickleball Viemin Town với không gian rộng rãi, thoáng mát, được biết đến . 
+                .col-3
+                    .news-item
+                        .news-img
+                            img(src="https://cdn.shopvnb.com/img/400x240/uploads/images/san-pickleball-viemin-town.jpg" alt="error")
+                        .news-content
+                            h3.title-item
+                                a(href="#") Khám phá sân Pickleball Viemin Town chất lượng và
+                            p.news-time 20-10-2002
+                            p Sân Pickleball Viemin Town với không gian rộng rãi, thoáng mát, được biết đến . 

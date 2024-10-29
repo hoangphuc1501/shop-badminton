@@ -1,35 +1,34 @@
 mixin product-item(item)
-    .col-3
-        .item-product
-            a(href="")
-                img(src=item.thumbnail, alt="")
-            h3.product-title
-                a(href= `/products/detail/${item.slug}`) #{item.title}
-            span.star
-                i.fa-solid.fa-star
-                i.fa-solid.fa-star
-                i.fa-solid.fa-star
-                i.fa-solid.fa-star
-                i.fa-solid.fa-star
-            span.promotion-price #{item.priceNew}
+    .item-product
+        a(href="")
+            img(src=item.thumbnail, alt="")
+        h3.product-title
+            a(href= `/products/detail/${item.slug}`) #{item.title}
+        span.star
+            i.fa-solid.fa-star
+            i.fa-solid.fa-star
+            i.fa-solid.fa-star
+            i.fa-solid.fa-star
+            i.fa-solid.fa-star
+        span.promotion-price #{item.priceNew}
+            sup đ
+        span.price
+            del #{item.price}
                 sup đ
-            span.price
-                del #{item.price}
-                    sup đ
-            span.label-promotion #{item.discountPercentage} %
-            .action-product.display-flex
-                .button-action
-                    p.action-title Yêu thích
-                    button.love
-                        a(href="#")
-                            i.fa-solid.fa-heart
-                .button-action
-                    p.action-title Xem nhanh
-                    button.love
-                        a(href= `/products/detail/${item.slug}`)
-                            i.fa-solid.fa-eye
-                .button-action
-                    p.action-title Mua ngay
-                    button.love
-                        a(href="#")
-                            i.fa-solid.fa-cart-shopping
+        span.label-promotion #{item.discountPercentage} %
+        .action-product.display-flex
+            .button-action
+                p.action-title Yêu thích
+                button.love
+                    a(href="#")
+                        i.fa-solid.fa-heart
+            .button-action
+                p.action-title Xem nhanh
+                button.love
+                    a(href= `/products/detail/${item.slug}`)
+                        i.fa-solid.fa-eye
+            .button-action
+                p.action-title Mua ngay
+                button.love
+                    a(href="#")
+                        i.fa-solid.fa-cart-shopping
