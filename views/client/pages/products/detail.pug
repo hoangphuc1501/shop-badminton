@@ -2,10 +2,7 @@ extends ../../layouts/default.pug
 block main
     .box-link
         .container
-            a(href="#") trang chủ &gt;
-            a(href="#") Vợt Cầu lông &gt;
-            a(href="#") Vợt Cầu lông yonex&gt;
-            a(href="#") Vợt cầu lông Yonex Nanoflare 700 Pro 2024 &gt;
+            a(href="#") Trang chủ &gt;
     .container
         .row.my-3
             .col-9.box-product-detail
@@ -14,8 +11,8 @@ block main
                         .img-product
                             if (product.thumbnail)
                                 img.img-feature(
-                                        src=product.thumbnail
-                                        alt=product.title)
+                                    src=product.thumbnail
+                                    alt=product.title)
                             .control.prev
                                 i.fa-solid.fa-chevron-left
                             .control.next
@@ -67,8 +64,11 @@ block main
                                         | (#{product.discountPercentage} %)
                             hr
                             .promotion-box
-                                    if (product.descriptionShort)
-                                    | !{product.descriptionShort}
+                                .label-description
+                                    img(src="https://cdn.shopvnb.com/themes/images/code_dis.gif")
+                                    |ưu đãi
+                                if (product.descriptionShort)
+                                | !{product.descriptionShort}
                             .detail-product-endow-pay
                                 form(
                                     action=`/cart/add/${product.id}`
@@ -86,11 +86,8 @@ block main
                                     .btn-add-card
                                         button(
                                             type="submit"
-                                            class="btn btn-success btn-block"
+                                            class="btn bg-main"
                                     ) Thêm vào giỏ hàng
-                                //- .btn-add-card
-                                //-     button
-                                //-         a(href="#") Thêm vào giỏ hàng
                                 .btn-buy-full
                                     button
                                         a(href="#") Mua ngay
@@ -103,34 +100,31 @@ block main
                                         p Visa, Mastercard, JCB, Amex
                 .description.my-5
                     .description-title
-                        h3 Mô tả sản phẩm
+                        h3.active-description Mô tả sản phẩm
                         h3 Thông số kỹ thuật
-                    .description-content 
+                    .description-content.active-description
                         if (product.description)
                             | !{product.description}
+                    .description-content
+                        //- if (product.specifications)
+                        //-     | !{product.specifications}
+
+
+                        
             .col-3
                 .card.category
                     h3.category-title.card-header Danh mục sản phẩm
-                    .card-body.category-product
-                        .category-item
-                            a.sub-btn
-                                | Vợt Cầu lông
-                                i.fa-solid.fa-chevron-down.dropdown
-                            .sub-category
-                                .sub-item
-                                    a(href="#") Vợt yonex
-                        .category-item
-                            a.sub-btn
-                                | Vợt Cầu lông
-                                i.fa-solid.fa-chevron-down.dropdown
-                            .sub-category
-                                .sub-item
-                                    a(href="#") Vợt yonex
-                        .category-item
-                            a.sub-btn
-                                | Vợt Cầu lông
-                                i.fa-solid.fa-chevron-down.dropdown
-                            .sub-category
-                                .sub-item
-                                    a(href="#") Vợt yonex
+                    .card-body
+                        .category-product
+                            each item in allCategory
+                                if item.children
+                                    each childItem in item.children
+                                        .product-category-item
+                                            a.sub-btn #{childItem.title}
+                                                i.fa-solid.fa-chevron-down.dropdown
+                                            if childItem.children
+                                                .sub-category
+                                                    each itemChild in childItem.children
+                                                        .sub-item
+                                                            a(href="#") #{itemChild.title}
 
