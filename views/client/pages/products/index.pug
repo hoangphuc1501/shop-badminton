@@ -2,38 +2,60 @@ extends ../../layouts/default.pug
 include ../../mixins/product-item.pug
 block main
     .container
-        h2 #{pageTitle}
         .row.my-5
-            .col-2
-                .category-product-fillter 
-                    | sfdakj 
-                .categoty-product-list 
-                    .product-list-title 
-                        h3 Danh sách sản phẩm 
-                    .categoty-item
-                        ul 
-                            li 
-                                a(href="#") Vợt cầu lông yonex
-                            li 
-                                a(href="#") Vợt cầu lông yonex
-                            li 
-                                a(href="#") Vợt cầu lông yonex
-                            li 
-                                a(href="#") Vợt cầu lông yonex 
-                            li 
-                                a(href="#") Vợt cầu lông yonex
-            .col-10
+            .col-3
+                .card.category
+                    h3.category-title.card-header Danh mục sản phẩm
+                    .card-body.category-product
+                        .category-item
+                            a.sub-btn
+                                | Vợt Cầu lông
+                                i.fa-solid.fa-chevron-down.dropdown
+                            .sub-category
+                                .sub-item
+                                    a(href="#") Vợt yonex
+                        .category-item
+                            a.sub-btn
+                                | Vợt Cầu lông
+                                i.fa-solid.fa-chevron-down.dropdown
+                            .sub-category
+                                .sub-item
+                                    a(href="#") Vợt yonex
+                        .category-item
+                            a.sub-btn
+                                | Vợt Cầu lông
+                                i.fa-solid.fa-chevron-down.dropdown
+                            .sub-category
+                                .sub-item
+                                    a(href="#") Vợt yonex
+
+            .col-9
                 .collection-product
-                    .list-product
-                        h1 Tất cả sản phẩm
-                        .justify-content-space-between
-                            .list-product-title.justify-content-space-between
-                                a(href="#") Tất cả
-                                a(href="#") Nam
-                                a(href="#") Nữ
-                                a(href="#") Trẻ em
+                    .list-product-fillter
+                        h2 #{pageTitle}
+                        select(class="" sort-select)
+                            option(value="position-desc") Mới nhất
+                            option(value="position-asc") Cũ nhất
+                            option(value="price-desc") Giá giảm dần
+                            option(value="price-asc") Giá tăng dần
+                            option(value="title-desc") Từ Z đến A
+                            option(value="title-asc") Từ A đến Z
                     .collection-list-product
-                        .row
-                            each item in product
-                                .col-3
-                                    +product-item(item)
+                        each item in product
+                            .list-products
+                                +product-item(item)
+
+                    .page-panigation
+                        nav(class="" aria-label="Page navigation example")
+                            ul(class="pagination")
+                                if(currentPage > 1)
+                                    li(class="page-item")
+                                        button(class="page-link" button-pagination=currentPage-1) &laquo;
+                                - for (var i = 1; i <= totalPage; i++)
+                                    li(class="page-item")
+                                        button(class="page-link" button-pagination=i) #{i}
+                                if(currentPage < totalPage)
+                                    li(class="page-item")
+                                        button(class="page-link" button-pagination=currentPage+1) &raquo;
+
+

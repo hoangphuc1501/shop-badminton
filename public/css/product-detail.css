@@ -241,7 +241,13 @@
     text-align: center;
 }
 
-
+/* .category-product {
+    border: 1px solid black;
+} */
+.category-product .category-item{
+    width: 100%;
+    border: 1px solid red;
+}
 /* Danh mục sản phẩm */
 .category-product .category-item{
     position: relative;

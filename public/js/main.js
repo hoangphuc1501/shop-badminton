@@ -35,7 +35,59 @@ if (alertMessage) {
     }, 3000);
 }
 // hết thông báo 
+// Sắp xếp
+const sortSelect = document.querySelector("[sort-select]");
+if (sortSelect) {
+    let url = new URL(location.href); // Nhân bản url
+    // Bắt sự kiện onChange
+    sortSelect.addEventListener("change", () => {
+        const value = sortSelect.value;
 
+        if (value) {
+            const [sortKey, sortValue] = value.split("-");
+            console.log(sortKey);
+            console.log(sortValue);
+            url.searchParams.set("sortKey", sortKey);
+            url.searchParams.set("sortValue", sortValue);
+        } else {
+            url.searchParams.delete("sortKey");
+            url.searchParams.delete("sortValue");
+        }
+        location.href = url.href;
+    })
+    // Hiển thị lựa chọn mặc định
+    const sortKeyCurrent = url.searchParams.get("sortKey");
+    const sortValueCurrent = url.searchParams.get("sortValue");
+    if (sortKeyCurrent && sortValueCurrent) {
+        sortSelect.value = `${sortKeyCurrent}-${sortValueCurrent}`;
+    }
+}
+// Hết Sắp xếp
+// phân trang
+const listButtonPagination = document.querySelectorAll("[button-pagination]");
+if (listButtonPagination.length > 0) {
+    let url = new URL(location.href);
+    listButtonPagination.forEach((button) => {
+        button.addEventListener("click", () => {
+            const page = button.getAttribute("button-pagination")
+
+            if (page) {
+                url.searchParams.set("page", page);
+            } else {
+                url.searchParams.delete("page");
+            }
+            location.href = url.href;
+        })
+    })
+    // hiển thị mặc định
+    const pageCurrent = url.searchParams.get("page") || 1;
+    const buttonCurrent = document.querySelector(`[button-pagination="${pageCurrent}"]`);
+    if (buttonCurrent) {
+        buttonCurrent.classList.add("active");
+    }
+}
+
+// hết phân trang
 // list hình ảnh
 var imgFeature = document.querySelector('.img-feature')
 var listImg = document.querySelectorAll('.list-image img')
@@ -79,9 +131,16 @@ updateImageByIndex(0)
 // category list
 $(document).ready(function () {
     $('.sub-btn').click(function () {
+        console.log("Button clicked"); // Kiểm tra xem click có được kích hoạt
         $(this).next('.sub-category').slideToggle();
         $(this).find('.dropdown').toggleClass('rotate');
     })
 })
-
+$(document).ready(function () {
+    $('.sub-btn1').click(function () {
+        console.log("Button clicked"); // Kiểm tra xem click có được kích hoạt
+        $(this).next('.sub-category1').slideToggle();
+        $(this).find('.dropdown1').toggleClass('rotate');
+    })
+})
 // hết category

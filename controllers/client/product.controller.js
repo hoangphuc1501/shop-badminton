@@ -1,22 +1,51 @@
 const Product = require("../../models/product.model");
 const ProductCategory = require("../../models/product-category.model");
 module.exports.index = async (req, res) => {
+    const find = {
+        status: "active",
+        deleted: false
+    }
+    //sắp xếp
+    const sort = {};
+    if (req.query.sortKey && req.query.sortValue) {
+        const sortKey = req.query.sortKey;
+        const sortValue = req.query.sortValue;
+        sort[sortKey] = sortValue;
+    } else {
+        sort["position"] = "desc";
+    }
+    // hết sắp xếp
+    // Phân trang
+    let limitItem = 15;
+    let page = 1;
+
+    if (req.query.page) {
+        page = parseInt(req.query.page);
+    }
+    if (req.query.limit) {
+        limitItem = parseInt(req.query.limit);
+    }
+
+    const skip = (page - 1) * limitItem;
+    const totalProduct = await Product.countDocuments(find);
+    const totalPage = Math.ceil(totalProduct / limitItem);
+    // Hết phân trang
+
     const product = await Product
-        .find({
-            status: "active",
-            deleted: false
-        })
-        .sort({
-            position: "desc"
-        });
+        .find(find)
+        .limit(limitItem)
+        .skip(skip)
+        .sort(sort);
     for (const item of product) {
         item.priceNew = item.price * (100 - item.discountPercentage) / 100;
         item.priceNew = (item.priceNew).toFixed(0)
     }
 
     res.render("client/pages/products/index.pug", {
-        pageTitle: "Trang danh sách sản phẩm",
-        product: product
+        pageTitle: "Danh sách sản phẩm",
+        product: product,
+        totalPage: totalPage,
+        currentPage: page,
     });
 }
 
