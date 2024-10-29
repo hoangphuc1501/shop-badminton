@@ -336,3 +336,16 @@
     transform: rotate(180deg);
     transition: 0.8s ease;
 }
+/* tìm kiếm */
+.list-search{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.box-search h2{
+    font-weight: bold;
+    margin: 20px 0;
+    padding: 10px;
+}
+/* tìm kiếm */

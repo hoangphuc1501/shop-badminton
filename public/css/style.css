@@ -434,12 +434,13 @@ body {
     top: 5px;
     right: 5px;
     padding: 5px 5px;
-    background: #2b9945;
+    background: var(--main-color);
     font-size: 11px;
     z-index: 1;
     border-radius: 5px;
     color: #ffffff;
-    /* margin: 0; */
+    width: 50px;
+    text-align: center; 
 }
 /* hết */
 /* button hành động */
@@ -456,26 +457,29 @@ body {
     width: 35px;
     height: 100%;
     cursor: pointer;
-    background: #2b9945;
-    color: #ffffff;
+    background: #fff;
+    color: #000;
     border-radius: 6px;
     border: none;
     margin: 0 5px;
     display: flex;
     justify-content: center;
     align-items: center;
+    box-shadow: 0 0 10px rgb(0, 0, 0, 0.3);
 }
 
 .item-product .action-product button a {
-    color: #ffffff;
+    color: #595959;
     padding: 3px 6px;
     text-decoration: none;
 }
 
 .item-product .action-product button:hover {
-    background: #f04c28;
+    background: var(--main-color);
 }
-
+.item-product .action-product button a:hover{
+    color: #fff;
+}
 .item-product:hover .action-product {
     top: 135px;
 }

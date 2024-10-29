@@ -152,11 +152,4 @@ $(document).ready(function () {
         $(this).find('.dropdown').toggleClass('rotate');
     })
 })
-$(document).ready(function () {
-    $('.sub-btn1').click(function () {
-        console.log("Button clicked"); // Kiểm tra xem click có được kích hoạt
-        $(this).next('.sub-category1').slideToggle();
-        $(this).find('.dropdown1').toggleClass('rotate');
-    })
-})
 // hết category

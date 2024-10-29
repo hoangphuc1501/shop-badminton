@@ -16,7 +16,7 @@ module.exports.index = async (req, res) => {
     }
     // hết sắp xếp
     // Phân trang
-    let limitItem = 15;
+    let limitItem = 16;
     let page = 1;
 
     if (req.query.page) {
@@ -110,6 +110,25 @@ module.exports.category = async (req, res) => {
 }
 
 module.exports.search = async (req, res) => {
+    // Phân trang
+    find = {
+        deleted: false,
+        status: "active"
+    }
+    let limitItem = 16;
+    let page = 1;
+
+    if (req.query.page) {
+        page = parseInt(req.query.page);
+    }
+    if (req.query.limit) {
+        limitItem = parseInt(req.query.limit);
+    }
+
+    const skip = (page - 1) * limitItem;
+    const totalProduct = await Product.countDocuments(find);
+    const totalPage = Math.ceil(totalProduct / limitItem);
+    // Hết phân trang
     const keyword = req.query.keyword;
     let product = [];
     // Tìm kiếm
@@ -121,6 +140,8 @@ module.exports.search = async (req, res) => {
                 deleted: false,
                 status: "active"
             })
+            .limit(limitItem)
+            .skip(skip)
             .sort({ position: "desc" });
         for (const item of product) {
             item.priceNew = (1 - item.discountPercentage / 100) * item.price;
@@ -131,6 +152,8 @@ module.exports.search = async (req, res) => {
     res.render("client/pages/products/search", {
         pageTitle: `Kết quả tìm kiếm: ${keyword}`,
         keyword: keyword,
-        product: product
+        product: product,
+        totalPage: totalPage,
+        currentPage: page,
     });
 }
