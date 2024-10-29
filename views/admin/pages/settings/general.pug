@@ -1,14 +1,15 @@
 extends ../../layouts/default.pug
 block main
     .main
-        h1 Cài đặt chung
+        h2
+            .title-page #{pageTitle}
         form(
             action=`/${prefixAdmin}/settings/general?_method=PATCH`
             method="POST"
             enctype="multipart/form-data"
         )
-            div(class="form-group")
-                label(for="websiteName") Tên website
+            div(class="mb-3")
+                label(for="websiteName" class="label-title") Tên website
                 input(
                     type="text"
                     class="form-control"
@@ -17,10 +18,10 @@ block main
                     value=setting.websiteName
                 )
             div(
-                class="form-group"
+                class="mb-3"
                 upload-image
             )
-                label(for="logo") Logo
+                label(for="logo" class="label-title") Logo
                 input(
                     type="file"
                     class="form-control"
@@ -34,8 +35,8 @@ block main
                     class="image-preview"
                     upload-image-preview
                 )
-            div(class="form-group")
-                label(for="phone") Số điện thoại
+            div(class="mb-3")
+                label(for="phone" class="label-title") Số điện thoại
                 input(
                     type="text"
                     class="form-control"
@@ -43,8 +44,8 @@ block main
                     name="phone"
                     value=setting.phone
                 )
-            div(class="form-group")
-                label(for="email") Email
+            div(class="mb-3")
+                label(for="email" class="label-title") Email
                 input(
                     type="email"
                     class="form-control"
@@ -52,7 +53,7 @@ block main
                     name="email"
                     value=setting.email
                 )
-            div(class="form-group")
+            div(class="mb-3" class="label-title")
                 label(for="address") Địa chỉ
                 input(
                     type="text"
@@ -61,8 +62,8 @@ block main
                     name="address"
                     value=setting.address
                 )
-            div(class="form-group")
-                label(for="copyright") Copyright
+            div(class="mb-3")
+                label(for="copyright" class="label-title") Copyright
                 input(
                     type="text"
                     class="form-control"
@@ -70,7 +71,7 @@ block main
                     name="copyright"
                     value=setting.copyright
                 )
-            div(class="form-group")
+            div(class="mb-3")
                 button(
                     type="submit"
                     class="btn btn-primary"

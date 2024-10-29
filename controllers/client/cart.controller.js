@@ -41,7 +41,8 @@ module.exports.addPost = async (req, res) => {
     const cart = await Cart.findOne({
         _id: cartId
     });
-    const products = cart.products;
+    // const products = cart.products;
+    const products = cart ? cart.products : []; // Nếu cart là null thì products sẽ là một mảng rỗng
     const existProduct = products.find(item => item.productId == req.params.id);
     if (existProduct) {
         existProduct.quantity = existProduct.quantity + parseInt(req.body.quantity);

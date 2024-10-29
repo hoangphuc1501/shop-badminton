@@ -22,7 +22,7 @@ module.exports.index = async (req, res) => {
     // hết tìm kiếm
 
     // Phân trang
-    let limitItem = 4;
+    let limitItem = 15;
     let page = 1;
 
     if (req.query.page) {
