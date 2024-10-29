@@ -28,7 +28,14 @@ app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce
 app.use(methodOverride('_method'));
 // flash
 app.use(cookieParser('keyboard cat'));
-app.use(session({ cookie: { maxAge: 60000 }}));
+app.use(session(
+    { cookie: { maxAge: 60000 }},
+    {
+    secret: '15012001', // Đặt secret của bạn ở đây
+    resave: false,
+    saveUninitialized: true,
+}
+));
 app.use(flash());
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
