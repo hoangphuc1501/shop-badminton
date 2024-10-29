@@ -75,6 +75,15 @@ block main
                     textarea-mce
                 )
             div(class="mb-3")
+                label(for="specifications" class="label-title") Thông số kỹ thuật
+                textarea(
+                    class="form-control"
+                    id="specifications"
+                    name="specifications"
+                    rows="20"
+                    textarea-mce
+                )
+            div(class="mb-3")
                 label(for="price" class="label-title") Giá
                 input(
                     type="number"
@@ -130,7 +139,7 @@ block main
                     min="1"
                 )
             div(class="mb-3")
-                label(for="desc-short" class="label-title") Mô tả ngắn sản phẩm
+                label(for="desc-short" class="label-title") Ưu đãi
                 textarea(
                     class="form-control"
                     id="desc-short"

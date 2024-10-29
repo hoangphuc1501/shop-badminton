@@ -15,13 +15,15 @@ module.exports.index = async (req, res) => {
             deleted: false,
             status: "active"
         });
-        item.thumbnail = infoItem.thumbnail;
-        item.title = infoItem.title;
-        item.slug = infoItem.slug;
-        item.priceNew = infoItem.price;
-        if (infoItem.discountPercentage > 0) {
-            item.priceNew = (1 - infoItem.discountPercentage / 100) * infoItem.price;
-            item.priceNew = item.priceNew.toFixed(0);
+        if (infoItem) {
+            item.thumbnail = infoItem.thumbnail;
+            item.title = infoItem.title;
+            item.slug = infoItem.slug;
+            item.priceNew = infoItem.price;
+            if (infoItem.discountPercentage > 0) {
+                item.priceNew = (1 - infoItem.discountPercentage / 100) * infoItem.price;
+                item.priceNew = item.priceNew.toFixed(0);
+            }
         }
         item.total = item.priceNew * item.quantity;
         total += item.total;

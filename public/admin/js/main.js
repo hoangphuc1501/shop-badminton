@@ -398,3 +398,21 @@ if (tablePermissions) {
     });
 }
 // Hết Phân quyền
+
+// tab mô tả trong detail
+let tabs = document.querySelectorAll(".description-title h3")
+let tabContents = document.querySelectorAll(".description-content")
+
+tabs.forEach((tab, index) => {
+    tab.addEventListener("click", () => {
+        tabContents.forEach((content) => {
+            content.classList.remove("active-description")
+        });
+        tabs.forEach((tab) =>{
+            tab.classList.remove("active-description")
+        })
+        tabContents[index].classList.add("active-description")
+        tabs[index].classList.add("active-description")
+    });
+})
+// hết tab mô tả trong detail

@@ -11,7 +11,7 @@ block main
                     | Bộ lọc và tìm kiếm
             .card-body
                 .row
-                    .col-2
+                    .col-3
                         +box-filter([
                             {
                                 label: "Tất cả",
@@ -26,15 +26,7 @@ block main
                                 value: "inactive"
                             }
                         ])
-                    .col-2
-                        select(class="form-control" sort-select)
-                            option(value="position-desc") Vị trí giảm dần
-                            option(value="position-asc") Vị trí tăng dần
-                            option(value="price-desc") Giá giảm dần
-                            option(value="price-asc") Giá tăng dần
-                            option(value="title-desc") Tiêu đề từ Z đến A
-                            option(value="title-asc") Tiêu đề từ A đến Z
-                    .col-2
+                    .col-3
                         select(class="form-control" sort-select)
                             option(value="position-desc") Vị trí giảm dần
                             option(value="position-asc") Vị trí tăng dần
@@ -71,9 +63,18 @@ block main
                                     ) Áp dụng
                     
         .card 
-            .card-header 
-                h3
-                    | Danh sách sản phẩm
+            .card-header
+                    .row
+                        .col-8
+                            h3
+                                | Danh sách sản phẩm
+                        .col-4
+                            .d-flex.justify-content-end
+                                if (role.permissions.includes("products_create"))
+                                    a(
+                                        href=`/${prefixAdmin}/products/create`
+                                        class="btn bg-main px-5"
+                                    ) Thêm sản phẩm mới
             .card-body
                 table.table.table-hover.table-sm
                     thead

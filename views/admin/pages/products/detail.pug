@@ -9,8 +9,8 @@ block main
                             .img-product
                                 if (product.thumbnail)
                                     img.img-feature(
-                                            src=product.thumbnail
-                                            alt=product.title)
+                                        src=product.thumbnail
+                                        alt=product.title)
                                 .control.prev
                                     i.fa-solid.fa-chevron-left
                                 .control.next
@@ -62,12 +62,19 @@ block main
                                             | (#{product.discountPercentage} %)
                                 hr
                                 .promotion-box
-                                        if (product.descriptionShort)
-                                        | !{product.descriptionShort}
+                                    .label-description
+                                        img(src="https://cdn.shopvnb.com/themes/images/code_dis.gif")
+                                        |ưu đãi
+                                    if (product.descriptionShort)
+                                    | !{product.descriptionShort}
+                                
                     .description.my-5
                         .description-title
-                            h3 Mô tả sản phẩm
+                            h3.active-description Mô tả sản phẩm
                             h3 Thông số kỹ thuật
-                        .description-content 
+                        .description-content.active-description
                             if (product.description)
                                 | !{product.description}
+                        .description-content
+                            if (product.specifications)
+                                | !{product.specifications}
