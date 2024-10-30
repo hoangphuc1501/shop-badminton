@@ -1,0 +1,59 @@
+extends ../../layouts/default.pug
+block main
+    .container
+        .page-update-info.container
+            .list-update-info
+                h3 Thông tin của bạn
+                form(
+                    action=`/user/update-info/${user.id}?_method=PATCH`, 
+                    method="post"
+                    )
+                    .form-group
+                        input#fullname.form-control(
+                            name="name" 
+                            type="text" 
+                            value=user.fullName
+                            )
+                        label(for="fullname")
+                            i.fa-solid.fa-user
+                        span.form-message
+                    .form-group
+                        input#email.form-control(
+                            name="email" 
+                            type="text" 
+                            value=user.email
+                            )
+                        label(for="email")
+                            i.fa-solid.fa-envelope
+                        span.form-message
+                    .form-group
+                        input#phoneNumber.form-control(
+                            name="phone" 
+                            type="text" 
+                            value=user.phone
+                            )
+                        label(for="phoneNumber")
+                            i.fa-solid.fa-phone
+                        span.form-message
+                    .form-group
+                        input#birtday.form-control(
+                            name="birthday" 
+                            type="text" 
+                            value=user.birthday
+                            )
+                        label(for="birthday")
+                            i.fa-regular.fa-calendar-days
+                        span.form-message
+                    .form-group
+                        input#address.form-control(
+                            name="address" 
+                            type="text" 
+                            value=user.address)
+                        label(for="address")
+                            i.fa-solid.fa-location-dot
+                        span.form-message
+                    .list-act-info.justify-content-space-between
+                        button.act-submit( type="submit")
+                            | Cập nhật
+                        button.act-submit( type="submit")
+                            a(href="/user/profile") Quay lại

@@ -1,0 +1,68 @@
+extends ../../layouts/default.pug
+block main
+    .container
+        .page-info
+            .info-title
+                h2 #{pageTitle}
+            .section-info
+                .list-cart-info
+                    .img-info
+                        img(src="https://www.thuvienvector.com/upload/images/items/vector-card-the-vip-thiet-ke-sang-trong-3655.webp" alt="")
+                    .range-user.justify-content-space-between
+                        p Vàng
+                        p Kim cương
+                        span.dots-range
+                    .text-range
+                        p
+                            | Còn 100 BEAN nữa bạn sẽ thăng hạng. Đổi quà không ảnh hưởng tới việc thăng hạng của bạn Chưa tích
+                            | điểm
+                    .list-item-info
+                        .item-info
+                            a(href="#")
+                                i.fa-solid.fa-user
+                                | Thông tin khách hàng
+                        .item-info
+                            a(href="#")
+                                i.fa-solid.fa-lock
+                                | Đổi mật khẩu
+                        .item-info
+                            a(href="#")
+                                i.fa-solid.fa-user-shield
+                                | Quyền lợi thành viên
+                        .item-info
+                            a(href="#")
+                                i.fa-solid.fa-clock-rotate-left
+                                | Lịch sử mua hàng
+                .List-form-info
+                    h3 Thông tin của bạn
+                    .form-group-info
+                        .item-info.justify-content-space-between
+                            p #{user.fullName}
+                            span
+                                i.fa-solid.fa-user
+                    .form-group-info
+                        .item-info.justify-content-space-between
+                            p #{user.email}
+                            span
+                                i.fa-solid.fa-envelope
+                    .form-group-info
+                        .item-info.justify-content-space-between
+                            p #{user.phone}
+                            span
+                                i.fa-solid.fa-phone
+                    .form-group-info
+                        .item-info.justify-content-space-between
+                            p #{user.birthday}
+                            span
+                                i.fa-regular.fa-calendar-days
+                    .form-group-info
+                        .item-info.justify-content-space-between
+                            p #{user.address}
+                            span
+                                i.fa-solid.fa-location-dot
+                    .list-act-info.justify-content-space-between
+                        button.act-submit( type="submit")
+                            a(href="/user/update-info") Thay đổi thông tin
+                        button.act-submit( type="submit")
+                            a(href="/user/logout")
+                                | Đăng xuất  

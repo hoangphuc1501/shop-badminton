@@ -73,3 +73,27 @@ module.exports.logout = async (req, res) => {
     req.flash("success", "Đăng xuất thành công!");
     res.redirect("/");
 }
+
+module.exports.profile = async (req, res) => {
+
+    res.render("client/pages/users/profile",{
+        pageTitle: "Thông tin tài khoản"
+    })
+}
+
+module.exports.updateInfo = async (req, res) => {
+
+    res.render("client/pages/users/info-update",{
+        pageTitle: "Thay đổi thông tin"
+    })
+}
+
+module.exports.updateInfoPatch = async (req, res) => {
+    const id = req.params.id;
+    await User.updateOne({
+        _id: id,
+        deleted:false
+    }, req.body)
+    req.flash("success", "Cập nhật thành công!")
+    res.redirect("back");
+}
