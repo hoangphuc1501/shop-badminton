@@ -65,7 +65,7 @@ block main
                         each itemChild in item.children
                             .col-3
                                 .category-item
-                                    a(href="#")
+                                    a(href=`/products/${itemChild.slug}`)
                                         .category-img
                                             img(src=itemChild.thumbnail alt="error")
                                         .category-content
