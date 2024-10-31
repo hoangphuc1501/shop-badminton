@@ -1,0 +1,59 @@
+extends ../../layouts/default.pug
+block main 
+    .container
+        .page-contact
+            .contact-title
+                h1 Liên hệ
+            .section-form-contact
+                .list-contact-info
+                    h3 Trụ sở chính
+                    .contact-map
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d823.0376954723682!2d106.50689133157773!3d11.109716184395857!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310b331ee9568403%3A0xd4228a0fdba74425!2zVGnhu4dtIFThuqFwIEjDs2EgVGjDuXkgRMawxqFuZw!5e0!3m2!1svi!2s!4v1730371093107!5m2!1svi!2s" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    .contact-left-info
+                        p Văn phòng: #{settingGeneral.address}
+                        p Điện thoại: #{settingGeneral.phone}
+                        p Email: #{settingGeneral.email}
+                        p Website: hpshopbadminton@gmail.com
+                        p Fanpage: facebook.com/hpshopbadminton.shop
+                .list-form-contact
+                    h3 Gửi thông tin liên hệ
+                    form(
+                        action="/contact"
+                        method="POST"
+                        )
+                        .form-group
+                            input.form-control(
+                                name="fullName" 
+                                type="text" 
+                                id="fullName"
+                                placeholder="Họ & Tên")
+                            label(for="")
+                                i.fa-solid.fa-user
+                            span.form-message
+                        .form-group
+                            input.form-control(
+                                name="email" 
+                                id="email"
+                                type="text" 
+                                placeholder="Email")
+                            label(for="")
+                                i.fa-solid.fa-envelope
+                            span.form-message
+                        .form-group
+                            input.form-control(
+                                name="phone" 
+                                id="phone" 
+                                type="text" 
+                                placeholder="Số điện thoại")
+                            label(for="")
+                                i.fa-solid.fa-phone
+                            span.form-message
+                        .form-group
+                            textarea(
+                                name="content"
+                                id="content"  
+                                cols="30" rows="10" 
+                                placeholder="Nội dung")
+                            label(for="")
+                            span.form-message
+                        button.form-submit(type="submit") Gửi thông tin
