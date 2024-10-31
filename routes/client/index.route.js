@@ -8,9 +8,9 @@ const categoryMiddleware = require("../../middlewares/client/category.middleware
 const cartMiddleware = require("../../middlewares/client/cart.middleware");
 const userMiddleware = require("../../middlewares/client/user.middleware");
 const settingMiddleware = require("../../middlewares/client/setting.middleware");
-module.exports = (app) =>{
+module.exports = (app) => {
     app.use(categoryMiddleware.category);
-    app.use(cartMiddleware.cart );
+    app.use(cartMiddleware.cart);
     app.use(userMiddleware.infoUser);
     app.use(settingMiddleware.general);
     app.use("/", homeRoute);
@@ -18,4 +18,9 @@ module.exports = (app) =>{
     app.use("/cart", cartRoute);
     app.use("/order", orderRoute);
     app.use("/user", userRoute);
+    app.get("*", (req, res) => {
+        res.render("client/pages/errors/404", {
+            pageTitle: "404 Not Found",
+        });
+    });
 };

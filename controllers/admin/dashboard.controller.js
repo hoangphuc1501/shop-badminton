@@ -81,7 +81,7 @@ module.exports.index = async (req, res) => {
     });
     // hết tài khoản user
     res.render("admin/pages/dashboard/index.pug", {
-        title: "Trang tổng quan",
+        pageTitle: "Trang tổng quan",
         statistic: statistic
     });
 }

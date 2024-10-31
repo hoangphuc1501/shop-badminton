@@ -1,0 +1,21 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet", href="/css/404.css")
+        title #{pageTitle}
+    body 
+        h1 Không tìm thấy trang!
+            p.zoom-area
+                b Nguyên nhân: URL đã được thay đổi hoặc xóa khỏi hệ thống
+
+            section.error-container
+                span.four
+                    span.screen-reader-text 4
+                span.zero
+                    span.screen-reader-text 0
+                span.four
+                    span.screen-reader-text 4
+            .link-container
+                a.more-link( href="/") Quay lại trang chủ
