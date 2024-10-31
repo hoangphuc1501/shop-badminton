@@ -10,7 +10,7 @@ module.exports.index = async (req, res) => {
     .sort({
         position: "asc"
     })
-    .limit(6)
+    .limit(10)
 
     for (const item of productFeatured) {
         item.priceNew = (1 - item.discountPercentage/100) * item.price;

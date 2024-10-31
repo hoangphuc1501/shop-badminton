@@ -126,5 +126,5 @@ block main
                                                 .sub-category
                                                     each itemChild in childItem.children
                                                         .sub-item
-                                                            a(href="#") #{itemChild.title}
+                                                            a(href=`/products/${itemChild.slug}`) #{itemChild.title}
 
