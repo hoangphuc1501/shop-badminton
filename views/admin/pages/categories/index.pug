@@ -35,30 +35,52 @@ block main
                         .col-3
                             include ../../partials/box-search.pug
                         .col-3 
-                            form(
-                                form-change-multi
-                                data-path=`/${prefixAdmin}/products-category/change-multi`
-                            )
-                                .input-group
-                                    +box-filter([
-                                        {
-                                            label: "Hoạt động",
-                                            value: "active"
-                                        },
-                                        {
-                                            label: "Dừng hoạt động",
-                                            value: "inactive"
-                                        },
-                                        {
-                                            label: "Xóa",
-                                            value: "delete"
-                                        }
-                                    ])
-                                    .input-group-append
-                                        button(
-                                        class="btn btn-main-color"
-                                        type="submit"
-                                        ) Áp dụng
+                            if (role.permissions.includes("products-category_edit"))
+                                form(
+                                    form-change-multi
+                                    data-path=`/${prefixAdmin}/products-category/change-multi`
+                                )
+                                    .input-group
+                                        +box-filter([
+                                            {
+                                                label: "Hoạt động",
+                                                value: "active"
+                                            },
+                                            {
+                                                label: "Dừng hoạt động",
+                                                value: "inactive"
+                                            },
+                                            {
+                                                label: "Xóa",
+                                                value: "delete"
+                                            }
+                                        ])
+                                        .input-group-append
+                                            button(
+                                            class="btn btn-main-color"
+                                            type="submit"
+                                            ) Áp dụng
+                            else 
+                                form()
+                                    .input-group
+                                        +box-filter([
+                                            {
+                                                label: "Hoạt động",
+                                                value: ""
+                                            },
+                                            {
+                                                label: "Dừng hoạt động",
+                                                value: ""
+                                            },
+                                            {
+                                                label: "Xóa",
+                                                value: ""
+                                            }
+                                        ])
+                                        .input-group-append
+                                            button(
+                                            class="btn btn-main-color"
+                                            ) Áp dụng
             .card.mb-3
                 .card-header
                     .row
@@ -75,7 +97,7 @@ block main
                 .card-body
 
                     table(
-                            class="table table-hover table-sm"
+                        class="table table-hover table-sm"
                     )
                         thead
                             tr
@@ -106,29 +128,43 @@ block main
                                         )
                                     td #{item.title}
                                     td
-                                        input(
-                                            type="number"
-                                            value=item.position
-                                            item-id=item.id
-                                            data-path=`/${prefixAdmin}/products-category/change-position`
-                                            input-position
-                                            style="width: 60px;"
-                                        )
+                                        if (role.permissions.includes("products-category_edit"))
+                                            input(
+                                                type="number"
+                                                value=item.position
+                                                item-id=item.id
+                                                data-path=`/${prefixAdmin}/products-category/change-position`
+                                                input-position
+                                                style="width: 60px;"
+                                            )
+                                        else 
+                                            span #{item.position}
+
                                     td
-                                        if (item.status == "active")
-                                            button(
-                                                item-id=item.id
-                                                button-change-status="inactive"
-                                                data-path=`/${prefixAdmin}/products-category/change-status`
-                                                class="btn-status bg-success"
-                                            ) Hoạt động
-                                        else if (item.status == "inactive")
-                                            button(
-                                                item-id=item.id
-                                                button-change-status="active"
-                                                data-path=`/${prefixAdmin}/products-category/change-status`
-                                                class="btn-status bg-danger"
-                                            ) Dừng hoạt động 
+                                        if (role.permissions.includes("products-category_edit"))
+                                            if (item.status == "active")
+                                                button(
+                                                    item-id=item.id
+                                                    button-change-status="inactive"
+                                                    data-path=`/${prefixAdmin}/products-category/change-status`
+                                                    class="btn-status bg-success"
+                                                ) Hoạt động
+                                            else if (item.status == "inactive")
+                                                button(
+                                                    item-id=item.id
+                                                    button-change-status="active"
+                                                    data-path=`/${prefixAdmin}/products-category/change-status`
+                                                    class="btn-status bg-danger"
+                                                ) Dừng hoạt động 
+                                        else 
+                                            if (item.status == "active")
+                                                button(
+                                                    class="btn-status bg-success"
+                                                ) Hoạt động
+                                            else if (item.status == "inactive")
+                                                button(
+                                                    class="btn-status bg-danger"
+                                                ) Dừng hoạt động 
                                     td
                                         div #{item.createdByFullName}
                                         div #{item.createdAtFormat}

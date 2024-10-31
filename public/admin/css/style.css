@@ -348,3 +348,13 @@ body {
     font-weight: bold;
 }
 /* hết label title */
+/* label title */
+.permission-title{
+    font-size: 18px;
+    margin: 5px 0;
+    font-weight: bold;
+    padding: 2px 0;
+    color: var(--main-color);
+}
+/* hết label title */
+

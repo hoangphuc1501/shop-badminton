@@ -1,80 +1,81 @@
 extends ../../layouts/default.pug
 block main
     .main
-        .container
-            .row.my-3
-                .col-12.box-product-detail
-                    .row.col-12
-                        .col-5.product-detail-list-img
-                            .img-product
-                                if (product.thumbnail)
-                                    img.img-feature(
-                                        src=product.thumbnail
-                                        alt=product.title)
-                                .control.prev
-                                    i.fa-solid.fa-chevron-left
-                                .control.next
-                                    i.fa-solid.fa-chevron-right
-                            .list-image
-                                div
+        if (role.permissions.includes("products_view"))
+            .container
+                .row.my-3
+                    .col-12.box-product-detail
+                        .row.col-12
+                            .col-5.product-detail-list-img
+                                .img-product
                                     if (product.thumbnail)
-                                        img(src=product.thumbnail)
-                                div
-                                    img(src="https://cdn.shopvnb.com/uploads/san_pham/vot-cau-long-vnb-v200i-hong-1.webp")
-                                div
-                                    img(src="https://cdn.shopvnb.com/uploads/san_pham/vot-cau-long-vnb-v200i-hong-3.webp")
-                                div
-                                    img(src="https://cdn.shopvnb.com/uploads/san_pham/vot-cau-long-vnb-v200i-hong-3.webp")
-                        .col-7
-                            .product-detail-text
-                                if (product.title)                        
-                                    h1.title-product #{product.title}
-                                .status-brand-code
-                                    if (product.code)    
-                                        .code
-                                            p Mã: 
-                                                span.text-color #{product.code}
-                                    if (product.brand)     
-                                        .brand
-                                            p Thương hiệu: 
-                                                a.text-color(href="#") #{product.brand}
-                                    if (product.stock !== undefined)         
-                                        .status-detail
-                                            p
-                                                | Tình trạng: 
-                                                span.text-color 
-                                                    if (product.stock === 0)
-                                                        | Hết hàng
-                                                    else if (product.stock > 0)
-                                                        | Còn hàng
-                                .list-price
-                                    if (product.priceNew)
-                                        span.promotion-price
-                                            | #{product.priceNew}
-                                            sup đ
-                                    if (product.price)        
-                                        span.price Giá niêm yết: 
-                                            del
-                                                | #{toLocaleString(product.price)}
+                                        img.img-feature(
+                                            src=product.thumbnail
+                                            alt=product.title)
+                                    .control.prev
+                                        i.fa-solid.fa-chevron-left
+                                    .control.next
+                                        i.fa-solid.fa-chevron-right
+                                .list-image
+                                    div
+                                        if (product.thumbnail)
+                                            img(src=product.thumbnail)
+                                    div
+                                        img(src="https://cdn.shopvnb.com/uploads/san_pham/vot-cau-long-vnb-v200i-hong-1.webp")
+                                    div
+                                        img(src="https://cdn.shopvnb.com/uploads/san_pham/vot-cau-long-vnb-v200i-hong-3.webp")
+                                    div
+                                        img(src="https://cdn.shopvnb.com/uploads/san_pham/vot-cau-long-vnb-v200i-hong-3.webp")
+                            .col-7
+                                .product-detail-text
+                                    if (product.title)                        
+                                        h1.title-product #{product.title}
+                                    .status-brand-code
+                                        if (product.code)    
+                                            .code
+                                                p Mã: 
+                                                    span.text-color #{product.code}
+                                        if (product.brand)     
+                                            .brand
+                                                p Thương hiệu: 
+                                                    a.text-color(href="#") #{product.brand}
+                                        if (product.stock !== undefined)         
+                                            .status-detail
+                                                p
+                                                    | Tình trạng: 
+                                                    span.text-color 
+                                                        if (product.stock === 0)
+                                                            | Hết hàng
+                                                        else if (product.stock > 0)
+                                                            | Còn hàng
+                                    .list-price
+                                        if (product.priceNew)
+                                            span.promotion-price
+                                                | #{product.priceNew}
                                                 sup đ
-                                    if (product.discountPercentage)
-                                        span.label-promotion
-                                            | (#{product.discountPercentage} %)
-                                hr
-                                .promotion-box
-                                    .label-description
-                                        img(src="https://cdn.shopvnb.com/themes/images/code_dis.gif")
-                                        |ưu đãi
-                                    if (product.descriptionShort)
-                                    | !{product.descriptionShort}
-                                
-                    .description.my-5
-                        .description-title
-                            h3.active-description Mô tả sản phẩm
-                            h3 Thông số kỹ thuật
-                        .description-content.active-description
-                            if (product.description)
-                                | !{product.description}
-                        .description-content
-                            if (product.specifications)
-                                | !{product.specifications}
+                                        if (product.price)        
+                                            span.price Giá niêm yết: 
+                                                del
+                                                    | #{toLocaleString(product.price)}
+                                                    sup đ
+                                        if (product.discountPercentage)
+                                            span.label-promotion
+                                                | (#{product.discountPercentage} %)
+                                    hr
+                                    .promotion-box
+                                        .label-description
+                                            img(src="https://cdn.shopvnb.com/themes/images/code_dis.gif")
+                                            |ưu đãi
+                                        if (product.descriptionShort)
+                                        | !{product.descriptionShort}
+                                    
+                        .description.my-5
+                            .description-title
+                                h3.active-description Mô tả sản phẩm
+                                h3 Thông số kỹ thuật
+                            .description-content.active-description
+                                if (product.description)
+                                    | !{product.description}
+                            .description-content
+                                if (product.specifications)
+                                    | !{product.specifications}

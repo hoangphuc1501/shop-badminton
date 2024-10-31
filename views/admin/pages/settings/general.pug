@@ -1,78 +1,79 @@
 extends ../../layouts/default.pug
 block main
-    .main
-        h2
-            .title-page #{pageTitle}
-        form(
-            action=`/${prefixAdmin}/settings/general?_method=PATCH`
-            method="POST"
-            enctype="multipart/form-data"
-        )
-            div(class="mb-3")
-                label(for="websiteName" class="label-title") Tên website
-                input(
-                    type="text"
-                    class="form-control"
-                    id="websiteName"
-                    name="websiteName"
-                    value=setting.websiteName
-                )
-            div(
-                class="mb-3"
-                upload-image
+    if (role.permissions.includes("general_edit"))
+        .main
+            h2
+                .title-page #{pageTitle}
+            form(
+                action=`/${prefixAdmin}/settings/general?_method=PATCH`
+                method="POST"
+                enctype="multipart/form-data"
             )
-                label(for="logo" class="label-title") Logo
-                input(
-                    type="file"
-                    class="form-control"
-                    id="logo"
-                    name="logo"
-                    accept="image/*"
-                    upload-image-input
+                div(class="mb-3")
+                    label(for="websiteName" class="label-title") Tên website
+                    input(
+                        type="text"
+                        class="form-control"
+                        id="websiteName"
+                        name="websiteName"
+                        value=setting.websiteName
+                    )
+                div(
+                    class="mb-3"
+                    upload-image
                 )
-                img(
-                    src=setting.logo
-                    class="image-preview"
-                    upload-image-preview
-                )
-            div(class="mb-3")
-                label(for="phone" class="label-title") Số điện thoại
-                input(
-                    type="text"
-                    class="form-control"
-                    id="phone"
-                    name="phone"
-                    value=setting.phone
-                )
-            div(class="mb-3")
-                label(for="email" class="label-title") Email
-                input(
-                    type="email"
-                    class="form-control"
-                    id="email"
-                    name="email"
-                    value=setting.email
-                )
-            div(class="mb-3" class="label-title")
-                label(for="address") Địa chỉ
-                input(
-                    type="text"
-                    class="form-control"
-                    id="address"
-                    name="address"
-                    value=setting.address
-                )
-            div(class="mb-3")
-                label(for="copyright" class="label-title") Copyright
-                input(
-                    type="text"
-                    class="form-control"
-                    id="copyright"
-                    name="copyright"
-                    value=setting.copyright
-                )
-            div(class="mb-3")
-                button(
-                    type="submit"
-                    class="btn btn-primary"
-                ) Cập nhật
+                    label(for="logo" class="label-title") Logo
+                    input(
+                        type="file"
+                        class="form-control"
+                        id="logo"
+                        name="logo"
+                        accept="image/*"
+                        upload-image-input
+                    )
+                    img(
+                        src=setting.logo
+                        class="image-preview"
+                        upload-image-preview
+                    )
+                div(class="mb-3")
+                    label(for="phone" class="label-title") Số điện thoại
+                    input(
+                        type="text"
+                        class="form-control"
+                        id="phone"
+                        name="phone"
+                        value=setting.phone
+                    )
+                div(class="mb-3")
+                    label(for="email" class="label-title") Email
+                    input(
+                        type="email"
+                        class="form-control"
+                        id="email"
+                        name="email"
+                        value=setting.email
+                    )
+                div(class="mb-3" class="label-title")
+                    label(for="address") Địa chỉ
+                    input(
+                        type="text"
+                        class="form-control"
+                        id="address"
+                        name="address"
+                        value=setting.address
+                    )
+                div(class="mb-3")
+                    label(for="copyright" class="label-title") Copyright
+                    input(
+                        type="text"
+                        class="form-control"
+                        id="copyright"
+                        name="copyright"
+                        value=setting.copyright
+                    )
+                div(class="mb-3")
+                    button(
+                        type="submit"
+                        class="btn btn-primary"
+                    ) Cập nhật
