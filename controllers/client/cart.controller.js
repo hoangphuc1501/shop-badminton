@@ -60,7 +60,12 @@ module.exports.addPost = async (req, res) => {
     }, {
         products: products
     });
-    res.redirect("back");
+    // res.redirect("back");
+    if (req.body.action === "buyNow") {
+        res.redirect("/cart"); // Chuyển đến trang giỏ hàng
+    } else {
+        res.redirect("back"); // Quay lại trang hiện tại
+    }
 }
 
 module.exports.delete = async (req, res) => {
@@ -96,4 +101,31 @@ module.exports.updatePatch = async (req, res) => {
         code: "success",
         message: "Cập nhật thành công!"
     });
+}
+
+
+module.exports.addPostBuyNow = async (req, res) => {
+    const cartId = req.cookies.cartId;
+    const cart = await Cart.findOne({
+        _id: cartId
+    });
+    // const products = cart.products;
+    const products = cart ? cart.products : []; // Nếu cart là null thì products sẽ là một mảng rỗng
+    const existProduct = products.find(item => item.productId == req.params.id);
+    if (existProduct) {
+        existProduct.quantity = existProduct.quantity + parseInt(req.body.quantity);
+    } else {
+        const product = {
+            productId: req.params.id,
+            quantity: parseInt(req.body.quantity)
+        };
+
+        products.push(product);
+    }
+    await Cart.updateOne({
+        _id: cartId
+    }, {
+        products: products
+    });
+    res.redirect("/cart");
 }

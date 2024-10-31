@@ -28,7 +28,15 @@ mixin product-item(item)
                     a(href= `/products/detail/${item.slug}`)
                         i.fa-solid.fa-eye
             .button-action
-                p.action-title Mua ngay
-                button.love
-                    a(href="#")
-                        i.fa-solid.fa-cart-shopping
+                form(
+                    action=`/cart/add/${item.id}`, 
+                    method="post")
+                    input(type="hidden" name="quantity" value="1")
+                    p.action-title Mua ngay
+                    button(
+                        name="action"
+                        value="buyNow"
+                        type="submit"
+                    ).love
+                        a
+                            i.fa-solid.fa-cart-shopping

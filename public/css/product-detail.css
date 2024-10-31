@@ -187,6 +187,8 @@
     border: none;
     cursor: pointer;
     width: 100%;
+    padding: 15px 0;
+    border-radius: 12px;
 }
 .btn-buy-full button:hover{
     background: transparent;
@@ -195,11 +197,6 @@
 .btn-buy-full button :hover{
     color: var(--main-color);
     
-}
-.btn-buy-full button a{
-    display: block;
-    padding: 10px 0;
-    border-radius: 12px;
 }
 .btn-add-card button{
     font-size: 20px;
@@ -213,13 +210,7 @@
     padding: 15px 0;
     width: 100%;
 }
-.btn-add-card button a,
-.btn-buy-full button a{
-    text-decoration: none;
-    text-transform: uppercase;
-    color: #ffffff;
-    /* padding: 15px 283px; */
-}
+
 .btn-pay-taichinh{
     width: 100%;
     height: 50px;

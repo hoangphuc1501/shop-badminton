@@ -115,7 +115,6 @@ if (listButtonChangeStatus.length > 0) {
                 id: itemId,
                 status: statusChange
             }
-
             fetch(path, {
                 headers: {
                     "Content-Type": "application/json",

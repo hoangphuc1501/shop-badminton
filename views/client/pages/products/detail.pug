@@ -87,10 +87,16 @@ block main
                                         button(
                                             type="submit"
                                             class="btn bg-main"
+                                            name="action"
+                                            value="addToCart"
                                     ) Thêm vào giỏ hàng
-                                .btn-buy-full
-                                    button
-                                        a(href="#") Mua ngay
+                                    .btn-buy-full
+                                        button(
+                                            type="submit"
+                                            class="btn bg-main"
+                                            name="action"
+                                            value="buyNow"
+                                    ) Mua ngay
                                 .btn-pay-taichinh
                                     a.btn-pay-taichinh-text(href="#")
                                         b Mua trả góp
