@@ -6,6 +6,7 @@ const accountRoute = require("./account.route");
 const authRoute = require("./auth.route");
 const trashRoute = require("./trash.route");
 const settingRoute = require("./setting.route");
+const blogCategoryRoute = require("./blog-category.route");
 
 const systemConfig = require("../../config/system");
 const authMiddleware = require("../../middlewares/admin/auth.middleware");
@@ -41,6 +42,10 @@ module.exports = (app) => {
     app.use(`${PATH_ADMIN}/trash`, 
         authMiddleware.requireAuth,
         trashRoute
+    );
+    app.use(`${PATH_ADMIN}/blogs-category`, 
+        authMiddleware.requireAuth,
+        blogCategoryRoute
     );
     
 }

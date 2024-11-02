@@ -1,13 +1,12 @@
 extends ../../layouts/default.pug
 block main
     .main
-        if (role.permissions.includes("products-category_create"))
+        if (role.permissions.includes("blogs-category_create"))
             h2
                 .title-page #{pageTitle}
             form(
-                action=`/${prefixAdmin}/products-category/create`
+                action=`/${prefixAdmin}/blogs-category/create`
                 method="POST"
-                enctype="multipart/form-data"
             )
                 div(class="mb-3")
                     label(for="title" class="label-title") Tên danh mục
@@ -26,7 +25,7 @@ block main
                         name="parent_id"
                     )
                         option(value="") -- Chọn danh mục --
-                        each item in listCategory
+                        each item in listBlogCategory
                             option(value=item.id) #{item.title}
                 div(class="mb-3")
                     label(for="desc" class="label-title") Mô tả
@@ -37,24 +36,6 @@ block main
                         name="description"
                         rows="40"
                         textarea-mce
-                    )
-                div(
-                    class="mb-3"
-                    upload-image
-                )
-                    label(for="thumbnail" class="label-title") Ảnh
-                    input(
-                        type="file"
-                        class="form-control"
-                        id="thumbnail"
-                        name="thumbnail"
-                        accept="image/*"
-                        upload-image-input
-                    )
-                    img(
-                        src=""
-                        class="image-preview"
-                        upload-image-preview
                     )
                 div(class="mb-3")
                     label(for="position" class="label-title") Vị trí
