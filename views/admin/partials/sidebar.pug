@@ -49,9 +49,9 @@
                 if (role.permissions.includes("blogs-category_view"))
                     a.sub-item(href=`/${prefixAdmin}/blogs-category`) Danh mục bài viết
                 if (role.permissions.includes("blogs_create"))
-                    a.sub-item(href=`#`) Thêm mới bài viết
+                    a.sub-item(href=`/${prefixAdmin}/blogs/create`) Thêm mới bài viết
                 if (role.permissions.includes("blogs_view"))
-                    a.sub-item(href=`#`) Danh sách bài viết
+                    a.sub-item(href=`/${prefixAdmin}/blogs`) Danh sách bài viết
         li
             a.sub-btn
                 span.icon 

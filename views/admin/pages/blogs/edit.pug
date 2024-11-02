@@ -1,0 +1,103 @@
+extends ../../layouts/default.pug
+include ../../mixins/box-filter.pug
+block main 
+    .main
+        if (role.permissions.includes("blogs_edit"))
+            h2
+                .title-page #{pageTitle}
+            form(
+                action=`/${prefixAdmin}/blogs/edit/${blogs.id}?_method=PATCH`
+                method="POST"
+                enctype="multipart/form-data"
+            )
+                div(class="mb-3")
+                    label(for="title" class="label-title") Tên Bài viết
+                    input(
+                        type="text"
+                        class="form-control"
+                        id="title"
+                        name="title"
+                        value=blogs.title
+                    )
+                div(class="mb-3")
+                    label(for="author" class="label-title") Tác giả
+                    input(
+                        type="text"
+                        class="form-control"
+                        id="author"
+                        name="author"
+                        value=blogs.author
+                    )
+                div(class="mb-3")
+                    label(for="category_id" class="label-title") Danh mục bài viết
+                    select(
+                        class="form-control"
+                        id="category_id"
+                        name="category_id"
+                    )
+                        option(value="") -- Chọn danh mục --
+                        each item in listBlogCategory
+                            option(
+                                value=item.id
+                                selected=(item.id == blogs.category_id ? true : false)
+                            ) #{item.title}
+                div(class="mb-3")
+                    label(for="content" class="label-title") Nội dung
+                    textarea(
+                        class="form-control"
+                        id="content"
+                        name="content"
+                        rows="40"
+                        textarea-mce
+                    ) #{blogs.content}
+                div(class="mb-3" upload-image)
+                    label(for="thumbnail" class="label-title") Ảnh
+                    input(
+                        type="file"
+                        class="form-control"
+                        id="thumbnail"
+                        name="thumbnail"
+                        accept="image/*"
+                        upload-image-input
+                    )
+                    img(
+                        src=blogs.thumbnail
+                        class="image-preview"
+                        upload-image-preview
+                    )
+                div(class="mb-3")
+                    label(for="position" class="label-title") Vị trí
+                    input(
+                        type="number"
+                        class="form-control"
+                        id="position"
+                        name="position"
+                        placeholder="Tự động tăng"
+                        min="1"
+                        value=blogs.position
+                    )
+                div(class="form-group form-check form-check-inline")
+                    input(
+                        type="radio"
+                        class="form-check-input"
+                        id="statusActive"
+                        name="status"
+                        value="active"
+                        checked=(blogs.status == "active" ? true : false)
+                    )
+                    label(for="statusActive" class="form-check-label") Hoạt động
+                div(class="form-group form-check form-check-inline")
+                    input(
+                        type="radio"
+                        class="form-check-input"
+                        id="statusInActive"
+                        name="status"
+                        value="inactive"
+                        checked=(blogs.status == "inactive" ? true : false)
+                    )
+                    label(for="statusInActive" class="form-check-label") Dừng hoạt động
+                div(class="my-5")
+                    button(
+                        type="submit"
+                        class="btn bg-main px-5"
+                    ) Cập nhật

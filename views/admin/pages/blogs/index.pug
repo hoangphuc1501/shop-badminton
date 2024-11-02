@@ -1,0 +1,213 @@
+extends ../../layouts/default.pug
+include ../../mixins/box-filter.pug
+block main 
+    .main
+        if (role.permissions.includes("blogs_view"))
+            h2
+                .title-page
+                    | Danh sách sản phẩm 
+            .card.mb-3
+                .card-header 
+                    h3
+                        | Bộ lọc và tìm kiếm
+                .card-body
+                    .row
+                        .col-3
+                            +box-filter([
+                                {
+                                    label: "Tất cả",
+                                    value: ""
+                                },
+                                {
+                                    label: "Hoạt động",
+                                    value: "active"
+                                },
+                                {
+                                    label: "Dừng hoạt động",
+                                    value: "inactive"
+                                }
+                            ])
+                        .col-3
+                            select(class="form-control" sort-select)
+                                option(value="position-desc") Vị trí giảm dần
+                                option(value="position-asc") Vị trí tăng dần
+                                option(value="title-desc") Tiêu đề từ Z đến A
+                                option(value="title-asc") Tiêu đề từ A đến Z
+                        .col-3
+                            include ../../partials/box-search.pug
+                        .col-3 
+                            if (role.permissions.includes("blogs_edit"))
+                                form(
+                                    form-change-multi
+                                    data-path=`/${prefixAdmin}/blogs/change-multi`
+                                )
+                                    .input-group
+                                        +box-filter([
+                                            {
+                                                label: "Hoạt động",
+                                                value: "active"
+                                            },
+                                            {
+                                                label: "Dừng hoạt động",
+                                                value: "inactive"
+                                            },
+                                            {
+                                                label: "Xóa",
+                                                value: "delete"
+                                            }
+                                        ])
+                                        .input-group-append
+                                            button(
+                                            class="btn btn-main-color"
+                                            type="submit"
+                                            ) Áp dụng
+                            else 
+                                form()
+                                    .input-group
+                                        +box-filter([
+                                            {
+                                                label: "Hoạt động",
+                                                value: ""
+                                            },
+                                            {
+                                                label: "Dừng hoạt động",
+                                                value: ""
+                                            },
+                                            {
+                                                label: "Xóa",
+                                                value: ""
+                                            }
+                                        ])
+                                        .input-group-append
+                                            button(
+                                            class="btn btn-main-color"
+                                            ) Áp dụng
+                        
+            .card 
+                .card-header
+                        .row
+                            .col-8
+                                h3
+                                    | Danh sách sản phẩm
+                            .col-4
+                                .d-flex.justify-content-end
+                                    if (role.permissions.includes("blogs_create"))
+                                        a(
+                                            href=`/${prefixAdmin}/blogs/create`
+                                            class="btn bg-main px-5"
+                                        ) Thêm bài viết mới
+                .card-body
+                    table.table.table-hover.table-sm
+                        thead
+                            tr
+                                th
+                                th STT
+                                th Hình ảnh
+                                th Tên bài viết
+                                th Vị trí
+                                th Trạng thái
+                                th Tạo bởi
+                                th Cập nhật bởi
+                                th Hành động
+                        tbody
+                            
+                            each item, index in blogs
+                                tr 
+                                    td
+                                        input(
+                                        type="checkbox"
+                                        input-change=item.id
+                                        )
+                                    td #{limitItem*(currentPage - 1) + index + 1}
+                                    td
+                                        img(
+                                            src=item.thumbnail
+                                            alt=item.title
+                                            width="100px"
+                                            height="auto"
+                                        )
+                                    td 
+                                        a(class="a-title-link"
+                                            href=`/${prefixAdmin}/blogs/detail/${item.id}`
+                                            ) #{item.title} 
+                                    td
+                                        if (role.permissions.includes("blogs_edit"))
+                                            input(
+                                            type="number"
+                                            value=item.position
+                                            item-id=item.id
+                                            data-path=`/${prefixAdmin}/blogs/change-position`
+                                            input-position
+                                            style="width: 60px;"
+                                            )
+                                        else 
+                                            span #{item.position}
+                                    td
+                                        if (role.permissions.includes("blogs_edit"))
+                                            if (item.status == "active")
+                                                button(
+                                                    item-id=item.id
+                                                    button-change-status="inactive"
+                                                    data-path=`/${prefixAdmin}/blogs/change-status`
+                                                    class="btn-status bg-success"
+                                                ) Hoạt động
+                                            else if (item.status == "inactive")
+                                                button(
+                                                    item-id=item.id
+                                                    button-change-status="active"
+                                                    data-path=`/${prefixAdmin}/blogs/change-status`
+                                                    class="btn-status bg-danger"
+                                                ) Dừng hoạt động
+                                        else
+                                            if (item.status == "active")
+                                                button(
+                                                    item-id=item.id
+                                                    class="btn-status bg-success"
+                                                ) Hoạt động
+                                            else if (item.status == "inactive")
+                                                button(
+                                                    item-id=item.id
+                                                    class="btn-status bg-danger"
+                                                ) Dừng hoạt động
+                                    td
+                                        div #{item.createdByFullName}
+                                        div #{item.createdAtFormat}
+                                    td
+                                        div #{item.updatedByFullName}
+                                        div #{item.updatedAtFormat}
+                                    td
+                                        if (role.permissions.includes("blogs_edit"))
+                                            a(href=`/${prefixAdmin}/blogs/edit/${item.id}` 
+                                                class="btn btn-warning btn-sm me-1"
+                                                item-id=item.id
+                                                button-edit
+                                                data-path=`/${prefixAdmin}/blogs/edit`
+                                                ) Sửa
+                                        else
+                                            a(href=`#` 
+                                                    class="btn btn-warning btn-sm me-1"
+                                                    ) Sửa
+                                        if (role.permissions.includes("blogs_delete"))
+                                            button(
+                                                class="btn btn-danger btn-sm"
+                                                item-id=item.id
+                                                button-delete
+                                                data-path=`/${prefixAdmin}/blogs/delete`
+                                            ) Xóa 
+                                        else  
+                                            button(
+                                                class="btn btn-danger btn-sm"
+                                            ) Xóa 
+
+                .page-panigation
+                    nav(class="" aria-label="Page navigation example")
+                        ul(class="pagination")
+                            if(currentPage > 1)
+                                li(class="page-item")
+                                    button(class="page-link" button-pagination=currentPage-1) &laquo;
+                            - for (var i = 1; i <= totalPage; i++)
+                                li(class="page-item")
+                                    button(class="page-link" button-pagination=i) #{i}
+                            if(currentPage < totalPage)
+                                li(class="page-item")
+                                    button(class="page-link" button-pagination=currentPage+1) &raquo;
