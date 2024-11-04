@@ -125,7 +125,7 @@ if (listButtonChangeStatus.length > 0) {
                 .then(res => res.json())
                 .then(data => {
                     if (data.code == "success") {
-                        location.reload(); 
+                        location.reload();
                     }
                 })
         })
@@ -221,7 +221,6 @@ if (ListButtonDelete.length > 0) {
                 if (result.isConfirmed) {
                     const path = button.getAttribute("data-path");
                     const id = button.getAttribute("item-id");
-
                     // Send a PATCH request to the server
                     fetch(path, {
                         headers: {
@@ -407,7 +406,7 @@ tabs.forEach((tab, index) => {
         tabContents.forEach((content) => {
             content.classList.remove("active-description")
         });
-        tabs.forEach((tab) =>{
+        tabs.forEach((tab) => {
             tab.classList.remove("active-description")
         })
         tabContents[index].classList.add("active-description")
@@ -415,3 +414,119 @@ tabs.forEach((tab, index) => {
     });
 })
 // hết tab mô tả trong detail
+
+// Xóa vĩnh viễn ghi
+// const ListButtonDeletePermanently = document.querySelectorAll("[button-deletePermanently]");
+// if (ListButtonDeletePermanently.length > 0) {
+//     ListButtonDeletePermanently.forEach((button) => {
+//         button.addEventListener("click", () => {
+//             Swal.fire({
+//                 title: "Bạn có chắc là muốn xóa không?",
+//                 icon: "warning",
+//                 showCancelButton: true,
+//                 confirmButtonColor: "#3085d6",
+//                 cancelButtonColor: "#d33",
+//                 confirmButtonText: "Đồng ý"
+//             }).then((result) => {
+//                 if (result.isConfirmed) {
+//                     const path = button.getAttribute("data-path");
+//                     const id = button.getAttribute("item-id");
+//                     console.log(path)
+//                     console.log(id)
+//                     // Send a PATCH request to the server
+//                     fetch(path, {
+//                         headers: {
+//                             "Content-Type": "application/json",
+//                         },
+//                         method: "DELETE",
+//                         body: JSON.stringify({
+//                             id: id
+//                         })
+//                     })
+//                         .then(res => res.json())
+//                         .then(data => {
+//                             if (data.code === "success") {
+//                                 Swal.fire({
+//                                     title: "Đã xóa Thành công!",
+//                                     icon: "success"
+//                                 }).then(() => {
+//                                     // Reload the page after successful deletion
+//                                     location.reload();
+//                                 });
+//                             } else {
+//                                 Swal.fire({
+//                                     title: "Lỗi!",
+//                                     icon: "error"
+//                                 });
+//                             }
+//                         })
+//                         .catch(() => {
+//                             Swal.fire({
+//                                 title: "Lỗi!",
+//                                 icon: "error"
+//                             });
+//                         });
+//                 }
+//             });
+//         });
+//     });
+// }
+
+// Xóa bản ghi
+const ListButtonDeletePermanently = document.querySelectorAll("[button-deletePermanently]");
+if (ListButtonDeletePermanently.length > 0) {
+    ListButtonDeletePermanently.forEach(button => {
+        button.addEventListener("click", () => {
+            const isConfirm = confirm("Bạn có chắc muốn xóa bản ghi này?");
+            if (isConfirm) {
+                const id = button.getAttribute("item-id");
+                const path = button.getAttribute("data-path");
+
+                fetch(path, {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    method: "DELETE",
+                    body: JSON.stringify({
+                        id: id,
+                    })
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.code == "success") {
+                            location.reload();
+                        }
+                    })
+            }
+        })
+    })
+}
+// Hết Xóa bản ghi
+// khôi phục
+const listButtonRestore = document.querySelectorAll("[button-restore]");
+if (listButtonRestore.length > 0) {
+    listButtonRestore.forEach((button) => {
+        button.addEventListener("click", () => {
+            const path = button.getAttribute("data-path");
+            const itemId = button.getAttribute("item-id");
+            data = {
+                id: itemId
+            }
+            fetch(path, {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                method: "PATCH",
+                body: JSON.stringify(data)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.code == "success") {
+                        location.reload();
+                    }
+                })
+        })
+    })
+}
+// hết khôi phục
+

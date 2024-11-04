@@ -5,23 +5,40 @@
         li
             a(href="#")
                 span.icon
-                    i.fa-solid.fa-house
+                    i.bi.bi-trash-fill
                 span.title Trang thùng rác
-        li
-            a(href=`/${prefixAdmin}/dashboard`)
-                span.icon 
-                    i.bi.bi-clipboard-data
-                span.title Danh mục sản phẩm
-        li
-            a(href=`/${prefixAdmin}/products`)
-                span.icon xxx
-                span.title Sản phẩm
         li
             a(href=`/${prefixAdmin}/trash`)
                 span.icon 
                     i.bi.bi-trash-fill
-                span.title Thùng rác
+                span.title Danh mục sản phẩm
         li
-            a(href="#")
-                span.icon xxx
-                span.title Brand Name
+            a(href=`/${prefixAdmin}/trash/trash-products`)
+                span.icon 
+                    i.bi.bi-trash-fill
+                span.title Sản phẩm
+        li
+            a(href=`/${prefixAdmin}/trash/trash-blogs-category`)
+                span.icon 
+                    i.bi.bi-trash-fill
+                span.title Danh mục bài viết      
+        li
+            a(href=`/${prefixAdmin}/trash/trash-blogs`)
+                span.icon 
+                    i.bi.bi-trash-fill
+                span.title Bài viết
+        li
+            a(href=`/${prefixAdmin}/trash/trash-role`)
+                span.icon 
+                    i.bi.bi-trash-fill
+                span.title Nhóm quyền
+        li
+            a(href=`/${prefixAdmin}/trash/trash-account`)
+                span.icon 
+                    i.bi.bi-trash-fill
+                span.title Tài khoản
+        li
+            a(href=`/${prefixAdmin}/dashboard`)
+                span.icon 
+                    i.fa-solid.fa-house
+                span.title Trang quản trị 
