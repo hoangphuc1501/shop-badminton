@@ -33,8 +33,8 @@
                 span.title  Khách hàng
                     i.fa-solid.fa-chevron-down.dropdown
             .sub-menu
-                if (role.permissions.includes("products-category_view"))
-                    a.sub-item(href=`#`) Danh sách khách hàng
+                if (role.permissions.includes("user_view"))
+                    a.sub-item(href=`/${prefixAdmin}/users`) Danh sách khách hàng
                 if (role.permissions.includes("products_create"))
                     a.sub-item(href=`#`) Bình luận
                 if (role.permissions.includes("products_view"))

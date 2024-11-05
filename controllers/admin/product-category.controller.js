@@ -123,7 +123,7 @@ module.exports.changeMulti = async (req, res) => {
                 deletedBy: res.locals.user.id,
                 deletedAt: new Date()
             })
-            req.flash('success', 'Xóa sản phẩm thành công!');
+            req.flash('success', 'Xóa danh mục thành công!');
             res.json({
                 code: "success"
             })
@@ -147,7 +147,7 @@ module.exports.delete = async (req, res) => {
         deletedBy: res.locals.user.id,
         deletedAt: new Date()
     })
-    req.flash('success', 'Xóa sản phẩm thành công!');
+    req.flash('success', 'Xóa danh mục thành công!');
     res.json({
         code: "success"
     })

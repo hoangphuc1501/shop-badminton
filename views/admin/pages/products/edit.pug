@@ -97,6 +97,7 @@ block main
                         name="price"
                         value=product.price
                         min="0"
+                        max="10000000000"
                     )
                 div(class="mb-3")
                     label(for="discount" class="label-title") % Giảm giá
@@ -107,6 +108,7 @@ block main
                         name="discountPercentage"
                         value=product.discountPercentage
                         min="0"
+                        max="100"
                     )
                 div(class="mb-3")
                     label(for="stock" class="label-title") Số lượng
@@ -117,6 +119,7 @@ block main
                         name="stock"
                         value=product.stock
                         min="0"
+                        max="1000000"
                     )
                 div(class="mb-3" upload-image)
                     label(for="thumbnail" class="label-title") Ảnh
