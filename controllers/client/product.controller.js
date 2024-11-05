@@ -157,3 +157,30 @@ module.exports.search = async (req, res) => {
         currentPage: page,
     });
 }
+
+module.exports.favorite = async (req, res) => {
+    const favorite = await Product.find({
+        deleted: false,
+        status: "active",
+        love: true
+    })
+    for (const item of favorite) {
+        item.priceNew = (1 - item.discountPercentage / 100) * item.price;
+        item.priceNew = item.priceNew.toFixed(0);
+    }
+    res.render("client/pages/products/favorite", {
+        pageTitle: `Sản phẩm yêu thích`,
+        favorite: favorite
+    });
+}
+
+module.exports.changeFavorite = async (req, res) => {
+    const id = req.body.id
+    const love = req.body.love;
+    
+    await Product.updateOne({ _id: id }, { love: love });
+    req.flash('success', love ? 'Thêm vào yêu thích thành công!' : 'Đã hủy yêu thích!');
+    res.json({
+        code: "success"
+    })
+}

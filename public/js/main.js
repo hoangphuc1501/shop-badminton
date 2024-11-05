@@ -1,6 +1,5 @@
 // table-cart
 const tableCart = document.querySelector("[table-cart]");
-console.log(tableCart)
 if (tableCart) {
     const listInputQuantity = tableCart.querySelectorAll("input[name='quantity']");
     listInputQuantity.forEach(input => {
@@ -87,6 +86,42 @@ if (listButtonPagination.length > 0) {
     }
 }
 // hết phân trang
+// Sản phẩm yêu thích
+const ListButtonFavorite = document.querySelectorAll("[button-favorite]")
+if (ListButtonFavorite.length > 0) {
+    ListButtonFavorite.forEach((button) => {
+        button.addEventListener("click", () => {
+            const id = button.getAttribute("item-id")
+            const path = button.getAttribute("data-path")
+            const isFavorite = button.classList.contains("active-favorite"); // Kiểm tra trạng thái yêu thích hiện tại
+            const data = { id: id, love: !isFavorite }; // Gửi trạng thái mới đến backend
+            // data = {
+            //     id: id
+            // }
+            fetch(path, {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                method: "PATCH",
+                body: JSON.stringify(data)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.code == "success") {
+                        button.classList.toggle("active-favorite");
+                        location.reload();
+                    }
+                    console.log(data)
+                })
+        })
+
+    })
+}
+
+// hết sản phẩm yêu thích
+
+
+
 // tab mô tả trong detail
 let tabs = document.querySelectorAll(".description-title h3")
 let tabContents = document.querySelectorAll(".description-content")
@@ -96,7 +131,7 @@ tabs.forEach((tab, index) => {
         tabContents.forEach((content) => {
             content.classList.remove("active-description")
         });
-        tabs.forEach((tab) =>{
+        tabs.forEach((tab) => {
             tab.classList.remove("active-description")
         })
         tabContents[index].classList.add("active-description")
@@ -153,3 +188,4 @@ $(document).ready(function () {
     })
 })
 // hết category
+

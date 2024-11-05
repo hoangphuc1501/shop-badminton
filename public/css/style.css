@@ -483,7 +483,6 @@ body {
 .item-product:hover .action-product {
     top: 135px;
 }
-
 /*  */
 .display-flex {
     display: flex;
@@ -513,6 +512,9 @@ body {
     line-height: 30px;
     color: #ffffff;
     border-radius: 10px;
+}
+button.love.active-favorite a {
+    color: var(--main-color);
 }
 
 /* danh mục sản phẩm */

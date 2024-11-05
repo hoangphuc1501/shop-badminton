@@ -1,0 +1,55 @@
+extends ../../layouts/default.pug
+block main
+    .container 
+        .contact-title
+            h2 #{pageTitle}
+        .row.my-5
+            .list-search
+                each item in favorite  
+                    .item-product
+                        a(href="")
+                            img(src=item.thumbnail, alt="")
+                        h3.product-title
+                            a(href= `/products/detail/${item.slug}`) #{item.title}
+                        span.star
+                            i.fa-solid.fa-star
+                            i.fa-solid.fa-star
+                            i.fa-solid.fa-star
+                            i.fa-solid.fa-star
+                            i.fa-solid.fa-star
+                        span.promotion-price #{item.priceNew}
+                            sup đ
+                        span.price
+                            del #{item.price}
+                                sup đ
+                        span.label-promotion #{item.discountPercentage} %
+                        .action-product.display-flex
+                            .button-action
+                                p.action-title Yêu thích
+                                button(
+                                    class=`love ${item.love ? 'active-favorite' : ''}`
+                                    item-id=item.id
+                                    data-path=`/products/change-favorite`
+                                    button-favorite
+
+                                )
+                                    a()
+                                        i.fa-solid.fa-heart
+                            .button-action
+                                p.action-title Xem nhanh
+                                button.love
+                                    a(href= `/products/detail/${item.slug}`)
+                                        i.fa-solid.fa-eye
+                            .button-action
+                                form(
+                                    action=`/cart/add/${item.id}`, 
+                                    method="post")
+                                    input(type="hidden" name="quantity" value="1")
+                                    p.action-title Mua ngay
+                                    button(
+                                        name="action"
+                                        value="buyNow"
+                                        type="submit"
+                                    ).love
+                                        a
+                                            i.fa-solid.fa-cart-shopping

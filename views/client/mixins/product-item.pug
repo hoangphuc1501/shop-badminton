@@ -19,8 +19,13 @@ mixin product-item(item)
         .action-product.display-flex
             .button-action
                 p.action-title Yêu thích
-                button.love
-                    a(href="#")
+                button(
+                    class=`love ${item.love ? 'active-favorite' : ''}`
+                    item-id=item.id
+                    data-path=`/products/change-favorite`
+                    button-favorite
+                )
+                    a()
                         i.fa-solid.fa-heart
             .button-action
                 p.action-title Xem nhanh

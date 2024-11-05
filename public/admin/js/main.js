@@ -110,7 +110,6 @@ if (listButtonChangeStatus.length > 0) {
             const path = button.getAttribute("data-path");
             const itemId = button.getAttribute("item-id");
             const statusChange = button.getAttribute("button-change-status");
-            console.log(statusChange)
             data = {
                 id: itemId,
                 status: statusChange
