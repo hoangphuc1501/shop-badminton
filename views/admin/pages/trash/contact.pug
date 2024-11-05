@@ -1,0 +1,52 @@
+extends ../../layouts/default.pug
+include ../../mixins/box-filter.pug
+block main
+    if (role.permissions.includes("trash_view"))
+        .main
+            h2
+                .title-page #{pageTitle}
+            .card.mb-3
+                .card-header
+                    .row
+                        .col-8
+                            h3
+                                | Danh sách liên hệ
+                .card-body
+                    table(
+                        class="table table-hover table-sm"
+                    )
+                        thead
+                            tr
+                                th 
+                                th STT
+                                th Họ tên
+                                th Email
+                                th Nội dung
+                                th Hành động
+                        tbody
+                            each item, index in contacts
+                                tr 
+                                    td
+                                        input(
+                                            type="checkbox"
+                                            input-change=item.id
+                                        )
+                                    td #{index + 1}
+                                    td #{item.fullName}
+                                    td #{item.email}
+                                    td #{item.content}
+                                    td
+                                        if (role.permissions.includes("trash_restore"))
+                                            button(
+                                                class="btn btn-warning btn-sm me-1"
+                                                item-id=item.id
+                                                button-restore
+                                                data-path=`/${prefixAdmin}/trash/restore`
+                                            ) Khôi phục
+                                        if (role.permissions.includes("trash_delete"))
+                                            button(
+                                                class="btn btn-danger btn-sm"
+                                                item-id=item.id
+                                                button-deletePermanently
+                                                data-path=`/${prefixAdmin}/trash/delete`
+                                            ) Xóa

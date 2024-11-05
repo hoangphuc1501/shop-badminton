@@ -1057,7 +1057,7 @@ button.love.active-favorite a {
     top: 170px;
     left: 25px;
     width: 260px;
-    max-height: 175px;
+    max-height: 180px;
     padding: 5px 10px;
     text-align: center;
     background: #fff;
@@ -1087,7 +1087,7 @@ button.love.active-favorite a {
     width: 140px;
     font-size: 10px;
     border-radius: 20px;
-    z-index: 9999;
+    z-index: 99;
 }
 .news-content::after{
     content: "";

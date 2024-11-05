@@ -4,6 +4,8 @@ const Blog = require("../../models/blog.model");
 const BlogCategory = require("../../models/blog-category.model");
 const Role = require("../../models/role.model");
 const Account = require("../../models/account.model");
+const User = require("../../models/user.model");
+const Contact = require("../../models/contact");
 const moment = require("moment");
 module.exports.productCategory = async (req, res) => {
     const ListProductCategory = await ProductCategory.find({
@@ -163,7 +165,24 @@ module.exports.account = async (req, res) => {
         accounts: accounts
     });
 }
-
+module.exports.user = async (req, res) => {
+    const users = await User.find({
+        deleted: true
+    })
+    res.render("admin/pages/trash/user.pug", {
+        pageTitle: "Thùng rác",
+        users: users
+    });
+}
+module.exports.contact = async (req, res) => {
+    const contacts = await Contact.find({
+        deleted: true
+    })
+    res.render("admin/pages/trash/contact.pug", {
+        pageTitle: "Thùng rác",
+        contacts: contacts
+    });
+}
 
 module.exports.delete = async (req, res) => {
     await ProductCategory.deleteOne({
@@ -202,7 +221,12 @@ module.exports.delete = async (req, res) => {
         deletedBy: res.locals.user.id,
         deletedAt: new Date()
     });
-    
+    await User.deleteOne({
+        _id: req.body.id
+    });
+    await Contact.deleteOne({
+        _id: req.body.id
+    });
     req.flash("success", "Xóa thành công!")
     res.json({
         code: "success"
@@ -236,6 +260,16 @@ module.exports.restore = async (req, res) => {
         deleted: false
     });
     await Account.updateOne({
+        _id: req.body.id,
+    },{
+        deleted: false
+    });
+    await User.updateOne({
+        _id: req.body.id,
+    },{
+        deleted: false
+    });
+    await Contact.updateOne({
         _id: req.body.id,
     },{
         deleted: false

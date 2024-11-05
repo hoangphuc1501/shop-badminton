@@ -8,6 +8,8 @@ route.get("/trash-blogs-category", controller.blogsCategory);
 route.get("/trash-blogs", controller.blogs);
 route.get("/trash-role", controller.role);
 route.get("/trash-account", controller.account);
+route.get("/trash-user", controller.user);
+route.get("/trash-contact", controller.contact);
 route.delete("/delete", controller.delete);
 route.patch("/restore", controller.restore);
 module.exports = route;
