@@ -4,6 +4,7 @@ const cartRoute = require("./cart.route");
 const orderRoute = require("./order.route");
 const userRoute = require("./user.route");
 const contactRoute = require("./contact.route");
+const newsRoute = require("./news.route");
 
 const categoryMiddleware = require("../../middlewares/client/category.middleware");
 const cartMiddleware = require("../../middlewares/client/cart.middleware");
@@ -20,6 +21,7 @@ module.exports = (app) => {
     app.use("/order", orderRoute);
     app.use("/user", userRoute);
     app.use("/contact", contactRoute);
+    app.use("/news", newsRoute);
     app.get("*", (req, res) => {
         res.render("client/pages/errors/404", {
             pageTitle: "404 Not Found",

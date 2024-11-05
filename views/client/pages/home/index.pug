@@ -93,39 +93,14 @@ block main
                 h3 Tin tức
                 hr
             .row
-                .col-3
-                    .news-item
-                        .news-img
-                            img(src="https://cdn.shopvnb.com/img/400x240/uploads/images/san-pickleball-viemin-town.jpg" alt="error")
-                        .news-content
-                            h3.title-item
-                                a(href="#") Khám phá sân Pickleball Viemin Town chất lượng và
-                            p.news-time 20-10-2002
-                            p Sân Pickleball Viemin Town với không gian rộng rãi, thoáng mát, được biết đến . 
-                .col-3
-                    .news-item
-                        .news-img
-                            img(src="https://cdn.shopvnb.com/img/400x240/uploads/images/san-pickleball-viemin-town.jpg" alt="error")
-                        .news-content
-                            h3.title-item
-                                a(href="#") Khám phá sân Pickleball Viemin Town chất lượng và
-                            p.news-time 20-10-2002 - 22: 22
-                            p Sân Pickleball Viemin Town với không gian rộng rãi, thoáng mát, được biết đến . 
-                .col-3
-                    .news-item
-                        .news-img
-                            img(src="https://cdn.shopvnb.com/img/400x240/uploads/images/san-pickleball-viemin-town.jpg" alt="error")
-                        .news-content
-                            h3.title-item
-                                a(href="#") Khám phá sân Pickleball Viemin Town chất lượng và
-                            p.news-time 20-10-2002
-                            p Sân Pickleball Viemin Town với không gian rộng rãi, thoáng mát, được biết đến . 
-                .col-3
-                    .news-item
-                        .news-img
-                            img(src="https://cdn.shopvnb.com/img/400x240/uploads/images/san-pickleball-viemin-town.jpg" alt="error")
-                        .news-content
-                            h3.title-item
-                                a(href="#") Khám phá sân Pickleball Viemin Town chất lượng và
-                            p.news-time 20-10-2002
-                            p Sân Pickleball Viemin Town với không gian rộng rãi, thoáng mát, được biết đến . 
+                each item in news
+                    .col-3
+                        .news-item
+                            .news-img
+                                img(src=item.thumbnail alt=item.title )
+                            .news-content
+                                h3.title-item
+                                    a(href="#") #{item.title}
+                                p.news-time #{item.createdAtFormat}
+                                p !{item.content}
+                

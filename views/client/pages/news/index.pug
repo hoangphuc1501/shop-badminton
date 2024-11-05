@@ -1,0 +1,58 @@
+extends ../../layouts/default.pug
+block main
+    .container
+        .contact-title
+            h2 #{pageTitle}
+        .row
+            .col-9 
+                .row 
+                    each item in news
+                        .col-4
+                            .news-item
+                                .news-img
+                                    img(src=item.thumbnail alt=item.title )
+                                .news-content
+                                    h3.title-item
+                                        a(href=`/news/detail/${item.slug}`) #{item.title}
+                                    p.news-time #{item.createdAtFormat}
+                                    p !{item.content}
+            .col-3 
+                .card.category
+                    h3.category-title.card-header Danh mục sản phẩm
+                    .card-body
+                        .category-product
+                            each item in allCategory
+                                if item.children
+                                    each childItem in item.children
+                                        .product-category-item
+                                            a.sub-btn #{childItem.title}
+                                                i.fa-solid.fa-chevron-down.dropdown
+                                            if childItem.children
+                                                .sub-category
+                                                    each itemChild in childItem.children
+                                                        .sub-item
+                                                            a(href=`/products/${itemChild.slug}`) #{itemChild.title}
+            .page-panigation
+                nav(class="" aria-label="Page navigation example")
+                    ul(class="pagination")
+                        if(currentPage > 1)
+                            li(class="page-item")
+                                button(class="page-link" button-pagination=currentPage-1) &laquo;
+                        - for (var i = 1; i <= totalPage; i++)
+                            li(class="page-item")
+                                button(class="page-link" button-pagination=i) #{i}
+                        if(currentPage < totalPage)
+                            li(class="page-item")
+                                button(class="page-link" button-pagination=currentPage+1) &raquo;
+
+
+
+    script(src="https://code.jquery.com/jquery-3.6.0.min.js")
+    script.
+        $(document).ready(function () {
+            $('.sub-btn').click(function () {
+            console.log("Button clicked"); // Kiểm tra xem click có được kích hoạt
+            $(this).next('.sub-category').slideToggle();
+            $(this).find('.dropdown').toggleClass('rotate');
+            });
+        });

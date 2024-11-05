@@ -1,0 +1,35 @@
+extends ../../layouts/default.pug
+block main
+    .container 
+        .row.my-5
+            .col-3
+                .card.category
+                    h3.category-title.card-header Danh mục sản phẩm
+                    .card-body
+                        .category-product
+                            each item in allCategory
+                                if item.children
+                                    each childItem in item.children
+                                        .product-category-item
+                                            a.sub-btn #{childItem.title}
+                                                i.fa-solid.fa-chevron-down.dropdown
+                                            if childItem.children
+                                                .sub-category
+                                                    each itemChild in childItem.children
+                                                        .sub-item
+                                                            a(href=`/products/${itemChild.slug}`) #{itemChild.title}
+            .col-9
+                h3 #{pageTitle}
+                .author-time 
+                    if (news.createdAtFormat)
+                        p   
+                            i.fa-regular.fa-clock
+                            span #{news.createdAtFormat}
+                    if (news.author)      
+                        p  
+                            i.fa-solid.fa-user
+                            span #{news.author}   
+                .content-detail 
+                    if (news.content)
+                        | !{news.content}
+    
