@@ -33,7 +33,7 @@ block main
                             .col-4 
                                 .title-table 
                                     a(href=`/products/detail/${item.slug}`) #{item.title}
-                            .col-2 #{item.priceNew} đ
+                            .col-2 #{Number(item.priceNew).toLocaleString('vi-VN')} đ
                             .col-1 
                                 input(
                                     type="number"
@@ -43,7 +43,7 @@ block main
                                     item-id=item.productId
                                     style="width: 60px"
                                         ) 
-                            .col-2 #{item.total} đ
+                            .col-2 #{Number(item.total).toLocaleString('vi-VN')} đ
                             .col-1
                                 a(
                                     href=`/cart/delete/${item.productId}`
@@ -53,7 +53,7 @@ block main
                 .row
                     .table-total
                         .totle-title Tổng tiền: 
-                        .totle-title #{total.toLocaleString()} đ
+                        .totle-title #{total.toLocaleString('vi-VN')} đ
                 div(class="btn-oder")
                     a(href="/order" class="btn bg-main") THANH TOÁN
         else

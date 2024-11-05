@@ -61,10 +61,10 @@ block main
                                         .col-5 
                                             .title-table 
                                                 a #{item.title}
-                                        .col-2 #{item.priceNew} đ
+                                        .col-2 #{Number(item.priceNew).toLocaleString('vi-VN')} đ
                                         .col-1 #{item.quantity}
-                                        .col-2 #{item.total} đ
+                                        .col-2 #{Number(item.total).toLocaleString('vi-VN')} đ
                             .row
                                 .table-total
                                     .totle-title 
-                                        h3 Tổng tiền đơn hàng: #{total.toLocaleString()} đ
+                                        h3 Tổng tiền đơn hàng: #{total.toLocaleString('vi-VN')} đ

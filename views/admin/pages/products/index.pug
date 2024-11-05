@@ -133,7 +133,7 @@ block main
                                         a(class="a-title-link"
                                             href=`/${prefixAdmin}/products/detail/${item.id}`
                                             ) #{item.title} 
-                                    td #{toLocaleString(item.price)} đ
+                                    td #{Number(item.price).toLocaleString('vi-VN')} đ
                                     td
                                         if (role.permissions.includes("products_edit"))
                                             input(

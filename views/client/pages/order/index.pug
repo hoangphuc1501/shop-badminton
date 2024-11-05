@@ -27,13 +27,13 @@ block main
                             .col-5 
                                 .title-table 
                                     a #{item.title}
-                            .col-2 #{item.priceNew} đ
+                            .col-2 #{Number(item.priceNew).toLocaleString('vi-VN')} đ
                             .col-1 #{item.quantity}
-                            .col-2 #{item.total} đ
+                            .col-2 #{Number(item.total).toLocaleString('vi-VN')} đ
                 .row
                     .table-total
                         .totle-title Tổng tiền: 
-                        .totle-title #{total.toLocaleString()} đ
+                        .totle-title #{total.toLocaleString('vi-VN')} đ
             .row
                 .col-12
                     .card.p-4.my-4

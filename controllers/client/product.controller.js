@@ -56,17 +56,15 @@ module.exports.detail = async (req, res) => {
         deleted: false,
         status: "active"
     })
-    const toLocaleString = (price) => price.toLocaleString('vi-VN');
     if (product) {
         // Tính toán priceNew trực tiếp
         product.priceNew = product.price * (100 - product.discountPercentage) / 100;
-        product.priceNew = toLocaleString((product.priceNew).toFixed(0)); // Định dạng trước khi gửi đi
+        product.priceNew = (product.priceNew).toFixed(0)
     }
 
     res.render("client/pages/products/detail.pug", {
         pageTitle: product.title,
         product: product,
-        toLocaleString: toLocaleString
     })
 }
 

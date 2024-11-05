@@ -52,12 +52,12 @@ block main
                             .list-price
                                 if (product.priceNew)
                                     span.promotion-price
-                                        | #{product.priceNew}
+                                        | #{Number(product.priceNew).toLocaleString('vi-VN')}
                                         sup đ
                                 if (product.price)        
                                     span.price Giá niêm yết: 
                                         del
-                                            | #{toLocaleString(product.price)}
+                                            | #{Number(product.price).toLocaleString('vi-VN')}
                                             sup đ
                                 if (product.discountPercentage)
                                     span.label-promotion

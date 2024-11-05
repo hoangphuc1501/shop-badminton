@@ -83,13 +83,11 @@ module.exports.index = async (req, res) => {
             }
         }
     
-    const toLocaleString = (price) => price.toLocaleString('vi-VN');
     res.render("admin/pages/products/index.pug", {
         pageTitle: "Trang danh sách sản phẩm",
         products: products,
         totalPage: totalPage,
         currentPage: page,
-        toLocaleString: toLocaleString, // Truyền hàm vào template
         limitItem: limitItem
     });
 }
@@ -246,11 +244,9 @@ module.exports.detail = async (req, res) => {
     });
     product.priceNew = product.price * (100 - product.discountPercentage) / 100;
     product.priceNew = (product.priceNew).toFixed(0);
-    const toLocaleString = (price) => price.toLocaleString('vi-VN');
     res.render("admin/pages/products/detail", {
         pageTitle: "Chi tiết sản phẩm",
         product: product,
-        toLocaleString: toLocaleString
     });
 }
 // hết chio tiết sản phẩm

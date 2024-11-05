@@ -10,10 +10,10 @@ mixin product-item(item)
             i.fa-solid.fa-star
             i.fa-solid.fa-star
             i.fa-solid.fa-star
-        span.promotion-price #{item.priceNew}
+        span.promotion-price #{Number(item.priceNew).toLocaleString('vi-VN')}
             sup đ
         span.price
-            del #{item.price}
+            del #{item.price.toLocaleString('vi-VN')}
                 sup đ
         span.label-promotion #{item.discountPercentage} %
         .action-product.display-flex
