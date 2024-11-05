@@ -1,0 +1,69 @@
+extends ../../layouts/default.pug
+include ../../mixins/box-filter.pug
+block main
+    if (role.permissions.includes("user_view"))
+        .main
+            h2
+                .title-page #{pageTitle}
+            .card.mb-3
+                .card-header 
+                    h3
+                        | Bộ lọc và tìm kiếm
+                .card-body
+                    .row
+                        .col-12
+                            include ../../partials/box-search.pug
+            .card.mb-3
+                .card-header
+                    .row
+                        .col-8
+                            h3
+                                | Danh sách liên hệ
+                .card-body
+                    table(
+                        class="table table-hover table-sm"
+                    )
+                        thead
+                            tr
+                                th 
+                                th STT
+                                th Họ tên
+                                th Email
+                                th Nội dung
+                                th Hành động
+                        tbody
+                            each item, index in records
+                                tr 
+                                    td
+                                        input(
+                                            type="checkbox"
+                                            input-change=item.id
+                                        )
+                                    td #{limitItem*(currentPage - 1) + index + 1}
+                                    td #{item.fullName}
+                                    td #{item.email}
+                                    td #{item.content}
+                                    td
+                                        if (role.permissions.includes("user_delete"))
+                                            button(
+                                                class="btn btn-danger btn-sm"
+                                                item-id=item.id
+                                                button-delete
+                                                data-path=`/${prefixAdmin}/contacts/delete`
+                                                    ) Xóa
+                                        else
+                                            button(
+                                                class="btn btn-danger btn-sm"
+                                                    ) Xóa
+                    .page-panigation
+                        nav(class="" aria-label="Page navigation example")
+                            ul(class="pagination")
+                                if(currentPage > 1)
+                                    li(class="page-item")
+                                        button(class="page-link" button-pagination=currentPage-1) &laquo;
+                                - for (var i = 1; i <= totalPage; i++)
+                                    li(class="page-item")
+                                        button(class="page-link" button-pagination=i) #{i}
+                                if(currentPage < totalPage)
+                                    li(class="page-item")
+                                        button(class="page-link" button-pagination=currentPage+1) &raquo;

@@ -37,8 +37,8 @@
                     a.sub-item(href=`/${prefixAdmin}/users`) Danh sách khách hàng
                 if (role.permissions.includes("products_create"))
                     a.sub-item(href=`#`) Bình luận
-                if (role.permissions.includes("products_view"))
-                    a.sub-item(href=`#`) Liên hệ
+                if (role.permissions.includes("contact_view"))
+                    a.sub-item(href=`/${prefixAdmin}/contacts`) Liên hệ
         li
             a.sub-btn
                 span.icon 
